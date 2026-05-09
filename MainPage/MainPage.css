@@ -1,0 +1,51 @@
+.main-header {
+  display: flex;
+  align-items: center;
+  padding: 15px 40px;
+  gap: 30px; /* pulls logo closer to links */
+}
+
+.logo img {
+  height: 70px;
+  cursor: pointer;
+}
+
+.nav-links {
+  display: flex;
+  gap: 50px; /* spacing between links */
+}
+
+.logo img {
+  height: 70px;
+  cursor: pointer;
+}
+.logo {
+  flex: 0 0 auto;
+}
+.nav-links a {
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  font-size: 16px;
+  color: #1a1a1a;
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+}
+
+.btn-order {
+  background: #27ae60;
+  padding: 10px 20px;
+  color: white;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.btn-order:hover {
+  background: #1e8449;
+}
