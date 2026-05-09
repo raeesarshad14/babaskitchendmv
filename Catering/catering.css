@@ -1,0 +1,83 @@
+/* PAGE WRAPPER */
+.catering-page-wrapper {
+  width: 90%;
+  max-width: 1200px;
+  margin: 120px auto 40px auto;
+}
+
+/* PAGE TITLE */
+.catering-title {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+/* LAYOUT: SIDEBAR + CONTENT */
+.catering-layout {
+  display: flex;
+  align-items: flex-start;
+  gap: 30px;
+  padding-top: 20px;
+}
+
+#sidebar-container {
+  align-self: flex-start;
+}
+
+#catering-container {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* CATEGORY SECTION */
+.catering-section {
+  padding-top: 25px;
+  padding-bottom: 0px;
+}
+
+.catering-section h2 {
+  text-align: center;
+  width: 100%;
+  margin: 0 auto 10px auto;
+  padding-top: 10px;
+}
+
+.catering-section .subtitle,
+.subtitle {
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  display: block;
+}
+
+/* GRID: 3 PER ROW */
+.catering-items {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* UNIFIED CARD STYLE */
+.unified-card {
+  background: white;
+  border: 1px solid #ddd;
+  padding: 18px;
+  border-radius: 8px;
+  text-align: center;
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.unified-card h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.price-line {
+  font-size: 16px;
+  margin: 3px 0;
+}

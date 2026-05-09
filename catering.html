@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Language" content="en" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Catering • Baba's Kitchen</title>
+
+    <!-- GLOBAL STYLES -->
+    <link rel="stylesheet" href="MainPage/MainPage.css" />
+
+    <!-- CATERING PAGE STYLE -->
+    <link rel="stylesheet" href="Catering/catering.css" />
+
+    <!-- SIDEBAR STYLE -->
+    <link rel="stylesheet" href="Catering/cateringsidebar.css" />
+  </head>
+
+  <body>
+    <!-- HEADER -->
+    <header class="main-header">
+      <div class="logo">
+        <a href="MainPage.html">
+          <img
+            src="Pictures/MainPageLogo/logo picture.png"
+            alt="BabaKitchen Logo"
+          />
+        </a>
+      </div>
+
+      <nav class="nav-links">
+        <a href="catering.html">CATERING</a>
+        <a href="#">DESSERTS</a>
+        <a href="#">WEEKLY MENU</a>
+        <a href="#">CONTACT</a>
+        <a href="#">JAN SISTERS BAKERY</a>
+      </nav>
+    </header>
+
+    <!-- ⭐ PAGE LAYOUT (SIDEBAR + CONTENT) -->
+    <div class="catering-layout">
+      <!-- LEFT SIDEBAR -->
+      <div id="sidebar-container"></div>
+
+      <!-- RIGHT CONTENT -->
+      <div id="catering-container"></div>
+    </div>
+
+    <!-- SIDEBAR LOGIC -->
+    <script src="Catering/cateringsidebar.js"></script>
+
+    <!-- CATERING LOGIC -->
+    <script src="Catering/catering.js"></script>
+
+    <script>
+      // Load sidebar HTML
+      fetch("cateringsidebar.html")
+        .then((res) => res.text())
+        .then((html) => {
+          document.getElementById("sidebar-container").innerHTML = html;
+        });
+
+      // Load catering content (ASYNC FIX)
+      const cateringPage = new CateringPage();
+      cateringPage.render().then((html) => {
+        document.getElementById("catering-container").innerHTML = html;
+      });
+    </script>
+  </body>
+</html>

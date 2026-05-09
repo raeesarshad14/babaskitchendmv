@@ -1,0 +1,231 @@
+[
+  {
+    "category": "Smash Burgers & Bun Palaster",
+    "subtitle": "(Each order includes chips and a soda. Minimum order of 12 required)",
+    "items": [
+      { "name": "Beef Smash Burger", "price": 11 },
+      { "name": "Beef Bun Palaster", "price": 11 },
+      { "name": "Chicken Bun Palaster", "price": 11 }
+    ]
+  },
+
+  {
+    "category": "Wraps",
+    "subtitle": "(Minimum order Of 12 required - does not include chips or soda)",
+    "items": [
+      { "name": "Chicken Chapli Kabob Wrap", "price": 10 },
+      { "name": "Beef Chapli Kabob Wrap", "price": 10 }
+    ]
+  },
+
+  {
+    "category": "Sandwiches",
+    "subtitle": "(Minimum order Of 12 required - does not include chips or soda)",
+    "items": [
+      { "name": "Chicken Salad Sandwich", "price": 4 },
+      { "name": "Desi Style Egg Salad Sandwich", "price": 5 },
+      { "name": "Chicken Tikka Club Sandwich", "price": 8 }
+    ]
+  },
+
+  {
+    "category": "Appetizers",
+    "items": [
+      { "name": "Dahi Bhallay", "smallPrice": 60, "largePrice": 100 },
+      { "name": "Aloo Channa Chaat", "smallPrice": 60, "largePrice": 100 },
+      { "name": "Fruit Chaat", "smallPrice": 65, "largePrice": 110 },
+      { "name": "Chana Chaat Papri", "smallPrice": 65, "largePrice": 105 },
+      { "name": "Pakoray", "smallPrice": 60, "largePrice": 100 },
+      { "name": "Elote Pasta Salad", "smallPrice": 60, "largePrice": 100 },
+      {
+        "name": "Caprese Bow Tie Pasta Salad",
+        "smallPrice": 60,
+        "largePrice": 100
+      },
+      { "name": "Mediterranean Salad", "smallPrice": 60, "largePrice": 100 },
+      { "name": "Salad", "smallPrice": 45, "largePrice": 75 }
+    ]
+  },
+
+  {
+    "category": "Sliders",
+    "subtitle": "(Minimum order of 12 required)",
+    "items": [
+      { "name": "Chicken Salad Sliders", "price": 2.5, "minOrder": 12 },
+      { "name": "Chicken Shami Sliders", "price": 3.0, "minOrder": 12 },
+      { "name": "Beef Shami Sliders", "price": 3.0, "minOrder": 12 },
+      { "name": "Beef Chapli Kabob Sliders", "price": 3.0, "minOrder": 12 },
+      {
+        "name": "Nashville Fried Chicken Sliders",
+        "price": 3.75,
+        "minOrder": 12
+      }
+    ]
+  },
+
+  {
+    "category": "Finger Foods",
+    "subtitle": "(Minimum Order Of 12 Required)",
+    "items": [
+      { "name": "Aloo Samosa", "price": 1.75, "minOrder": 12 },
+      { "name": "Chicken & Veggie Spring Roll", "price": 2.25 },
+      { "name": "Imitation Crab Rangoons", "price": 36, "note": "24 pieces" },
+      { "name": "Chicken Qeema Puff Pastries", "price": 3.0 },
+      { "name": "Beef Qeema Puff Pastries", "price": 3.5 },
+      { "name": "Beef Keema Samosa", "price": 2.25 },
+      { "name": "Chicken Keema Samosa", "price": 2.25 },
+      { "name": "Creamy Chicken Puff Pastries", "price": 3.5 }
+    ]
+  },
+
+  {
+    "category": "Tikkis / Kabobs / Fish",
+    "subtitle": "(Minimum Order Of 12 Required)",
+    "items": [
+      { "name": "Beef Chapli Kabob", "price": 3.0, "minOrder": 12 },
+      { "name": "Chicken Chapli Kabob", "price": 3.0, "minOrder": 12 },
+      { "name": "Chicken Shami Kabob", "price": 2.5, "minOrder": 12 },
+      { "name": "Beef Shami Kabob", "price": 2.75, "minOrder": 12 },
+      { "name": "Aloo Tikki", "price": 1.75, "minOrder": 12 },
+      { "name": "Fried Tilapia", "price": 4.0, "note": "1 filet" },
+      { "name": "Beef Chapli Kabob Sliders", "price": 3.0, "minOrder": 12 }
+    ]
+  },
+
+  {
+    "category": "Rice Dishes",
+    "items": [
+      { "name": "White Rice", "smallPrice": 50, "largePrice": 90 },
+      { "name": "Zeera Rice", "smallPrice": 55, "largePrice": 105 },
+      { "name": "Matar Pulao", "smallPrice": 60, "largePrice": 110 },
+      { "name": "Channa Pulao", "smallPrice": 60, "largePrice": 110 },
+      { "name": "Mixed Vegetable Pulao", "smallPrice": 60, "largePrice": 110 },
+      { "name": "Chicken Pulao", "smallPrice": 80, "largePrice": 130 },
+      { "name": "Beef Pulao", "smallPrice": 90, "largePrice": 180 },
+      { "name": "Goat Pulao", "smallPrice": 95, "largePrice": 195 },
+      { "name": "Vegetable Fried Rice", "smallPrice": 65, "largePrice": 115 },
+      {
+        "name": "Vegetable & Chicken Fried Rice",
+        "smallPrice": 85,
+        "largePrice": 135
+      },
+      { "name": "Chicken Biryani", "smallPrice": 80, "largePrice": 130 },
+      { "name": "Goat Biryani", "smallPrice": 110, "largePrice": 200 },
+      { "name": "Beef Biryani", "smallPrice": 90, "largePrice": 180 }
+    ]
+  },
+
+  {
+    "category": "Main Courses",
+    "items": [
+      { "name": "Beef Nehari", "smallPrice": 90, "largePrice": 165 },
+      { "name": "Chicken Haleem", "smallPrice": 90, "largePrice": 165 },
+      { "name": "Chicken Karahi", "smallPrice": 90, "largePrice": 165 },
+      { "name": "Chicken Salan", "smallPrice": 75, "largePrice": 130 },
+      { "name": "Chicken Korma", "smallPrice": 70, "largePrice": 110 },
+      { "name": "Goat Korma", "smallPrice": 75, "largePrice": 120 },
+      { "name": "Beef Kabob Salan", "smallPrice": 115, "largePrice": 225 },
+      { "name": "Chicken Kabob Salan", "smallPrice": 80, "largePrice": 160 },
+      { "name": "Achari Chicken", "smallPrice": 90, "largePrice": 170 },
+      { "name": "Achari Gosht", "smallPrice": 90, "largePrice": 170 },
+      {
+        "name": "Khara Masala Chicken Keema",
+        "smallPrice": 75,
+        "largePrice": 140
+      },
+      { "name": "Aloo Keema (Beef)", "smallPrice": 110, "largePrice": 220 },
+      { "name": "Aloo Keema (Chicken)", "smallPrice": 85, "largePrice": 170 },
+      {
+        "name": "Keema With Spinach (Chicken)",
+        "smallPrice": 80,
+        "largePrice": 160
+      },
+      {
+        "name": "Keema With Spinach (Beef)",
+        "smallPrice": 80,
+        "largePrice": 160
+      },
+      { "name": "Palak Chicken", "smallPrice": 80, "largePrice": 160 },
+      { "name": "Mixed Vegetables", "smallPrice": 80, "largePrice": 160 },
+      { "name": "Aloo Ki Bhujia", "smallPrice": 80, "largePrice": 160 },
+      { "name": "Bhindi", "smallPrice": 80, "largePrice": 160 },
+      { "name": "Aloo Palak", "smallPrice": 80, "largePrice": 160 },
+      { "name": "Aloo Gobi", "smallPrice": 80, "largePrice": 160 },
+      { "name": "Tori Bhujia", "smallPrice": 80, "largePrice": 160 },
+      { "name": "Kadhi Pakora", "smallPrice": 75, "largePrice": 140 },
+      {
+        "name": "Roast Chicken Tikka Pieces (Bone-In)",
+        "smallPrice": 75,
+        "largePrice": 140
+      },
+      { "name": "Beef Paye", "smallPrice": 90, "largePrice": 165 },
+      { "name": "Beef Haleem", "smallPrice": 90, "largePrice": 165 },
+      {
+        "name": "Khara Masala Beef Keema",
+        "smallPrice": 80,
+        "largePrice": 160
+      },
+      {
+        "name": "Keema With Green Shimla Mirch (Beef)",
+        "smallPrice": 80,
+        "largePrice": 160
+      },
+      {
+        "name": "Keema With Green Shimla Mirch (Chicken)",
+        "smallPrice": 80,
+        "largePrice": 160
+      },
+      { "name": "Aloo Gosht", "smallPrice": 115, "largePrice": 225 },
+      { "name": "Palak Gosht", "smallPrice": 115, "largePrice": 225 },
+      { "name": "Bhindi Gosht", "smallPrice": 115, "largePrice": 225 },
+      { "name": "Channa Daal Gosht", "smallPrice": 115, "largePrice": 225 },
+      { "name": "Shalijam Gosht", "smallPrice": 115, "largePrice": 225 },
+      { "name": "Tori Gosht", "smallPrice": 120, "largePrice": 230 },
+      { "name": "Khara Masala Gosht", "smallPrice": 125, "largePrice": 235 },
+      { "name": "Khara Masala Chicken", "smallPrice": 75, "largePrice": 140 },
+      { "name": "Murgh Cholay", "smallPrice": 75, "largePrice": 140 },
+      { "name": "Chicken & Cabbage", "smallPrice": 75, "largePrice": 140 },
+      { "name": "Gobi Gosht", "smallPrice": 120, "largePrice": 230 }
+    ]
+  },
+
+  {
+    "category": "Vegetarian Dishes",
+    "items": [
+      { "name": "Mixed Vegetables", "smallPrice": 55, "largePrice": 95 },
+      { "name": "Aloo Ki Bhujia", "smallPrice": 55, "largePrice": 95 },
+      { "name": "Bhindi", "smallPrice": 65, "largePrice": 115 },
+      { "name": "Aloo Palak", "smallPrice": 65, "largePrice": 115 },
+      { "name": "Aloo Gobi", "smallPrice": 65, "largePrice": 115 },
+      { "name": "Tori Bhujia", "smallPrice": 70, "largePrice": 125 },
+      { "name": "Kadhi Pakora", "smallPrice": 60, "largePrice": 110 },
+      { "name": "Lahori Channay", "smallPrice": 55, "largePrice": 90 }
+    ]
+  },
+
+  {
+    "category": "Pastas",
+    "items": [
+      {
+        "name": "Chicken Cajun Alfredo Pasta",
+        "smallPrice": 70,
+        "largePrice": 120
+      },
+      { "name": "Beef Lasagne", "smallPrice": 70, "largePrice": 130 },
+      { "name": "Baked Mac & Cheese", "smallPrice": 70, "largePrice": 115 },
+      { "name": "5 Cheese Baked Ziti", "smallPrice": 70, "largePrice": 115 }
+    ]
+  },
+
+  {
+    "category": "Roast Chickens",
+    "items": [
+      {
+        "name": "Roast Chicken Tika Pieces (Bone - In)",
+        "smallPrice": 75,
+        "largePrice": 140
+      },
+      { "name": "Whole Roast Chicken", "price": 35, "note": "3.5 - 4 lb" }
+    ]
+  }
+]

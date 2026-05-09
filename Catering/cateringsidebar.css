@@ -1,0 +1,31 @@
+.catering-sidebar {
+  width: 260px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: sticky;
+  top: 120px;
+  height: fit-content;
+}
+
+.catering-sidebar button {
+  width: 100%;
+  padding: 10px 18px; /* balanced top + bottom */
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  background: white;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: left;
+  line-height: 1.4; /* ⭐ helps vertical centering */
+  display: flex; /* ⭐ true vertical centering */
+  align-items: center; /* ⭐ centers text vertically */
+  transition: 0.2s;
+}
+
+.catering-sidebar button:hover {
+  color: #2e7d32;
+  transform: translateY(-3px);
+}
