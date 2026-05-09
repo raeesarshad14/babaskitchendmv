@@ -1,0 +1,33 @@
+.welcome-rotator {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  margin: 20px 0;
+}
+
+.welcome-text {
+  display: inline-block;
+  animation: slideText 25s linear infinite; /* MUCH SLOWER */
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+.welcome-text span {
+  display: inline-block;
+  padding-right: 120px;
+  font-size: 28px;
+  font-weight: 700;
+  font-family: "Inter", sans-serif;
+  color: #000;
+  -webkit-font-smoothing: antialiased;
+  font-smooth: always;
+}
+
+@keyframes slideText {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-60%); /* REDUCED DISTANCE = LESS BLUR */
+  }
+}
