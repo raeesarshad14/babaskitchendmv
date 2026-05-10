@@ -50,3 +50,12 @@
 .btn-order:hover {
   background: #1e8449;
 }
+.cart-icon img {
+  width: 28px;
+  height: 28px;
+  right: 28px;
+  object-fit: contain;
+}
+.cart-icon {
+  margin-right: 70px; /* move it away from the right edge */
+}
