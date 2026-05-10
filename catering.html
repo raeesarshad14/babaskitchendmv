@@ -47,7 +47,7 @@
       <div id="catering-container"></div>
     </div>
 
-    <!-- ⭐ FINAL CLEAN MODAL -->
+    <!-- ⭐ MODAL -->
     <div id="cateringModalOverlay" class="catering-modal-overlay">
       <div class="catering-modal">
         <h2 id="modalItemName"></h2>
@@ -93,12 +93,17 @@
     <script src="Catering/catering.js"></script>
 
     <script>
+      // Load sidebar
       fetch("cateringsidebar.html")
         .then((res) => res.text())
         .then((html) => {
           document.getElementById("sidebar-container").innerHTML = html;
+
+          // ⭐ Attach scroll listeners AFTER sidebar loads
+          initSidebarScroll();
         });
 
+      // Load catering content
       const cateringPage = new CateringPage();
       cateringPage.render().then((html) => {
         document.getElementById("catering-container").innerHTML = html;
