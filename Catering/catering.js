@@ -44,23 +44,23 @@ class CateringPage {
     }
 
     // ⭐ WHOLE ROAST CHICKEN — starts at 1, no minimum
-    if (item.note && item.note.toLowerCase().includes("whole roast")) {
+    if (item.name.toLowerCase().includes("whole roast chicken")) {
       return `
-        <div class="catering-item unified-card">
-          <h3>${item.name}</h3>
-          <p class="price-line">Price: $${item.price}</p>
+    <div class="catering-item unified-card">
+      <h3>${item.name}</h3>
+      <p class="price-line">Price: $${item.price}</p>
 
-          <button class="add-btn"
-            onclick='openModal({
-              name: "${item.name}",
-              type: "roast",
-              price: ${item.price},
-              minOrder: 1
-            })'>
-            Add
-          </button>
-        </div>
-      `;
+      <button class="add-btn"
+        onclick='openModal({
+          name: "${item.name}",
+          type: "roast",
+          price: ${item.price},
+          minOrder: 1
+        })'>
+        Add
+      </button>
+    </div>
+  `;
     }
 
     // ⭐ SINGLE PRICE ITEMS (min order 12)
@@ -74,7 +74,7 @@ class CateringPage {
             name: "${item.name}",
             type: "single",
             price: ${item.price},
-            minOrder: ${item.minOrder || 1}
+            minOrder: ${item.minOrder || 12}
           })'>
           Add
         </button>
