@@ -22,22 +22,62 @@ class CateringPage {
   }
 
   renderItem(item) {
+    // ⭐ TRAY ITEMS (small + large)
+    if (item.smallPrice && item.largePrice) {
+      return `
+        <div class="catering-item unified-card">
+          <h3>${item.name}</h3>
+          <p class="price-line">Small Tray: $${item.smallPrice}</p>
+          <p class="price-line">Large Tray: $${item.largePrice}</p>
+
+          <button class="add-btn"
+            onclick='openModal({
+              name: "${item.name}",
+              type: "tray",
+              smallPrice: ${item.smallPrice},
+              largePrice: ${item.largePrice}
+            })'>
+            Add
+          </button>
+        </div>
+      `;
+    }
+
+    // ⭐ WHOLE ROAST CHICKEN — starts at 1, no minimum
+    if (item.note && item.note.toLowerCase().includes("whole roast")) {
+      return `
+        <div class="catering-item unified-card">
+          <h3>${item.name}</h3>
+          <p class="price-line">Price: $${item.price}</p>
+
+          <button class="add-btn"
+            onclick='openModal({
+              name: "${item.name}",
+              type: "roast",
+              price: ${item.price},
+              minOrder: 1
+            })'>
+            Add
+          </button>
+        </div>
+      `;
+    }
+
+    // ⭐ SINGLE PRICE ITEMS (min order 12)
     return `
       <div class="catering-item unified-card">
         <h3>${item.name}</h3>
+        <p class="price-line">Price: $${item.price}</p>
 
-        ${
-          item.smallPrice && item.largePrice
-            ? `
-              <p class="price-line">Small Tray: $${item.smallPrice}</p>
-              <p class="price-line">Large Tray: $${item.largePrice}</p>
-            `
-            : `
-              <p class="price-line">Price: $${item.price}</p>
-              ${item.minOrder ? `<p class="price-line">Min Order: ${item.minOrder}</p>` : ""}
-              ${item.note ? `<p class="price-line">${item.note}</p>` : ""}
-            `
-        }
+        <button class="add-btn"
+          onclick='openModal({
+            name: "${item.name}",
+            type: "single",
+            price: ${item.price},
+            minOrder: ${item.minOrder || 1}
+          })'>
+          Add
+        </button>
       </div>
     `;
   }

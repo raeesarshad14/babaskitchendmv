@@ -15,6 +15,9 @@
 
     <!-- SIDEBAR STYLE -->
     <link rel="stylesheet" href="Catering/cateringsidebar.css" />
+
+    <!-- CATERING MODAL STYLE -->
+    <link rel="stylesheet" href="Catering/cateringModal.css" />
   </head>
 
   <body>
@@ -40,28 +43,62 @@
 
     <!-- ⭐ PAGE LAYOUT (SIDEBAR + CONTENT) -->
     <div class="catering-layout">
-      <!-- LEFT SIDEBAR -->
       <div id="sidebar-container"></div>
-
-      <!-- RIGHT CONTENT -->
       <div id="catering-container"></div>
     </div>
 
-    <!-- SIDEBAR LOGIC -->
-    <script src="Catering/cateringsidebar.js"></script>
+    <!-- ⭐ FINAL CLEAN MODAL -->
+    <div id="cateringModalOverlay" class="catering-modal-overlay">
+      <div class="catering-modal">
+        <h2 id="modalItemName"></h2>
 
-    <!-- CATERING LOGIC -->
+        <!-- SMALL TRAY -->
+        <div id="smallTrayRow" class="qty-row" style="display: none">
+          <span>Small Tray ($<span id="smallPriceUnit"></span>)</span>
+          <button class="qty-btn" onclick="changeQty('small', -1)">−</button>
+          <span id="smallQty">0</span>
+          <button class="qty-btn" onclick="changeQty('small', 1)">+</button>
+          <span id="smallTotal">$0</span>
+        </div>
+
+        <!-- LARGE TRAY -->
+        <div id="largeTrayRow" class="qty-row" style="display: none">
+          <span>Large Tray ($<span id="largePriceUnit"></span>)</span>
+          <button class="qty-btn" onclick="changeQty('large', -1)">−</button>
+          <span id="largeQty">0</span>
+          <button class="qty-btn" onclick="changeQty('large', 1)">+</button>
+          <span id="largeTotal">$0</span>
+        </div>
+
+        <!-- SINGLE PRICE -->
+        <div id="singleRow" class="qty-row" style="display: none">
+          <button class="qty-btn" onclick="changeQty('single', -1)">−</button>
+          <span id="singleQty">12</span>
+          <button class="qty-btn" onclick="changeQty('single', 1)">+</button>
+          <span id="singleTotal">$0</span>
+        </div>
+
+        <p class="total-label">Subtotal: <span id="modalSubtotal">$0</span></p>
+
+        <div class="modal-buttons">
+          <button id="modalAddBtn" class="add-btn">Add to Cart</button>
+          <button onclick="closeModal()" class="close-btn">Close</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- JS FILES -->
+    <script src="Catering/cateringsidebar.js"></script>
+    <script src="Catering/cateringModal.js"></script>
     <script src="Catering/catering.js"></script>
 
     <script>
-      // Load sidebar HTML
       fetch("cateringsidebar.html")
         .then((res) => res.text())
         .then((html) => {
           document.getElementById("sidebar-container").innerHTML = html;
         });
 
-      // Load catering content (ASYNC FIX)
       const cateringPage = new CateringPage();
       cateringPage.render().then((html) => {
         document.getElementById("catering-container").innerHTML = html;
