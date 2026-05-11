@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout • Baba's Kitchen</title>
+
+    <link rel="stylesheet" href="MainPage/MainPage.css" />
+    <link rel="stylesheet" href="Checkout/checkout.css" />
+  </head>
+
+  <body>
+    <header class="main-header">
+      <div class="logo">
+        <a href="MainPage.html">
+          <img src="Pictures/MainPageLogo/logo picture.png" alt="Logo" />
+        </a>
+      </div>
+
+      <nav class="nav-links">
+        <a href="catering.html">CATERING</a>
+        <a href="#">DESSERTS</a>
+        <a href="#">WEEKLY MENU</a>
+        <a href="#">CONTACT</a>
+        <a href="#">JAN SISTERS BAKERY</a>
+      </nav>
+
+      <div class="cart-icon">
+        <a href="cart.html" class="cart-link">
+          <img src="Pictures/cartpicture/cart.png" alt="Cart" />
+          <span id="cart-count">0</span>
+        </a>
+      </div>
+    </header>
+
+    <div id="checkout-root"></div>
+
+    <form
+      id="checkoutOrderForm"
+      action="https://api.web3forms.com/submit"
+      method="POST"
+      style="display: none"
+    >
+      <input type="hidden" name="access_key" value="YOUR_KEY_HERE" />
+      <input type="hidden" id="form_from_name" name="from_name" />
+      <input type="hidden" id="form_name" name="name" />
+      <input type="hidden" id="form_phone" name="phone" />
+      <input type="hidden" id="form_address" name="address" />
+      <input type="hidden" id="form_payment" name="payment" />
+      <input type="hidden" id="form_items" name="items" />
+      <input type="hidden" id="form_subtotal" name="subtotal" />
+      <input type="hidden" id="form_total" name="total" />
+      <input type="hidden" name="redirect" value="confirmation.html" />
+    </form>
+
+    <script src="Cart/cart.js"></script>
+    <script src="Checkout/checkout.js"></script>
+  </body>
+</html>
