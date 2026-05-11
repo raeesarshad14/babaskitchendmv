@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Magnolia Banana Pudding",
+    "smallPrice": 55,
+    "largePrice": 100
+  },
+  {
+    "name": "Mango Tiramisu",
+    "smallPrice": 55,
+    "largePrice": 100
+  },
+  {
+    "name": "Zarda",
+    "smallPrice": 60,
+    "largePrice": 110
+  },
+  {
+    "name": "Kheer",
+    "smallPrice": 80,
+    "largePrice": 150
+  },
+  {
+    "name": "Seviyan",
+    "smallPrice": 55,
+    "largePrice": 100
+  },
+  {
+    "name": "Baklava (40 pieces)",
+    "smallPrice": 70,
+    "largePrice": null
+  }
+]
