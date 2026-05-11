@@ -1,19 +1,39 @@
 <!-- Catering Modal -->
 <div id="cateringModalOverlay" class="catering-modal-overlay">
   <div class="catering-modal">
-    <h2 id="cateringModalTitle"></h2>
+    <h2 id="modalItemName"></h2>
 
-    <div class="qty-row">
-      <button id="cateringQtyMinus" class="qty-btn">−</button>
-      <span id="cateringQtyValue">12</span>
-      <button id="cateringQtyPlus" class="qty-btn">+</button>
+    <!-- SMALL TRAY -->
+    <div id="smallTrayRow" class="qty-row" style="display: none">
+      <span>Small Tray ($<span id="smallPriceUnit"></span>)</span>
+      <button class="qty-btn" onclick="changeQty('small', -1)">−</button>
+      <span id="smallQty">0</span>
+      <button class="qty-btn" onclick="changeQty('small', 1)">+</button>
+      <span id="smallTotal">$0</span>
     </div>
 
-    <p class="total-label">Total: <span id="cateringTotal">$0.00</span></p>
+    <!-- LARGE TRAY -->
+    <div id="largeTrayRow" class="qty-row" style="display: none">
+      <span>Large Tray ($<span id="largePriceUnit"></span>)</span>
+      <button class="qty-btn" onclick="changeQty('large', -1)">−</button>
+      <span id="largeQty">0</span>
+      <button class="qty-btn" onclick="changeQty('large', 1)">+</button>
+      <span id="largeTotal">$0</span>
+    </div>
+
+    <!-- SINGLE PRICE -->
+    <div id="singleRow" class="qty-row" style="display: none">
+      <button class="qty-btn" onclick="changeQty('single', -1)">−</button>
+      <span id="singleQty">12</span>
+      <button class="qty-btn" onclick="changeQty('single', 1)">+</button>
+      <span id="singleTotal">$0</span>
+    </div>
+
+    <p class="total-label">Subtotal: <span id="modalSubtotal">$0</span></p>
 
     <div class="modal-buttons">
-      <button id="cateringAddToCart" class="add-btn">Add to Cart</button>
-      <button id="cateringCloseModal" class="close-btn">Close</button>
+      <button id="modalAddBtn" class="add-btn">Add to Cart</button>
+      <button onclick="closeModal()" class="close-btn">Close</button>
     </div>
   </div>
 </div>

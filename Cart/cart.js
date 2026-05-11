@@ -28,7 +28,7 @@ class Cart {
     } else {
       this.items.push({
         ...item,
-        image: item.image || null, // ⭐ supports images
+        image: item.image || null,
       });
     }
 
