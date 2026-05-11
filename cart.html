@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Your Cart • Baba's Kitchen</title>
+
+    <!-- GLOBAL HEADER STYLES -->
+    <link rel="stylesheet" href="MainPage/MainPage.css" />
+
+    <!-- CART SYSTEM STYLES -->
+    <link rel="stylesheet" href="Cart/cart.css" />
+  </head>
+
+  <body>
+    <!-- HEADER -->
+    <header class="main-header">
+      <div class="logo">
+        <a href="MainPage.html">
+          <img
+            src="Pictures/MainPageLogo/logo picture.png"
+            alt="BabaKitchen Logo"
+          />
+        </a>
+      </div>
+
+      <nav class="nav-links">
+        <a href="catering.html">CATERING</a>
+        <a href="#">DESSERTS</a>
+        <a href="#">WEEKLY MENU</a>
+        <a href="#">CONTACT</a>
+        <a href="#">JAN SISTERS BAKERY</a>
+      </nav>
+
+      <div class="cart-icon">
+        <a href="cart.html">
+          <img src="Pictures/cartpicture/cart.png" alt="Cart" />
+        </a>
+        <span id="cart-count">0</span>
+      </div>
+    </header>
+
+    <!-- CART PAGE CONTENT -->
+    <div class="cart-page">
+      <h1>Your Cart</h1>
+
+      <div id="cart-items"></div>
+
+      <div class="cart-total">Total: $<span id="cart-total">0</span></div>
+    </div>
+
+    <!-- CART LOGIC -->
+    <script src="Cart/cart.js"></script>
+
+    <script>
+      function renderCart() {
+        const container = document.getElementById("cart-items");
+        container.innerHTML = "";
+
+        if (cart.items.length === 0) {
+          container.innerHTML = `<p>Your cart is empty.</p>`;
+          document.getElementById("cart-total").textContent = "0";
+          return;
+        }
+
+        cart.items.forEach((item) => {
+          container.innerHTML += `
+            <div class="cart-item">
+              <div>
+                <strong>${item.name}</strong><br>
+                Qty: ${item.qty}
+              </div>
+              <div>$${item.price * item.qty}</div>
+            </div>
+          `;
+        });
+
+        document.getElementById("cart-total").textContent = cart.getTotal();
+      }
+
+      renderCart();
+    </script>
+  </body>
+</html>

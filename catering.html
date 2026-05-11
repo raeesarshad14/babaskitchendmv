@@ -18,6 +18,9 @@
 
     <!-- CATERING MODAL STYLE -->
     <link rel="stylesheet" href="Catering/cateringModal.css" />
+
+    <!-- CART SYSTEM STYLES -->
+    <link rel="stylesheet" href="Cart/cart.css" />
   </head>
 
   <body>
@@ -40,19 +43,21 @@
         <a href="#">JAN SISTERS BAKERY</a>
       </nav>
 
-      <!-- ⭐ CART ICON (this was missing) -->
       <div class="cart-icon">
-        <img src="Pictures/cartpicture/cart.png" alt="Cart" />
+        <a href="cart.html">
+          <img src="Pictures/cartpicture/cart.png" alt="Cart" />
+        </a>
+        <span id="cart-count">0</span>
       </div>
     </header>
 
-    <!-- ⭐ PAGE LAYOUT (SIDEBAR + CONTENT) -->
+    <!-- PAGE LAYOUT -->
     <div class="catering-layout">
       <div id="sidebar-container"></div>
       <div id="catering-container"></div>
     </div>
 
-    <!-- ⭐ MODAL -->
+    <!-- MODAL -->
     <div id="cateringModalOverlay" class="catering-modal-overlay">
       <div class="catering-modal">
         <h2 id="modalItemName"></h2>
@@ -97,14 +102,15 @@
     <script src="Catering/cateringModal.js"></script>
     <script src="Catering/catering.js"></script>
 
+    <!-- CART LOGIC (LOAD LAST) -->
+    <script src="Cart/cart.js" defer></script>
+
     <script>
       // Load sidebar
       fetch("cateringsidebar.html")
         .then((res) => res.text())
         .then((html) => {
           document.getElementById("sidebar-container").innerHTML = html;
-
-          // ⭐ Attach scroll listeners AFTER sidebar loads
           initSidebarScroll();
         });
 

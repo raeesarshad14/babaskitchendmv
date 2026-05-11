@@ -1,0 +1,66 @@
+/* ============================
+   HEADER CART ICON + BADGE
+============================ */
+.cart-icon {
+  display: flex;
+  align-items: center;
+  margin-right: 28px; /* adjust spacing from right */
+}
+
+.cart-icon img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  cursor: pointer;
+}
+
+#cart-count {
+  background: green;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 50%;
+  font-size: 14px;
+  margin-left: 6px;
+  font-weight: bold;
+}
+
+/* ============================
+   CART PAGE LAYOUT
+============================ */
+.cart-page {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+  font-family: "Inter", sans-serif;
+}
+
+.cart-page h1 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 25px;
+}
+
+/* ============================
+   CART ITEM ROWS
+============================ */
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 0;
+  border-bottom: 1px solid #ddd;
+  font-size: 18px;
+}
+
+.cart-item strong {
+  font-size: 18px;
+}
+
+/* ============================
+   CART TOTAL
+============================ */
+.cart-total {
+  font-size: 22px;
+  font-weight: bold;
+  margin-top: 25px;
+  text-align: right;
+}

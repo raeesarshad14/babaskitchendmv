@@ -10,8 +10,12 @@
     <!-- GLOBAL STYLES -->
     <link rel="stylesheet" href="MainPage/MainPage.css" />
     <link rel="stylesheet" href="MainPage/cart.css" />
+    <!-- keep for now -->
     <link rel="stylesheet" href="MainPage/slider.css" />
     <link rel="stylesheet" href="MainPage/welcomeText.css" />
+
+    <!-- NEW CART SYSTEM STYLES -->
+    <link rel="stylesheet" href="Cart/cart.css" />
   </head>
 
   <body>
@@ -34,8 +38,12 @@
         <a href="#">JAN SISTERS BAKERY</a>
       </nav>
 
+      <!-- UPDATED CART ICON + BADGE -->
       <div class="cart-icon">
-        <img src="Pictures/CartPicture/cart.png" alt="Cart" />
+        <a href="cart.html">
+          <img src="Pictures/cartpicture/cart.png" alt="Cart" />
+        </a>
+        <span id="cart-count">0</span>
       </div>
     </header>
 
@@ -60,5 +68,8 @@
     <!-- JS FILES -->
     <script src="MainPage/slider.js" defer></script>
     <script src="MainPage/MainPage.js" defer></script>
+
+    <!-- CART LOGIC -->
+    <script src="Cart/cart.js"></script>
   </body>
 </html>
