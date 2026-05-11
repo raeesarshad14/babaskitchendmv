@@ -26,7 +26,10 @@ class Cart {
     if (existing) {
       existing.qty += item.qty;
     } else {
-      this.items.push({ ...item });
+      this.items.push({
+        ...item,
+        image: item.image || null, // ⭐ supports images
+      });
     }
 
     this.save();
@@ -83,4 +86,27 @@ class Cart {
 
 // Create global cart instance
 window.cart = new Cart();
-cart.update;
+cart.updateCartCount();
+
+// ⭐ Toast + Animation + Sound
+function showToast(message) {
+  const toast = document.getElementById("toast");
+  toast.textContent = message;
+  toast.classList.add("show");
+
+  // Play sound if available
+  const sound = document.getElementById("cartSound");
+  if (sound) sound.play();
+
+  // Bounce cart icon
+  const cartIcon = document.querySelector(".cart-icon img");
+  if (cartIcon) {
+    cartIcon.classList.add("bounce");
+    setTimeout(() => cartIcon.classList.remove("bounce"), 600);
+  }
+
+  // Hide toast after 1.5 seconds
+  setTimeout(() => {
+    toast.classList.remove("show");
+  }, 1500);
+}

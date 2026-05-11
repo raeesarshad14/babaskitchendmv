@@ -8,6 +8,7 @@ let modalItem = {
   smallQty: 0,
   largeQty: 0,
   minOrder: 12,
+  image: null,
 };
 
 function openModal(item) {
@@ -43,7 +44,6 @@ function openModal(item) {
   // ⭐ ROAST — SIMPLE MULTIPLIER
   if (modalItem.type === "roast") {
     document.getElementById("singleRow").style.display = "flex";
-
     document.getElementById("singleQty").textContent = modalItem.qty;
 
     updateTotals();
@@ -108,8 +108,56 @@ function closeModal() {
   document.getElementById("cateringModalOverlay").style.display = "none";
 }
 
+/* ⭐ FINAL FIX — ADD TO CART LOGIC */
 document.getElementById("modalAddBtn").addEventListener("click", () => {
-  alert(`${modalItem.name} added to cart!`);
+  // TRAY ITEMS
+  if (modalItem.type === "tray") {
+    if (modalItem.smallQty > 0) {
+      cart.addItem({
+        name: `${modalItem.name} - Small Tray`,
+        price: modalItem.smallPrice,
+        qty: modalItem.smallQty,
+        image: modalItem.image || null,
+        options: { size: "small" },
+      });
+    }
+
+    if (modalItem.largeQty > 0) {
+      cart.addItem({
+        name: `${modalItem.name} - Large Tray`,
+        price: modalItem.largePrice,
+        qty: modalItem.largeQty,
+        image: modalItem.image || null,
+        options: { size: "large" },
+      });
+    }
+  }
+
+  // SINGLE ITEMS
+  if (modalItem.type === "single") {
+    cart.addItem({
+      name: modalItem.name,
+      price: modalItem.price,
+      qty: modalItem.qty,
+      image: modalItem.image || null,
+      options: {},
+    });
+  }
+
+  // ROAST ITEMS
+  if (modalItem.type === "roast") {
+    cart.addItem({
+      name: modalItem.name,
+      price: modalItem.price,
+      qty: modalItem.qty,
+      image: modalItem.image || null,
+      options: { roast: true },
+    });
+  }
+
+  // ⭐ Toast + bounce + sound
+  showToast(`${modalItem.name} added to cart!`);
+
   closeModal();
 });
 

@@ -3,18 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <title>Your Cart • Baba's Kitchen</title>
 
-    <!-- GLOBAL HEADER STYLES -->
+    <!-- GLOBAL HEADER + NAV STYLES -->
     <link rel="stylesheet" href="MainPage/MainPage.css" />
 
-    <!-- CART SYSTEM STYLES -->
+    <!-- CART PAGE STYLES -->
     <link rel="stylesheet" href="Cart/cart.css" />
   </head>
 
   <body>
-    <!-- HEADER -->
+    <!-- ⭐ TOAST -->
+    <div id="toast" class="toast"></div>
+
+    <!-- ⭐ HEADER (same as catering page) -->
     <header class="main-header">
       <div class="logo">
         <a href="MainPage.html">
@@ -41,7 +43,7 @@
       </div>
     </header>
 
-    <!-- CART PAGE CONTENT -->
+    <!-- ⭐ CART PAGE -->
     <div class="cart-page">
       <h1>Your Cart</h1>
 
@@ -59,24 +61,50 @@
         container.innerHTML = "";
 
         if (cart.items.length === 0) {
-          container.innerHTML = `<p>Your cart is empty.</p>`;
+          container.innerHTML = "<p>Your cart is empty.</p>";
           document.getElementById("cart-total").textContent = "0";
           return;
         }
 
         cart.items.forEach((item) => {
-          container.innerHTML += `
-            <div class="cart-item">
+          const row = document.createElement("div");
+          row.className = "cart-item";
+
+          row.innerHTML = `
+            <div class="cart-left">
+              ${item.image ? `<img src="${item.image}" class="cart-img" />` : ""}
               <div>
-                <strong>${item.name}</strong><br>
-                Qty: ${item.qty}
+                <strong>${item.name}</strong>
+                <p>$${item.price}</p>
               </div>
-              <div>$${item.price * item.qty}</div>
+            </div>
+
+            <div class="cart-controls">
+              <button class="qty-btn" onclick="changeCartQty('${item.name}', -1)">−</button>
+              <span>${item.qty}</span>
+              <button class="qty-btn" onclick="changeCartQty('${item.name}', 1)">+</button>
+
+              <button class="remove-btn" onclick="removeCartItem('${item.name}')">🗑</button>
             </div>
           `;
+
+          container.appendChild(row);
         });
 
         document.getElementById("cart-total").textContent = cart.getTotal();
+      }
+
+      function changeCartQty(name, amount) {
+        const item = cart.items.find((i) => i.name === name);
+        if (!item) return;
+
+        cart.updateQty(name, item.qty + amount);
+        renderCart();
+      }
+
+      function removeCartItem(name) {
+        cart.removeItem(name);
+        renderCart();
       }
 
       renderCart();
