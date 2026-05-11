@@ -2,8 +2,10 @@
    HEADER CART ICON + BADGE
 ============================ */
 .cart-icon {
+  position: relative; /* ⭐ anchor for badge */
   display: flex;
   align-items: center;
+  justify-content: center;
   margin-right: 28px;
 }
 
@@ -12,16 +14,6 @@
   height: 28px;
   object-fit: contain;
   cursor: pointer;
-}
-
-#cart-count {
-  background: green;
-  color: white;
-  padding: 2px 8px;
-  border-radius: 50%;
-  font-size: 14px;
-  margin-left: 6px;
-  font-weight: bold;
 }
 
 /* ============================
@@ -231,4 +223,27 @@
 
 .cart-icon img.bounce {
   animation: cartBounce 0.6s ease;
+}
+.cart-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+.cart-link img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+#cart-count {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  background: #27ae60;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
 }
