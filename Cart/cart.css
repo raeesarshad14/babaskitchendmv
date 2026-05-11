@@ -134,10 +134,14 @@
    MATH LINE
 ============================ */
 .math-section {
+  display: flex !important;
+  justify-content: flex-end !important;
   text-align: right !important;
   white-space: nowrap !important;
   font-size: 18px;
+  width: 180px !important; /* adjust if needed */
   font-weight: 600;
+  gap: 10px !important;
 }
 
 .math-total {
