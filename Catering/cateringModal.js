@@ -12,9 +12,15 @@ let modalItem = {
 };
 
 function openModal(item) {
+  // clone item into modalItem
   modalItem = { ...item };
 
-  // ⭐ FORCE roast to have minOrder = 1 BEFORE ANYTHING ELSE
+  // ⭐ Normalize minOrder defaults
+  if (modalItem.type === "single" && !modalItem.minOrder) {
+    modalItem.minOrder = 12;
+  }
+
+  // ⭐ FORCE roast to have minOrder = 1 and qty = 1
   if (modalItem.type === "roast") {
     modalItem.minOrder = 1;
     modalItem.qty = 1;
@@ -39,9 +45,13 @@ function openModal(item) {
 
     modalItem.smallQty = 0;
     modalItem.largeQty = 0;
+
+    updateTotals();
+    document.getElementById("cateringModalOverlay").style.display = "flex";
+    return;
   }
 
-  // ⭐ ROAST — SIMPLE MULTIPLIER
+  // ⭐ ROAST — SIMPLE MULTIPLIER (min 1)
   if (modalItem.type === "roast") {
     document.getElementById("singleRow").style.display = "flex";
     document.getElementById("singleQty").textContent = modalItem.qty;
@@ -56,30 +66,50 @@ function openModal(item) {
     document.getElementById("singleRow").style.display = "flex";
     modalItem.qty = modalItem.minOrder || 12;
     document.getElementById("singleQty").textContent = modalItem.qty;
+
+    updateTotals();
+    document.getElementById("cateringModalOverlay").style.display = "flex";
+    return;
   }
 
+  // fallback: still show modal
   updateTotals();
   document.getElementById("cateringModalOverlay").style.display = "flex";
 }
 
 function changeQty(type, amount) {
+  // ⭐ TRAY SMALL
   if (type === "small") {
     modalItem.smallQty = Math.max(0, modalItem.smallQty + amount);
     document.getElementById("smallQty").textContent = modalItem.smallQty;
+    updateTotals();
+    return;
   }
 
+  // ⭐ TRAY LARGE
   if (type === "large") {
     modalItem.largeQty = Math.max(0, modalItem.largeQty + amount);
     document.getElementById("largeQty").textContent = modalItem.largeQty;
+    updateTotals();
+    return;
   }
 
-  if (type === "single") {
-    let min = modalItem.minOrder; // roast = 1, single = 12
+  // ⭐ SINGLE / ROAST share same control (your HTML likely calls changeQty('single', ±1))
+  if (type === "single" || type === "roast") {
+    const min = modalItem.minOrder || 1; // roast = 1, single = 12
     modalItem.qty = Math.max(min, modalItem.qty + amount);
     document.getElementById("singleQty").textContent = modalItem.qty;
+    updateTotals();
+    return;
   }
 
-  updateTotals();
+  // safety: if someone calls with modalItem.type
+  if (modalItem.type === "roast" || modalItem.type === "single") {
+    const min = modalItem.minOrder || (modalItem.type === "roast" ? 1 : 12);
+    modalItem.qty = Math.max(min, modalItem.qty + amount);
+    document.getElementById("singleQty").textContent = modalItem.qty;
+    updateTotals();
+  }
 }
 
 function updateTotals() {
@@ -155,9 +185,7 @@ document.getElementById("modalAddBtn").addEventListener("click", () => {
     });
   }
 
-  // ⭐ Toast + bounce + sound
   showToast(`${modalItem.name} added to cart!`);
-
   closeModal();
 });
 

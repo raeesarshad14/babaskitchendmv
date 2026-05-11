@@ -44,20 +44,35 @@ class Cart {
   }
 
   // Update quantity rules depending on item type
+  // Update quantity rules depending on item type
   updateQty(name, qty) {
     const item = this.items.find((i) => i.name === name);
     if (!item) return;
 
     const isCatering = item.name.includes("Tray");
     const isWeekly = item.type === "weekly";
+    const isRoast = item.options && item.options.roast === true;
 
+    // ⭐ WEEKLY ITEMS — min 1
     if (isWeekly) {
       if (qty < 1) qty = 1;
       item.qty = qty;
-    } else if (!isCatering) {
+    }
+
+    // ⭐ ROAST ITEMS — min 1 (THIS FIXES YOUR ISSUE)
+    else if (isRoast) {
+      if (qty < 1) qty = 1;
+      item.qty = qty;
+    }
+
+    // ⭐ SINGLE ITEMS — min 12
+    else if (!isCatering) {
       if (qty < 12) qty = 12;
-      else item.qty = qty;
-    } else {
+      item.qty = qty;
+    }
+
+    // ⭐ TRAY ITEMS — min 0
+    else {
       if (qty < 0) qty = 0;
       item.qty = qty;
     }
