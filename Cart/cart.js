@@ -44,48 +44,45 @@ class Cart {
   }
 
   /* ---------------------------------------------------------
-     UPDATE QUANTITY RULES (FINAL FIXED VERSION)
+     UPDATE QUANTITY RULES — FIXED VERSION
+     Weekly menu now allows ANY qty >= 1
   --------------------------------------------------------- */
   updateQty(name, qty) {
     const item = this.items.find((i) => i.name === name);
     if (!item) return;
 
-    const isCatering = item.name.includes("Tray");
-    const isWeekly = item.type === "weekly";
-    const isRoast = item.options && item.options.roast === true;
-    const isDessert = item.type === "dessert";
-    const isMenuItem = item.type === "menu"; // ⭐ Smash Burger, Finger Foods, etc.
+    const type = item.type;
 
-    // ⭐ WEEKLY MENU + MENU ITEMS (Smash Burger) — min 12
-    if (isWeekly || isMenuItem) {
-      if (qty < 12) qty = 12;
-      item.qty = qty;
+    switch (type) {
+      case "menu": // Smash burger, finger foods
+        if (qty < 12) qty = 12;
+        break;
+
+      case "weekly": // ⭐ FIXED — now min 1, not 12
+        if (qty < 1) qty = 1;
+        break;
+
+      case "roast":
+        if (qty < 1) qty = 1;
+        break;
+
+      case "dessert":
+        if (qty < 1) qty = 1;
+        break;
+
+      case "tray": // catering trays
+        if (qty < 0) qty = 0;
+        break;
+
+      case "single": // catering single items
+        if (qty < item.minOrder) qty = item.minOrder;
+        break;
+
+      default:
+        if (qty < 1) qty = 1;
     }
 
-    // ⭐ ROAST ITEMS — min 1
-    else if (isRoast) {
-      if (qty < 1) qty = 1;
-      item.qty = qty;
-    }
-
-    // ⭐ DESSERTS — min 1
-    else if (isDessert) {
-      if (qty < 1) qty = 1;
-      item.qty = qty;
-    }
-
-    // ⭐ CATERING TRAYS — min 0
-    else if (isCatering) {
-      if (qty < 0) qty = 0;
-      item.qty = qty;
-    }
-
-    // ⭐ EVERYTHING ELSE — min 1
-    else {
-      if (qty < 1) qty = 1;
-      item.qty = qty;
-    }
-
+    item.qty = qty;
     this.save();
     this.updateCartCount();
   }
@@ -120,18 +117,15 @@ function showToast(message) {
   toast.textContent = message;
   toast.classList.add("show");
 
-  // Play sound if available
   const sound = document.getElementById("cartSound");
   if (sound) sound.play();
 
-  // Bounce cart icon
   const cartIcon = document.querySelector(".cart-icon img");
   if (cartIcon) {
     cartIcon.classList.add("bounce");
     setTimeout(() => cartIcon.classList.remove("bounce"), 600);
   }
 
-  // Hide toast after 1.5 seconds
   setTimeout(() => {
     toast.classList.remove("show");
   }, 1500);
