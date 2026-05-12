@@ -118,12 +118,14 @@ function addWeeklyToCart(name, price) {
 
   const item = {
     name: name,
-    price: price, // unit price
-    quantity: qty,
+    price: price,
+    qty: qty, // ⭐ MUST BE qty (NOT quantity)
     type: "weekly",
+    options: {}, // ⭐ required so JSON.stringify matches
   };
 
-  addToCart(item);
+  cart.addItem(item); // ⭐ use your Cart class directly
+
   closeWeeklyModal();
   showToast(name + " added to cart");
 }

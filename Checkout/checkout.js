@@ -1,3 +1,5 @@
+console.log("Checkout JS Loaded");
+
 window.addEventListener("DOMContentLoaded", () => {
   const root = document.getElementById("checkout-root");
   if (!root) return;
@@ -8,6 +10,7 @@ window.addEventListener("DOMContentLoaded", () => {
   document
     .getElementById("payment")
     .addEventListener("change", toggleZelleInfo);
+
   document.getElementById("placeOrderBtn").addEventListener("click", (e) => {
     e.preventDefault();
     placeOrder();
@@ -103,13 +106,18 @@ async function placeOrder() {
     return;
   }
 
+  // ⭐ FIXED: use quantity, not qty
   const itemsText = items
-    .map((i) => `${i.name} (x${i.qty}) - $${(i.price * i.qty).toFixed(2)}`)
+    .map(
+      (i) =>
+        `${i.name} (x${i.quantity}) - $${(i.price * i.quantity).toFixed(2)}`,
+    )
     .join("\n");
 
   const subtotal = cart.getTotal();
   const total = subtotal;
 
+  // Fill Web3Forms hidden fields
   document.getElementById("form_from_name").value = "BabasKitchendmv";
   document.getElementById("form_name").value = name;
   document.getElementById("form_phone").value = phone;

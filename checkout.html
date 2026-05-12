@@ -10,6 +10,7 @@
   </head>
 
   <body>
+    <!-- Header -->
     <header class="main-header">
       <div class="logo">
         <a href="MainPage.html">
@@ -21,8 +22,8 @@
         <a href="catering.html">CATERING</a>
         <a href="dessert.html">DESSERTS</a>
         <a href="weekly-menu.html">WEEKLY MENU</a>
-        <a href="#">CONTACT</a>
-        <a href="#">JAN SISTERS BAKERY</a>
+        <a href="contact.html">CONTACT</a>
+        <a href="jan-sisters-bakery.html">JAN SISTERS BAKERY</a>
       </nav>
 
       <div class="cart-icon">
@@ -33,8 +34,23 @@
       </div>
     </header>
 
-    <div id="checkout-root"></div>
+    <!-- Checkout Content -->
+    <div class="checkout-wrapper">
+      <h1 class="checkout-title">Checkout</h1>
 
+      <div id="checkout-items"></div>
+
+      <div class="checkout-summary">
+        <span>Total:</span>
+        <span id="checkout-total">$0</span>
+      </div>
+
+      <button id="placeOrderBtn" class="checkout-place-order-btn">
+        Place Order
+      </button>
+    </div>
+
+    <!-- Hidden Web3Forms Form -->
     <form
       id="checkoutOrderForm"
       action="https://api.web3forms.com/submit"

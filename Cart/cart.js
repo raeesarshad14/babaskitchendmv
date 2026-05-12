@@ -57,7 +57,14 @@ class Cart {
     const isMenuItem = item.type === "menu"; // ⭐ Smash Burger, Finger Foods, etc.
 
     // ⭐ WEEKLY MENU + MENU ITEMS (Smash Burger) — min 12
-    if (isWeekly || isMenuItem) {
+    // ⭐ WEEKLY MENU — min 1
+    if (isWeekly) {
+      if (qty < 1) qty = 1;
+      item.qty = qty;
+    }
+
+    // ⭐ MENU ITEMS (Smash Burger, Finger Foods) — min 12
+    else if (isMenuItem) {
       if (qty < 12) qty = 12;
       item.qty = qty;
     }
