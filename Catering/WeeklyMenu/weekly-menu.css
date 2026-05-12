@@ -245,3 +245,26 @@
     font-size: 14px;
   }
 }
+.wm-qty-price-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin: 15px 0;
+}
+
+.wm-inline-price {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+}
+
+.wm-qty-number {
+  font-size: 20px;
+  font-weight: 600;
+}
+.wm-inline-price {
+  font-size: 20px;
+  font-weight: 700; /* BOLD */
+  color: #333;
+}

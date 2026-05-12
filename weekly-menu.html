@@ -66,21 +66,19 @@
       <div class="weekly-modal-box">
         <h2 id="wm-dish-name"></h2>
 
-        <div class="wm-price-row">
-          <span>Price:</span>
-          <span id="wm-dish-price"></span>
-        </div>
-
-        <div class="wm-qty-row">
+        <!-- ⭐ Quantity + Price Row -->
+        <div class="wm-qty-price-row">
           <button onclick="wmDecrease()" class="wm-qty-btn">−</button>
-          <span id="wm-qty">1</span>
+
+          <span id="wm-qty" class="wm-qty-number">1</span>
+
           <button onclick="wmIncrease()" class="wm-qty-btn">+</button>
+
+          <span id="wm-inline-price" class="wm-inline-price">$0</span>
         </div>
 
-        <div class="wm-total-row">
-          <span>Total:</span>
-          <span id="wm-total-price">$0</span>
-        </div>
+        <!-- ⭐ Subtotal -->
+        <p class="total-label">Subtotal: <span id="wm-total-price">$0</span></p>
 
         <button class="wm-add-cart">Add to Cart</button>
         <button class="wm-close-btn" onclick="closeWeeklyModal()">Close</button>
