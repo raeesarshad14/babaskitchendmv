@@ -72,7 +72,7 @@ function openModal(item) {
     return;
   }
 
-  // fallback: still show modal
+  // fallback
   updateTotals();
   document.getElementById("cateringModalOverlay").style.display = "flex";
 }
@@ -94,21 +94,13 @@ function changeQty(type, amount) {
     return;
   }
 
-  // ⭐ SINGLE / ROAST share same control (your HTML likely calls changeQty('single', ±1))
+  // ⭐ SINGLE / ROAST
   if (type === "single" || type === "roast") {
-    const min = modalItem.minOrder || 1; // roast = 1, single = 12
+    const min = modalItem.minOrder || 1;
     modalItem.qty = Math.max(min, modalItem.qty + amount);
     document.getElementById("singleQty").textContent = modalItem.qty;
     updateTotals();
     return;
-  }
-
-  // safety: if someone calls with modalItem.type
-  if (modalItem.type === "roast" || modalItem.type === "single") {
-    const min = modalItem.minOrder || (modalItem.type === "roast" ? 1 : 12);
-    modalItem.qty = Math.max(min, modalItem.qty + amount);
-    document.getElementById("singleQty").textContent = modalItem.qty;
-    updateTotals();
   }
 }
 
@@ -138,9 +130,11 @@ function closeModal() {
   document.getElementById("cateringModalOverlay").style.display = "none";
 }
 
-/* ⭐ FINAL FIX — ADD TO CART LOGIC */
+/* ---------------------------------------------------------
+   ⭐ FINAL FIX — ADD TO CART LOGIC
+--------------------------------------------------------- */
 document.getElementById("modalAddBtn").addEventListener("click", () => {
-  // TRAY ITEMS
+  // ⭐ TRAY ITEMS
   if (modalItem.type === "tray") {
     if (modalItem.smallQty > 0) {
       cart.addItem({
@@ -163,24 +157,26 @@ document.getElementById("modalAddBtn").addEventListener("click", () => {
     }
   }
 
-  // SINGLE ITEMS
+  // ⭐ SINGLE ITEMS (Smash Burger, etc.)
   if (modalItem.type === "single") {
     cart.addItem({
       name: modalItem.name,
       price: modalItem.price,
       qty: modalItem.qty,
       image: modalItem.image || null,
+      type: "menu", // ⭐ REQUIRED FOR MINIMUM 12
       options: {},
     });
   }
 
-  // ROAST ITEMS
+  // ⭐ ROAST ITEMS
   if (modalItem.type === "roast") {
     cart.addItem({
       name: modalItem.name,
       price: modalItem.price,
       qty: modalItem.qty,
       image: modalItem.image || null,
+      type: "roast",
       options: { roast: true },
     });
   }

@@ -134,12 +134,14 @@ function updateSubtotal() {
 function addDessertToCart() {
   const item = window.currentDessert;
 
+  // MULTI-TRAY ITEMS
   if (item.largePrice) {
     if (window.qtySmall > 0) {
       cart.addItem({
         name: `${item.name} (Small Tray)`,
         price: item.smallPrice,
         qty: window.qtySmall,
+        type: "dessert",
       });
     }
 
@@ -148,13 +150,18 @@ function addDessertToCart() {
         name: `${item.name} (Large Tray)`,
         price: item.largePrice,
         qty: window.qtyLarge,
+        type: "dessert",
       });
     }
-  } else {
+  }
+
+  // SINGLE-PRICE ITEMS
+  else {
     cart.addItem({
       name: item.name,
       price: item.smallPrice,
       qty: window.qtySingle,
+      type: "dessert",
     });
   }
 

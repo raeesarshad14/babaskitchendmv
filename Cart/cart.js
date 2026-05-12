@@ -43,8 +43,9 @@ class Cart {
     this.updateCartCount();
   }
 
-  // Update quantity rules depending on item type
-  // Update quantity rules depending on item type
+  /* ---------------------------------------------------------
+     UPDATE QUANTITY RULES (FINAL FIXED VERSION)
+  --------------------------------------------------------- */
   updateQty(name, qty) {
     const item = this.items.find((i) => i.name === name);
     if (!item) return;
@@ -52,28 +53,36 @@ class Cart {
     const isCatering = item.name.includes("Tray");
     const isWeekly = item.type === "weekly";
     const isRoast = item.options && item.options.roast === true;
+    const isDessert = item.type === "dessert";
+    const isMenuItem = item.type === "menu"; // ⭐ Smash Burger, Finger Foods, etc.
 
-    // ⭐ WEEKLY ITEMS — min 1
-    if (isWeekly) {
-      if (qty < 1) qty = 1;
+    // ⭐ WEEKLY MENU + MENU ITEMS (Smash Burger) — min 12
+    if (isWeekly || isMenuItem) {
+      if (qty < 12) qty = 12;
       item.qty = qty;
     }
 
-    // ⭐ ROAST ITEMS — min 1 (THIS FIXES YOUR ISSUE)
+    // ⭐ ROAST ITEMS — min 1
     else if (isRoast) {
       if (qty < 1) qty = 1;
       item.qty = qty;
     }
 
-    // ⭐ SINGLE ITEMS — min 12
-    else if (!isCatering) {
-      if (qty < 12) qty = 12;
+    // ⭐ DESSERTS — min 1
+    else if (isDessert) {
+      if (qty < 1) qty = 1;
       item.qty = qty;
     }
 
-    // ⭐ TRAY ITEMS — min 0
-    else {
+    // ⭐ CATERING TRAYS — min 0
+    else if (isCatering) {
       if (qty < 0) qty = 0;
+      item.qty = qty;
+    }
+
+    // ⭐ EVERYTHING ELSE — min 1
+    else {
+      if (qty < 1) qty = 1;
       item.qty = qty;
     }
 
@@ -103,7 +112,9 @@ class Cart {
 window.cart = new Cart();
 cart.updateCartCount();
 
-// ⭐ Toast + Animation + Sound
+/* ---------------------------------------------------------
+   TOAST + ANIMATION + SOUND
+--------------------------------------------------------- */
 function showToast(message) {
   const toast = document.getElementById("toast");
   toast.textContent = message;
