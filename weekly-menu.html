@@ -41,12 +41,24 @@
       </div>
     </header>
 
-    <!-- Weekly Menu Wrapper -->
-    <div class="weekly-wrapper">
-      <h1 class="weekly-title">Weekly Menu</h1>
+    <!-- ⭐ PAGE LAYOUT (SIDEBAR + MENU) -->
+    <div class="weekly-layout">
+      <!-- ⭐ LEFT SIDEBAR (VERTICAL) -->
+      <div class="weekly-sidebar">
+        <button onclick="scrollToDay('Monday')">Monday</button>
+        <button onclick="scrollToDay('Tuesday')">Tuesday</button>
+        <button onclick="scrollToDay('Wednesday')">Wednesday</button>
+        <button onclick="scrollToDay('Thursday')">Thursday</button>
+        <button onclick="scrollToDay('Friday')">Friday</button>
+        <button onclick="scrollToDay('Saturday')">Saturday</button>
+        <button onclick="scrollToDay('Sunday')">Sunday</button>
+      </div>
 
-      <!-- Weekly Menu Container (Cards will load here) -->
-      <div id="weekly-menu"></div>
+      <!-- ⭐ WEEKLY MENU CONTENT -->
+      <div class="weekly-wrapper">
+        <h1 class="weekly-title">Weekly Menu</h1>
+        <div id="weekly-menu"></div>
+      </div>
     </div>
 
     <!-- ⭐ WEEKLY MENU MODAL -->

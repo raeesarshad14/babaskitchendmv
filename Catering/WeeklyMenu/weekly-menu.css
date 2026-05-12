@@ -1,7 +1,47 @@
 /* ================================
+   PAGE LAYOUT
+================================ */
+.weekly-layout {
+  display: flex;
+  gap: 30px;
+  padding: 20px;
+}
+
+/* ================================
+   SIDEBAR (VERTICAL)
+================================ */
+.weekly-sidebar {
+  position: sticky;
+  top: 120px;
+  width: 180px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.weekly-sidebar button {
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: left;
+  transition: 0.2s ease;
+  font-weight: 600;
+}
+
+.weekly-sidebar button:hover {
+  background: #28a745;
+  color: white;
+  border-color: #28a745;
+}
+
+/* ================================
    WEEKLY MENU WRAPPER
 ================================ */
 .weekly-wrapper {
+  flex: 1;
   max-width: 900px;
   margin: 40px auto;
   padding: 20px;
@@ -25,6 +65,7 @@
   margin-bottom: 25px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   transition: 0.2s ease;
+  width: 100%;
 }
 
 .weekly-day-card:hover {
@@ -179,9 +220,27 @@
    MOBILE
 ================================ */
 @media (max-width: 600px) {
+  .weekly-layout {
+    flex-direction: column;
+  }
+
+  .weekly-sidebar {
+    position: relative;
+    top: 0;
+    width: 100%;
+    flex-direction: row;
+    overflow-x: auto;
+  }
+
+  .weekly-sidebar button {
+    flex: 1;
+    white-space: nowrap;
+  }
+
   .weekly-dish {
     font-size: 16px;
   }
+
   .weekly-price {
     font-size: 14px;
   }

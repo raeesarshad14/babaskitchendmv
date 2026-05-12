@@ -41,7 +41,7 @@ async function loadWeeklyMenu() {
           .join("");
 
         return `
-          <div class="weekly-day-card">
+         <div class="weekly-day-card" id="day-${day}">
             <div class="weekly-day-title">${day}</div>
             ${items}
           </div>
@@ -50,6 +50,13 @@ async function loadWeeklyMenu() {
       .join("");
   } catch (err) {
     console.error("Weekly Menu Error:", err);
+  }
+}
+
+function scrollToDay(day) {
+  const section = document.getElementById(`day-${day}`);
+  if (section) {
+    section.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 }
 
