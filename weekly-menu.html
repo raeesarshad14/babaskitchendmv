@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weekly Menu • Baba's Kitchen</title>
+
+    <!-- Global Styles -->
+    <link rel="stylesheet" href="MainPage/MainPage.css" />
+    <link rel="stylesheet" href="Cart/cart.css" />
+
+    <!-- Weekly Menu Styles -->
+    <link rel="stylesheet" href="Catering/WeeklyMenu/weekly-menu.css" />
+  </head>
+
+  <body>
+    <!-- Toast -->
+    <div id="toast" class="toast"></div>
+
+    <!-- Header -->
+    <header class="main-header">
+      <div class="logo">
+        <a href="MainPage.html">
+          <img src="Pictures/MainPageLogo/logo picture.png" alt="Logo" />
+        </a>
+      </div>
+
+      <nav class="nav-links">
+        <a href="catering.html">CATERING</a>
+        <a href="dessert.html">DESSERTS</a>
+        <a href="weekly-menu.html" class="active">WEEKLY MENU</a>
+        <a href="contact.html">CONTACT</a>
+        <a href="jan-sisters-bakery.html">JAN SISTERS BAKERY</a>
+      </nav>
+
+      <div class="cart-icon">
+        <a href="cart.html">
+          <img src="Pictures/cartpicture/cart.png" alt="Cart" />
+        </a>
+        <span id="cart-count">0</span>
+      </div>
+    </header>
+
+    <!-- Weekly Menu Wrapper -->
+    <div class="weekly-wrapper">
+      <h1 class="weekly-title">Weekly Menu</h1>
+
+      <!-- Weekly Menu Container (Cards will load here) -->
+      <div id="weekly-menu"></div>
+    </div>
+
+    <!-- ⭐ WEEKLY MENU MODAL -->
+    <div id="weeklyModal" class="weekly-modal-overlay">
+      <div class="weekly-modal-box">
+        <h2 id="wm-dish-name"></h2>
+
+        <div class="wm-price-row">
+          <span>Price:</span>
+          <span id="wm-dish-price"></span>
+        </div>
+
+        <div class="wm-qty-row">
+          <button onclick="wmDecrease()" class="wm-qty-btn">−</button>
+          <span id="wm-qty">1</span>
+          <button onclick="wmIncrease()" class="wm-qty-btn">+</button>
+        </div>
+
+        <div class="wm-total-row">
+          <span>Total:</span>
+          <span id="wm-total-price">$0</span>
+        </div>
+
+        <button class="wm-add-cart">Add to Cart</button>
+        <button class="wm-close-btn" onclick="closeWeeklyModal()">Close</button>
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="Cart/cart.js"></script>
+    <script src="Catering/WeeklyMenu/weekly-menu.js"></script>
+  </body>
+</html>
