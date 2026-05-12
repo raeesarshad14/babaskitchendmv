@@ -1,19 +1,25 @@
+/* ============================
+   SECTION
+============================ */
 .desserts-section {
-  padding: 40px;
+  padding: 40px 20px;
   text-align: center;
 }
 
-/* GRID — 3 per row */
+/* ============================
+   GRID — 3 per row
+============================ */
 #desserts-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 25px;
-  padding: 20px;
   max-width: 1200px;
   margin: auto;
 }
 
-/* CARD */
+/* ============================
+   CARD
+============================ */
 .dessert-card {
   width: 260px;
   background: #ffffff;
@@ -21,30 +27,64 @@
   padding: 20px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* centers button */
 }
 
+/* IMAGE (future support) */
+.dessert-img {
+  width: 100%;
+  height: 160px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  background-color: #f5f5f5;
+}
+
+/* TEXT */
 .dessert-card h3 {
   font-size: 20px;
+  font-weight: 700;
   margin-bottom: 10px;
+  color: #333;
 }
 
 .dessert-card p {
-  margin: 6px 0;
+  margin: 4px 0;
   font-size: 16px;
+  color: #444;
 }
 
-.dessert-card .add-btn {
-  margin-top: 12px;
-  background: #2ecc71;
+/* ============================
+   ADD BUTTON (MATCH CATERING)
+============================ */
+.dessert-add-btn {
+  background: #28a745;
   color: white;
-  padding: 10px 16px;
+  padding: 8px 18px;
   border: none;
-  border-radius: 8px;
+  border-radius: 6px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 15px;
+  font-weight: 600;
+  width: auto; /* FIX: no full width */
+  display: inline-block; /* FIX: shrink to content */
+  margin-top: 10px;
+  transition:
+    background 0.15s ease,
+    transform 0.15s ease;
 }
 
-/* MODAL */
+.dessert-add-btn:hover {
+  background: #218838;
+  transform: translateY(-2px);
+}
+
+/* ============================
+   MODAL
+============================ */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -111,4 +151,19 @@
   border-radius: 8px;
   margin-top: 10px;
   cursor: pointer;
+}
+
+/* ============================
+   RESPONSIVE
+============================ */
+@media (max-width: 900px) {
+  #desserts-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  #desserts-container {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
