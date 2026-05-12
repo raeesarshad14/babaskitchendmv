@@ -4,35 +4,45 @@ document.addEventListener("DOMContentLoaded", () => {
     .then((data) => renderDesserts(data));
 });
 
+/* ---------------------------------------------------------
+   RENDER DESSERT CARDS
+--------------------------------------------------------- */
 function renderDesserts(items) {
   const container = document.getElementById("desserts-container");
 
   items.forEach((item) => {
+    const safeItem = encodeURIComponent(JSON.stringify(item));
+
     const card = document.createElement("div");
     card.className = "dessert-card";
 
     card.innerHTML = `
       <h3>${item.name}</h3>
       <p><strong>Small Tray:</strong> $${item.smallPrice}</p>
-      ${
-        item.largePrice
-          ? `<p><strong>Large Tray:</strong> $${item.largePrice}</p>`
-          : ""
-      }
-      <button class="add-btn" onclick='openDessertModal(${JSON.stringify(
-        item,
-      )})'>ADD</button>
+      ${item.largePrice ? `<p><strong>Large Tray:</strong> $${item.largePrice}</p>` : ""}
+
+      <button class="dessert-add-btn"
+        onclick="openDessertModal(JSON.parse(decodeURIComponent('${safeItem}')))">
+        Add
+      </button>
     `;
 
     container.appendChild(card);
   });
 }
 
+/* ---------------------------------------------------------
+   OPEN MODAL
+--------------------------------------------------------- */
 function openDessertModal(item) {
   const modal = document.getElementById("dessert-modal");
   const box = document.getElementById("dessert-modal-content");
 
-  // Two-option modal
+  window.currentDessert = item;
+  window.qtySmall = 0;
+  window.qtyLarge = 0;
+  window.qtySingle = 1;
+
   if (item.largePrice) {
     box.innerHTML = `
       <h2>${item.name}</h2>
@@ -57,13 +67,10 @@ function openDessertModal(item) {
 
       <p><strong>Subtotal:</strong> $<span id="dessert-subtotal">0</span></p>
 
-      <button class="add-btn" onclick='addDessertToCart(${JSON.stringify(
-        item,
-      )})'>Add to Cart</button>
+      <button class="add-btn" onclick="addDessertToCart()">Add to Cart</button>
       <button class="close-btn" onclick="closeDessertModal()">Close</button>
     `;
   } else {
-    // Single-option modal
     box.innerHTML = `
       <h2>${item.name}</h2>
 
@@ -76,25 +83,20 @@ function openDessertModal(item) {
         </div>
       </div>
 
-      <p><strong>Subtotal:</strong> $<span id="dessert-subtotal">${
-        item.smallPrice
-      }</span></p>
+      <p><strong>Subtotal:</strong> $<span id="dessert-subtotal">${item.smallPrice}</span></p>
 
-      <button class="add-btn" onclick='addDessertToCart(${JSON.stringify(
-        item,
-      )})'>Add to Cart</button>
+      <button class="add-btn" onclick="addDessertToCart()">Add to Cart</button>
       <button class="close-btn" onclick="closeDessertModal()">Close</button>
     `;
   }
 
   modal.style.display = "flex";
-  window.currentDessert = item;
-  window.qtySmall = 0;
-  window.qtyLarge = 0;
-  window.qtySingle = 1;
   updateSubtotal();
 }
 
+/* ---------------------------------------------------------
+   QUANTITY + SUBTOTAL
+--------------------------------------------------------- */
 function changeQty(type, amount) {
   if (type === "small") {
     window.qtySmall = Math.max(0, window.qtySmall + amount);
@@ -108,6 +110,7 @@ function changeQty(type, amount) {
     window.qtySingle = Math.max(1, window.qtySingle + amount);
     document.getElementById("qty-single").textContent = window.qtySingle;
   }
+
   updateSubtotal();
 }
 
@@ -125,23 +128,44 @@ function updateSubtotal() {
   document.getElementById("dessert-subtotal").textContent = total;
 }
 
-function addDessertToCart(item) {
-  if (item.largePrice) {
-    if (window.qtySmall > 0)
-      cart.addItem(item.name + " (Small)", item.smallPrice, window.qtySmall);
+/* ---------------------------------------------------------
+   ADD TO CART
+--------------------------------------------------------- */
+function addDessertToCart() {
+  const item = window.currentDessert;
 
-    if (window.qtyLarge > 0)
-      cart.addItem(item.name + " (Large)", item.largePrice, window.qtyLarge);
+  if (item.largePrice) {
+    if (window.qtySmall > 0) {
+      cart.addItem({
+        name: `${item.name} (Small Tray)`,
+        price: item.smallPrice,
+        qty: window.qtySmall,
+      });
+    }
+
+    if (window.qtyLarge > 0) {
+      cart.addItem({
+        name: `${item.name} (Large Tray)`,
+        price: item.largePrice,
+        qty: window.qtyLarge,
+      });
+    }
   } else {
-    cart.addItem(item.name, item.smallPrice, window.qtySingle);
+    cart.addItem({
+      name: item.name,
+      price: item.smallPrice,
+      qty: window.qtySingle,
+    });
   }
 
   cart.save();
-  updateCartCount();
-  showToast("Added to cart!");
+  cart.updateCartCount();
   closeDessertModal();
 }
 
+/* ---------------------------------------------------------
+   CLOSE MODAL
+--------------------------------------------------------- */
 function closeDessertModal() {
   document.getElementById("dessert-modal").style.display = "none";
 }
