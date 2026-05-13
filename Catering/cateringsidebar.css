@@ -26,6 +26,8 @@
 }
 
 .catering-sidebar button:hover {
-  color: #2e7d32;
+  background: #28a745;
+  color: white;
+  border-color: #28a745;
   transform: translateY(-3px);
 }

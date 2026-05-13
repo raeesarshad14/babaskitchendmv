@@ -24,7 +24,7 @@
   width: 260px;
   background: #ffffff;
   border-radius: 12px;
-  padding: 20px;
+  padding: 60px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   text-align: center;
   display: flex;
@@ -45,15 +45,15 @@
 
 /* TEXT */
 .dessert-card h3 {
-  font-size: 20px;
-  font-weight: 700;
-  margin-bottom: 10px;
-  color: #333;
+  font-size: 25px;
+  margin-top: -5px;
+  margin-bottom: 20px;
+  font-weight: 800;
 }
 
 .dessert-card p {
-  margin: 4px 0;
-  font-size: 16px;
+  margin: 15px 0;
+  font-size: 20px;
   color: #444;
 }
 
@@ -63,13 +63,14 @@
 .dessert-add-btn {
   background: #28a745;
   color: white;
-  padding: 8px 18px;
+  padding: 0;
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 600;
-  width: auto; /* FIX: no full width */
+  width: 90px;
+  height: 32px;
   display: inline-block; /* FIX: shrink to content */
   margin-top: 10px;
   transition:
@@ -87,6 +88,8 @@
 ============================ */
 .modal-overlay {
   position: fixed;
+  font-size: 18px;
+  font-weight: 500;
   top: 0;
   left: 0;
   width: 100%;
@@ -117,7 +120,7 @@
 .qty-controls {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 20px;
 }
 
 .qty-btn {
@@ -141,12 +144,15 @@
   margin-top: 15px;
   cursor: pointer;
   font-size: 18px;
+  font-weight: 600;
 }
 
 .close-btn {
   background: #ccc;
   padding: 10px;
   width: 100%;
+  font-size: 18px;
+  font-weight: 600;
   border: none;
   border-radius: 8px;
   margin-top: 10px;

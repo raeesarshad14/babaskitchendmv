@@ -101,14 +101,14 @@
    ⭐ CATERING ITEM CARDS
    =========================== */
 .unified-card h3 {
-  font-size: 20px;
+  font-size: 25px;
   margin-top: -5px;
   margin-bottom: 20px;
   font-weight: 800;
 }
 
 .price-line {
-  font-size: 18px;
+  font-size: 20px;
   margin: 4px 0 10px 0;
   font-weight: 500;
 }
@@ -117,10 +117,10 @@
 .unified-card .add-btn {
   width: 90px;
   height: 32px;
-  font-size: 18px;
+  font-size: 20px;
   padding: 0;
   border-radius: 6px;
-  background: #2e7d32;
+  background: #28a745;
   color: white;
   border: none;
   cursor: pointer;
@@ -129,6 +129,7 @@
   justify-content: center;
   align-items: center;
   transition: 0.2s;
+  font-weight: 600;
 }
 
 .unified-card .add-btn:hover {
@@ -140,7 +141,7 @@
    ⭐ CATEGORY HEADERS
    =========================== */
 .catering-section h2 {
-  font-size: 32px;
+  font-size: 35px;
   font-weight: 800;
   margin-bottom: 6px;
   text-align: center;
@@ -148,7 +149,7 @@
 
 .catering-section .subtitle,
 .subtitle {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 500;
   margin-top: 0;
   margin-bottom: 20px;
