@@ -1,4 +1,14 @@
-/* HERO SECTION */
+/* --------------------------------------------------
+   GLOBAL THEME
+-------------------------------------------------- */
+body {
+  background: #fff9fc;
+  font-family: "Poppins", sans-serif;
+}
+
+/* --------------------------------------------------
+   HERO SECTION
+-------------------------------------------------- */
 .js-hero {
   text-align: center;
   padding: 40px 20px;
@@ -47,10 +57,15 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* MENU SECTION */
+/* --------------------------------------------------
+   MENU SECTION
+-------------------------------------------------- */
 .js-menu-section {
   padding: 50px 20px;
   text-align: center;
+  background: #fff2fa;
+  border-top: 4px solid #ffd3ef;
+  border-bottom: 4px solid #ffd3ef;
 }
 
 .js-section-title {
@@ -59,7 +74,20 @@
   color: #b85ca8;
 }
 
-/* PINK TEMPLATE */
+.js-special-badge {
+  display: inline-block;
+  background: #ffe0f4;
+  padding: 8px 18px;
+  border-radius: 20px;
+  color: #b85ca8;
+  font-weight: 600;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* --------------------------------------------------
+   PINK TEMPLATE (DAY CARD)
+-------------------------------------------------- */
 .js-day-card {
   background: url("../Pictures/JanSisters/JanSisterMenuTemplate.png") no-repeat
     center;
@@ -70,6 +98,21 @@
   padding: 120px 40px 80px;
   text-align: center;
   min-height: 400px;
+
+  /* Animation */
+  animation: fadeIn 0.8s ease forwards;
+  opacity: 0;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .js-day-title {
@@ -85,7 +128,35 @@
   color: #444;
 }
 
-/* GALLERY */
+.js-item-img {
+  width: 120px;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 8px;
+}
+
+/* --------------------------------------------------
+   MOBILE OPTIMIZATION
+-------------------------------------------------- */
+@media (max-width: 600px) {
+  .js-day-card {
+    padding: 80px 20px 60px;
+    min-height: 300px;
+    background-size: cover;
+  }
+
+  .js-item {
+    font-size: 16px;
+  }
+
+  .js-item-img {
+    width: 100px;
+  }
+}
+
+/* --------------------------------------------------
+   GALLERY SECTION
+-------------------------------------------------- */
 .js-gallery {
   padding: 40px 20px;
   text-align: center;
