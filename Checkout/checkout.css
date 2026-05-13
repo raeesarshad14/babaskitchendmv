@@ -12,34 +12,71 @@
 /* ============================
    ORDER SUMMARY BOX
 ============================ */
+/* ORDER SUMMARY WRAPPER */
 .checkout-summary {
-  width: 320px;
-  padding: 22px;
-  border: 1px solid #ddd;
-  border-radius: 12px;
-  background: #fafafa;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  margin-bottom: 25px;
 }
 
+/* TITLE */
 .checkout-summary h2 {
-  margin-bottom: 15px;
-}
-.summary-box {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  font-size: 24px;
+  margin-bottom: 18px;
+  color: #b85ca8;
+  text-align: center;
 }
 
+/* EACH ITEM ROW */
+.checkout-item {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+  font-size: 16px;
+}
+
+/* LAST ITEM NO BORDER */
+.checkout-item:last-child {
+  border-bottom: none;
+}
+
+/* ITEM NAME */
+.checkout-item span:first-child {
+  font-weight: 600;
+  color: #444;
+}
+
+/* QTY */
+.checkout-item span:nth-child(2) {
+  color: #666;
+}
+
+/* PRICE */
+.checkout-item span:last-child {
+  font-weight: 700;
+  color: #b85ca8;
+}
+
+/* SUBTOTAL + TOTAL */
 .summary-row,
 .summary-total {
   display: flex;
   justify-content: space-between;
-  margin: 10px 0;
+  padding: 10px 0;
   font-size: 18px;
 }
 
 .summary-total {
-  font-weight: 700;
   font-size: 20px;
+  font-weight: 700;
+  color: #b85ca8;
+  border-top: 2px solid #eee;
+  margin-top: 10px;
+  padding-top: 14px;
 }
 
 /* ============================
