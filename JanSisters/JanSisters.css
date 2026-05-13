@@ -201,3 +201,18 @@ body {
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
   transition: 0.25s ease;
 }
+.js-add-btn {
+  background: #ff7ac8;
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.js-add-btn:hover {
+  background: #e85aa8;
+}
