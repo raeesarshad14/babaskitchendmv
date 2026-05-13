@@ -8,7 +8,7 @@
 }
 
 /* ================================
-   SIDEBAR (VERTICAL)
+   SIDEBAR
 ================================ */
 .weekly-sidebar {
   position: sticky;
@@ -24,7 +24,7 @@
   border: 1px solid #ddd;
   padding: 12px;
   border-radius: 10px;
-  font-size: 16px;
+  font-size: 18px;
   cursor: pointer;
   text-align: left;
   transition: 0.2s ease;
@@ -38,7 +38,7 @@
 }
 
 /* ================================
-   WEEKLY MENU WRAPPER
+   WEEKLY WRAPPER
 ================================ */
 .weekly-wrapper {
   flex: 1;
@@ -81,34 +81,33 @@
 }
 
 /* ================================
-   ITEM ROW
+   ITEM ROW (FINAL VERSION)
 ================================ */
-.weekly-item {
-  display: flex;
-  justify-content: space-between;
+.weekly-item-row {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
   align-items: center;
+  gap: 20px;
+  margin: 10px 0;
   padding: 10px 0;
   border-bottom: 1px solid #eee;
 }
 
-.weekly-item:last-child {
+.weekly-item-row:last-child {
   border-bottom: none;
 }
 
-.weekly-item-info {
-  display: flex;
-  flex-direction: column;
-}
-
-.weekly-dish {
-  font-size: 18px;
-  font-weight: 500;
+.weekly-name {
+  font-size: 20px;
+  font-weight: 600;
   color: #333;
 }
 
 .weekly-price {
-  font-size: 15px;
+  font-size: 20px;
+  font-weight: 700;
   color: #777;
+  padding-right: 70px; /* increase space */
 }
 
 /* ================================
@@ -118,10 +117,11 @@
   background: #27ae60;
   color: white;
   border: none;
-  padding: 7px 14px;
+  padding: 10px 25px;
   border-radius: 6px;
   cursor: pointer;
-  font-size: 15px;
+  font-size: 18px;
+  font-weight: 600;
   transition: 0.2s ease;
 }
 
@@ -182,14 +182,13 @@
 }
 
 .wm-qty-btn {
-  background: #d35400;
-  color: white;
+  width: 32px;
+  height: 32px;
   border: none;
-  padding: 6px 14px;
+  background: #eee;
+  border-radius: 6px;
   font-size: 20px;
-  border-radius: 5px;
   cursor: pointer;
-  margin: 0 10px;
 }
 
 .wm-add-cart {
@@ -200,6 +199,7 @@
   padding: 12px;
   border-radius: 6px;
   font-size: 18px;
+  font-weight: 600;
   cursor: pointer;
   margin-top: 15px;
 }
@@ -211,9 +211,47 @@
   border: none;
   padding: 10px;
   border-radius: 6px;
-  font-size: 16px;
+  font-size: 18px;
+  font-weight: 600;
   cursor: pointer;
   margin-top: 10px;
+}
+
+/* ================================
+   INLINE PRICE
+================================ */
+.wm-qty-price-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  margin: 15px 0;
+}
+
+.wm-inline-price {
+  font-size: 20px;
+  font-weight: 700;
+  color: #333;
+}
+
+.wm-total-row {
+  display: flex;
+  font-size: 20px;
+  font-weight: 700;
+  justify-content: space-between;
+  max-width: 150px; /* adjust until it looks perfect */
+  margin: 0 auto; /* center it */
+}
+
+#wm-total-price {
+  font-size: 20px; /* Subtotal price */
+  font-weight: 700;
+  color: #333;
+}
+
+.wm-qty-number {
+  font-size: 20px;
+  font-weight: 600;
 }
 
 /* ================================
@@ -237,34 +275,11 @@
     white-space: nowrap;
   }
 
-  .weekly-dish {
+  .weekly-name {
     font-size: 16px;
   }
 
   .weekly-price {
     font-size: 14px;
   }
-}
-.wm-qty-price-row {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
-  margin: 15px 0;
-}
-
-.wm-inline-price {
-  font-size: 20px;
-  font-weight: 600;
-  color: #333;
-}
-
-.wm-qty-number {
-  font-size: 20px;
-  font-weight: 600;
-}
-.wm-inline-price {
-  font-size: 20px;
-  font-weight: 700; /* BOLD */
-  color: #333;
 }

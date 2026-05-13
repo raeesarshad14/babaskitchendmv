@@ -1,6 +1,6 @@
 console.log("Weekly Menu JS Loaded");
 
-let wmBasePrice = 0; // ⭐ base unit price (never multiplied)
+let wmBasePrice = 0; // base unit price
 
 async function loadWeeklyMenu() {
   const url =
@@ -24,13 +24,12 @@ async function loadWeeklyMenu() {
         const items = days[day]
           .map(
             (item) => `
-              <div class="weekly-item">
-                <div class="weekly-item-info">
-                  <div class="weekly-dish">
-                    ${item.Dish} ${item.Description ? `(${item.Description})` : ""}
-                  </div>
-                  <div class="weekly-price">$${item.Price}</div>
+              <div class="weekly-item-row">
+                <div class="weekly-name">
+                  ${item.Dish} ${item.Description ? `(${item.Description})` : ""}
                 </div>
+
+                <div class="weekly-price">$${item.Price}</div>
 
                 <button class="weekly-add-btn"
                   onclick='openWeeklyModal("${item.Dish}", ${item.Price})'>
@@ -64,21 +63,15 @@ function scrollToDay(day) {
 function openWeeklyModal(name, price) {
   document.getElementById("wm-dish-name").textContent = name;
 
-  // ⭐ store base unit price
   wmBasePrice = Number(price);
 
-  // reset qty
   document.getElementById("wm-qty").textContent = 1;
 
-  // set inline price & subtotal (same)
-  const startTotal = wmBasePrice;
-  document.getElementById("wm-inline-price").textContent = "$" + startTotal;
-  document.getElementById("wm-total-price").textContent = "$" + startTotal;
+  document.getElementById("wm-inline-price").textContent = "$" + wmBasePrice;
+  document.getElementById("wm-total-price").textContent = "$" + wmBasePrice;
 
-  // show modal
   document.getElementById("weeklyModal").style.display = "flex";
 
-  // bind Add to Cart
   document.querySelector(".wm-add-cart").onclick = function () {
     addWeeklyToCart(name, wmBasePrice);
   };
@@ -104,11 +97,8 @@ function wmDecrease() {
 
 function updateWeeklySubtotal() {
   const qty = parseInt(document.getElementById("wm-qty").textContent);
-
-  // ⭐ always use base price, never the displayed text
   const total = qty * wmBasePrice;
 
-  // inline price and subtotal should be the SAME
   document.getElementById("wm-inline-price").textContent = "$" + total;
   document.getElementById("wm-total-price").textContent = "$" + total;
 }
@@ -119,12 +109,12 @@ function addWeeklyToCart(name, price) {
   const item = {
     name: name,
     price: price,
-    qty: qty, // ⭐ MUST BE qty (NOT quantity)
+    qty: qty,
     type: "weekly",
-    options: {}, // ⭐ required so JSON.stringify matches
+    options: {},
   };
 
-  cart.addItem(item); // ⭐ use your Cart class directly
+  cart.addItem(item);
 
   closeWeeklyModal();
   showToast(name + " added to cart");
