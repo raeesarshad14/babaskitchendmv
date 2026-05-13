@@ -1,0 +1,177 @@
+/* ============================
+   CONTACT PAGE LAYOUT
+============================ */
+.contact-page {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 20px 40px;
+  box-sizing: border-box;
+}
+
+.contact-hero {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.contact-hero h1 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.contact-hero p {
+  font-size: 16px;
+  color: #666;
+}
+
+/* ============================
+   MAIN CONTENT (2 COLUMNS)
+============================ */
+.contact-content {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+}
+
+/* LEFT: FORM CARD */
+.contact-form-card {
+  flex: 1.4;
+  background: #ffffff;
+  padding: 24px 26px;
+  border-radius: 12px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+}
+
+.contact-form-card h2 {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+.contact-subtext {
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 18px;
+}
+
+/* RIGHT: INFO CARD */
+.contact-info-card {
+  flex: 1;
+  background: #ffffff;
+  padding: 24px 26px;
+  border-radius: 12px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+}
+
+.info-block {
+  margin-bottom: 20px;
+}
+
+.info-block h3 {
+  font-size: 18px;
+  margin-bottom: 6px;
+}
+
+.info-block p {
+  font-size: 15px;
+  color: #555;
+}
+
+.info-block a {
+  color: #28a745;
+  text-decoration: none;
+}
+
+.info-block a:hover {
+  text-decoration: underline;
+}
+
+/* ============================
+   FORM ELEMENTS
+============================ */
+.contact-form {
+  width: 100%;
+}
+
+.form-row {
+  display: flex;
+  gap: 16px;
+}
+
+.form-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 12px;
+}
+
+.form-group label {
+  font-size: 14px;
+  margin-bottom: 4px;
+  color: #444;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 110px;
+}
+
+/* ============================
+   SUBMIT BUTTON
+============================ */
+.contact-submit-btn {
+  width: 100%;
+  padding: 12px;
+  background: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 6px;
+}
+
+.contact-submit-btn:hover {
+  background: #1e7e34;
+}
+
+/* ============================
+   SOCIAL LINKS
+============================ */
+.social-links a {
+  color: #28a745;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.social-links a:hover {
+  text-decoration: underline;
+}
+
+/* ============================
+   MOBILE
+============================ */
+@media (max-width: 768px) {
+  .contact-content {
+    flex-direction: column;
+  }
+
+  .contact-page {
+    margin-top: 20px;
+  }
+
+  .form-row {
+    flex-direction: column;
+  }
+}
