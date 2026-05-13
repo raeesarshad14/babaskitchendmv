@@ -105,7 +105,12 @@ async function placeOrder() {
   const items = cart.items;
 
   const itemsText = items
-    .map((i) => `${i.name} (x${i.qty}) - $${(i.price * i.qty).toFixed(2)}`)
+    .map((i) => {
+      const name = i.name.padEnd(24, " "); // item name spacing
+      const qty = `$${i.price} x ${i.qty}`.padEnd(12, " "); // price x qty spacing
+      const total = `$${(i.price * i.qty).toFixed(2)}`;
+      return `${name}${qty}=  ${total}`;
+    })
     .join("\n");
 
   const subtotal = cart.getTotal();
