@@ -96,28 +96,25 @@ body {
   width: 100%;
   max-width: 600px;
   margin: 30px auto;
-  height: 700px; /* fixed height so background stays correct */
+  height: 700px;
 }
+
+/* Text wrapper inside the template */
 .js-day-content {
   position: absolute;
-  top: 300px; /* <<< MOVE TEXT DOWN HERE */
+  top: 300px; /* adjust this to move text up/down */
   left: 50%;
   transform: translateX(-50%);
   width: 80%;
   text-align: center;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* Spacing between menu items */
+.js-day-content .js-item {
+  margin-bottom: 30px;
 }
 
+/* Day title */
 .js-day-title {
   font-size: 26px;
   font-weight: 700;
@@ -125,12 +122,13 @@ body {
   margin-bottom: 20px;
 }
 
+/* Menu item text */
 .js-item {
   font-size: 18px;
-  margin: 6px 0;
   color: #444;
 }
 
+/* Optional item image */
 .js-item-img {
   width: 120px;
   height: auto;
@@ -143,9 +141,12 @@ body {
 -------------------------------------------------- */
 @media (max-width: 600px) {
   .js-day-card {
-    padding: 80px 20px 60px;
-    min-height: 300px;
+    height: 550px;
     background-size: cover;
+  }
+
+  .js-day-content {
+    top: 260px;
   }
 
   .js-item {
@@ -173,7 +174,7 @@ body {
 
 .js-gallery-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* ALWAYS 3 per row */
+  grid-template-columns: repeat(3, 1fr);
   gap: 25px;
 }
 
@@ -185,13 +186,13 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 260px; /* fixed card height */
+  height: 260px;
 }
 
 .js-gallery-card img {
   max-width: 100%;
   max-height: 100%;
-  object-fit: contain; /* keeps natural shape */
+  object-fit: contain;
   border-radius: 10px;
 }
 
