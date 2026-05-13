@@ -32,14 +32,14 @@ function renderCheckout() {
         </div>
 
         <div class="summary-row">
-          <span>Subtotal:</span>
-          <span>$${subtotal.toFixed(2)}</span>
+        
         </div>
 
-        <div class="summary-total">
-          <span>Total:</span>
-          <span>$${total.toFixed(2)}</span>
-        </div>
+<div class="summary-total">
+  <span>Subtotal:</span>
+  <span>$${subtotal.toFixed(2)}</span>
+</div>
+
       </div>
 
       <div class="checkout-form">
