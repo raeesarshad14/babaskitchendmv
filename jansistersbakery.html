@@ -12,7 +12,9 @@
   </head>
 
   <body>
-    <!-- GLOBAL HEADER -->
+    <!-- ===========================
+         GLOBAL HEADER
+    ============================ -->
     <header class="main-header">
       <div class="logo">
         <a href="MainPage.html">
@@ -39,14 +41,15 @@
       </div>
     </header>
 
-    <!-- HERO SECTION -->
+    <!-- ===========================
+         HERO SECTION
+    ============================ -->
     <section class="js-hero">
       <img
         src="Pictures/JanSisters/JanSisters.jpeg"
         class="js-logo"
         alt="Jan Sisters Bakery"
       />
-
       <h1 class="js-title">Jan Sisters Bakery</h1>
 
       <a
@@ -60,14 +63,17 @@
       <div class="js-floating-badge">✨ Follow @jansistersbakery</div>
     </section>
 
-    <!-- DYNAMIC MENU SECTION -->
+    <!-- ===========================
+         MENU SECTION
+    ============================ -->
     <section class="js-menu-section">
       <div class="js-special-badge">✨ This Week’s Specials ✨</div>
-
       <div id="js-menu-container"></div>
     </section>
 
-    <!-- GALLERY SECTION -->
+    <!-- ===========================
+         GALLERY SECTION
+    ============================ -->
     <section class="js-gallery">
       <h2>Our Creations</h2>
 
@@ -75,55 +81,80 @@
         <div class="js-gallery-card">
           <img src="Pictures/JanSisters/dessert1.jpeg" />
         </div>
-
         <div class="js-gallery-card">
           <img src="Pictures/JanSisters/dessert2.jpg" />
         </div>
-
         <div class="js-gallery-card">
           <img src="Pictures/JanSisters/dessert3.jpg" />
         </div>
-
         <div class="js-gallery-card">
           <img src="Pictures/JanSisters/dessert4.jpg" />
         </div>
-
         <div class="js-gallery-card">
           <img src="Pictures/JanSisters/dessert5.jpg" />
         </div>
-
         <div class="js-gallery-card">
           <img src="Pictures/JanSisters/dessert6.jpg" />
         </div>
-
         <div class="js-gallery-card">
           <img src="Pictures/JanSisters/dessert7.jpg" />
         </div>
-
         <div class="js-gallery-card">
           <img src="Pictures/JanSisters/dessert8.jpg" />
         </div>
-
         <div class="js-gallery-card">
           <img src="Pictures/JanSisters/dessert9.jpg" />
         </div>
-
         <div class="js-gallery-card">
           <img src="Pictures/JanSisters/dessert10.jpg" />
         </div>
-
         <div class="js-gallery-card">
           <img src="Pictures/JanSisters/dessert11.jpg" />
         </div>
-
         <div class="js-gallery-card">
           <img src="Pictures/JanSisters/dessert12.png" />
         </div>
       </div>
     </section>
 
-    <script src="JanSisters/JanSisters.js"></script>
-    <!-- CART LOGIC -->
+    <!-- ===========================
+         JAN SISTERS MODAL
+    ============================ -->
+    <div id="jsModal" class="js-modal">
+      <div class="js-modal-content">
+        <span class="js-close">&times;</span>
+
+        <h2 id="jsModalTitle"></h2>
+
+        <div class="js-modal-price">
+          Price: $<span id="jsModalPrice"></span>
+        </div>
+
+        <div class="js-modal-qty">
+          <button id="jsQtyMinus">-</button>
+          <span id="jsQtyNumber">1</span>
+          <button id="jsQtyPlus">+</button>
+        </div>
+
+        <div class="js-modal-total">
+          Total: $<span id="jsModalTotal"></span>
+        </div>
+
+        <button id="jsAddToCartBtn" class="js-modal-add-btn">
+          Add to Cart
+        </button>
+      </div>
+    </div>
+
+    <!-- TOAST + SOUND -->
+    <div id="toast"></div>
+    <audio id="cartSound" src="Pictures/cartpicture/add.mp3"></audio>
+
+    <!-- ===========================
+         SCRIPTS (ORDER MATTERS)
+    ============================ -->
     <script src="Cart/cart.js"></script>
+    <script src="JanSisters/JanSisters.js"></script>
+    <script src="JanSisters/JanSisterModel.js"></script>
   </body>
 </html>

@@ -4,7 +4,6 @@
 const SHEET_URL =
   "https://opensheet.elk.sh/1iy74WMudLWdZYI1EcU33Z_oHzSKTUFHE-LgxUVeJRbU/Sheet1";
 
-// Correct day order
 const DAY_ORDER = [
   "Monday",
   "Tuesday",
@@ -15,7 +14,7 @@ const DAY_ORDER = [
 ];
 
 // ===============================
-// LOAD MENU FROM GOOGLE SHEET
+// LOAD MENU
 // ===============================
 async function loadMenu() {
   const container = document.getElementById("js-menu-container");
@@ -23,7 +22,6 @@ async function loadMenu() {
   const res = await fetch(SHEET_URL);
   const data = await res.json();
 
-  // Clean + normalize
   const clean = data.map((row) => ({
     day: row["y"]?.trim(),
     dish: row["Dish"]?.trim(),
@@ -42,7 +40,6 @@ async function loadMenu() {
     days[row.day].push(row);
   });
 
-  // Sort days in correct order
   const sortedDays = DAY_ORDER.filter((d) => days[d]);
 
   sortedDays.forEach((day) => {
@@ -57,11 +54,7 @@ async function loadMenu() {
           .map(
             (item) => `
           <div class="js-item">
-            ${
-              item.image
-                ? `<img class="js-item-img" src="${item.image}" />`
-                : ""
-            }
+            ${item.image ? `<img class="js-item-img" src="${item.image}" />` : ""}
 
             <div class="js-item-row">
               <span>${item.dish} - $${item.price}</span>
@@ -83,56 +76,12 @@ async function loadMenu() {
     container.appendChild(card);
   });
 
-  // Attach Add button events AFTER rendering
+  // Attach modal open events
   attachAddButtonEvents();
-}
-
-// ===============================
-// ADD BUTTON LOGIC
-// ===============================
-function attachAddButtonEvents() {
-  document.querySelectorAll(".js-add-btn").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const name = btn.dataset.name;
-      const price = parseFloat(btn.dataset.price);
-
-      addToCart(name, price);
-    });
-  });
-}
-
-// ===============================
-// CART LOGIC
-// ===============================
-function addToCart(name, price) {
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-  cart.push({
-    name,
-    price,
-    qty: 1,
-    type: "janSisters",
-  });
-
-  localStorage.setItem("cart", JSON.stringify(cart));
-
-  updateCartCount();
-  bounceCartIcon();
-}
-
-function updateCartCount() {
-  const cart = JSON.parse(localStorage.getItem("cart")) || [];
-  document.getElementById("cart-count").textContent = cart.length;
-}
-
-function bounceCartIcon() {
-  const img = document.querySelector(".cart-icon img");
-  img.classList.add("bounce");
-  setTimeout(() => img.classList.remove("bounce"), 600);
 }
 
 // ===============================
 // INIT
 // ===============================
 loadMenu();
-updateCartCount();
+window.cart.updateCartCount();

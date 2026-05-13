@@ -44,8 +44,8 @@ class Cart {
   }
 
   /* ---------------------------------------------------------
-     UPDATE QUANTITY RULES — FIXED VERSION
-     Weekly menu now allows ANY qty >= 1
+     UPDATE QUANTITY RULES — FINAL VERSION
+     Supports ALL item types including Jan Sisters
   --------------------------------------------------------- */
   updateQty(name, qty) {
     const item = this.items.find((i) => i.name === name);
@@ -58,7 +58,7 @@ class Cart {
         if (qty < 12) qty = 12;
         break;
 
-      case "weekly": // ⭐ FIXED — now min 1, not 12
+      case "weekly": // Weekly menu items
         if (qty < 1) qty = 1;
         break;
 
@@ -70,12 +70,16 @@ class Cart {
         if (qty < 1) qty = 1;
         break;
 
-      case "tray": // catering trays
+      case "tray": // Catering trays
         if (qty < 0) qty = 0;
         break;
 
-      case "single": // catering single items
+      case "single": // Catering single items
         if (qty < item.minOrder) qty = item.minOrder;
+        break;
+
+      case "janSisters": // ⭐ NEW — Jan Sisters Bakery items
+        if (qty < 1) qty = 1;
         break;
 
       default:

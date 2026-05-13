@@ -9,16 +9,33 @@ function renderCheckout() {
   const subtotal = cart.getTotal();
   const total = subtotal;
 
-  // We keep the innerHTML but remove the "Your Order" list
+  const itemsHTML = cart.items
+    .map(
+      (i) => `
+      <div class="checkout-item">
+        <span>${i.name}</span>
+        <span>$${i.price} x ${i.qty}</span>
+        <span>$${(i.price * i.qty).toFixed(2)}</span>
+      </div>
+    `,
+    )
+    .join("");
+
   document.getElementById("checkout-root").innerHTML = `
     <div class="checkout-wrapper">
 
       <div class="checkout-summary">
         <h2>Order Summary</h2>
+
+        <div class="checkout-items">
+          ${itemsHTML}
+        </div>
+
         <div class="summary-row">
           <span>Subtotal:</span>
           <span>$${subtotal.toFixed(2)}</span>
         </div>
+
         <div class="summary-total">
           <span>Total:</span>
           <span>$${total.toFixed(2)}</span>
