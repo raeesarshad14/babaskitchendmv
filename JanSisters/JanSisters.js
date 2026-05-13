@@ -44,18 +44,20 @@ async function loadMenu() {
     card.className = "js-day-card";
 
     card.innerHTML = `
-      <h3 class="js-day-title">${day}</h3>
-      ${days[day]
-        .map(
-          (item) => `
-        <div class="js-item">
-          ${item.image ? `<img class="js-item-img" src="${item.image}" />` : ""}
-          <div>${item.dish} - $${item.price}</div>
-        </div>
-      `,
-        )
-        .join("")}
-    `;
+  <div class="js-day-content">
+    <h3 class="js-day-title">${day}</h3>
+    ${days[day]
+      .map(
+        (item) => `
+      <div class="js-item">
+        ${item.image ? `<img class="js-item-img" src="${item.image}" />` : ""}
+        <div>${item.dish} - $${item.price}</div>
+      </div>
+    `,
+      )
+      .join("")}
+  </div>
+`;
 
     container.appendChild(card);
   });
