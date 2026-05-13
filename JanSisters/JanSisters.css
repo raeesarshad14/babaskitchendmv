@@ -205,12 +205,12 @@ body {
   background: #ff7ac8;
   color: white;
   border: none;
-  padding: 6px 14px;
+  padding: 8px 20px;
   border-radius: 8px;
-  font-size: 16px;
-  font-weight: 600;
+  font-size: 18px;
+  font-weight: 700;
   cursor: pointer;
-  margin-left: 10px;
+  margin-left: 50px;
 }
 
 .js-add-btn:hover {
@@ -235,6 +235,11 @@ body {
   border-radius: 12px;
   text-align: center;
   position: relative;
+}
+.js-item-row span {
+  font-size: 20px;
+  font-weight: 700;
+  color: #333;
 }
 
 .js-close {
