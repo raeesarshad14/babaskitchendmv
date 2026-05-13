@@ -5,10 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Jan Sisters Bakery</title>
 
+    <!-- GLOBAL STYLES -->
+    <link rel="stylesheet" href="MainPage/MainPage.css" />
     <link rel="stylesheet" href="JanSisters/JanSisters.css" />
+    <link rel="stylesheet" href="Cart/cart.css" />
   </head>
 
   <body>
+    <!-- GLOBAL HEADER -->
+    <header class="main-header">
+      <div class="logo">
+        <a href="MainPage.html">
+          <img
+            src="Pictures/MainPageLogo/logo picture.png"
+            alt="BabaKitchen Logo"
+          />
+        </a>
+      </div>
+
+      <nav class="nav-links">
+        <a href="catering.html">CATERING</a>
+        <a href="dessert.html">DESSERTS</a>
+        <a href="weekly-menu.html">WEEKLY MENU</a>
+        <a href="contact-us.html">CONTACT US</a>
+        <a href="jansistersbakery.html">JAN SISTERS BAKERY</a>
+      </nav>
+
+      <div class="cart-icon">
+        <a href="cart.html">
+          <img src="Pictures/cartpicture/cart.png" alt="Cart" />
+        </a>
+        <span id="cart-count">0</span>
+      </div>
+    </header>
+
     <!-- HERO SECTION -->
     <section class="js-hero">
       <img
@@ -91,6 +121,9 @@
         </div>
       </div>
     </section>
+
     <script src="JanSisters/JanSisters.js"></script>
+    <!-- CART LOGIC -->
+    <script src="Cart/cart.js"></script>
   </body>
 </html>
