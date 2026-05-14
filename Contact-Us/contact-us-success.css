@@ -34,3 +34,27 @@
 .back-home:hover {
   background: #1e7e34;
 }
+/* ============================
+   ⭐ MOBILE FIX FOR SUCCESS PAGE
+============================ */
+@media (max-width: 768px) {
+  .success-wrapper {
+    padding: 20px;
+    height: auto;
+  }
+
+  .success-box {
+    max-width: 90%;
+    padding: 20px;
+  }
+
+  .checkmark {
+    font-size: 40px;
+    margin-bottom: 12px;
+  }
+
+  .back-home {
+    padding: 10px 16px;
+    font-size: 15px;
+  }
+}

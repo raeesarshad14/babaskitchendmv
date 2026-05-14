@@ -343,3 +343,80 @@
     font-size: 14px;
   }
 }
+/* ================================
+   IMPROVED MOBILE FIXES
+================================ */
+@media (max-width: 768px) {
+  /* Stack layout */
+  .weekly-layout {
+    flex-direction: column;
+    padding: 10px;
+    gap: 15px;
+  }
+
+  /* Sidebar becomes horizontal scroll */
+  .weekly-sidebar {
+    position: relative;
+    top: 0;
+    width: 100%;
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 10px;
+    padding-bottom: 10px;
+  }
+
+  .weekly-sidebar button {
+    flex: 0 0 auto;
+    font-size: 14px;
+    padding: 10px 14px;
+    white-space: nowrap;
+  }
+
+  /* Day card spacing */
+  .weekly-day-card {
+    padding: 15px;
+    margin-bottom: 20px;
+  }
+
+  .weekly-day-title {
+    font-size: 20px;
+  }
+
+  /* Item row layout */
+  .weekly-item-row {
+    grid-template-columns: 1fr auto auto;
+    gap: 10px;
+    padding: 8px 0;
+  }
+
+  .weekly-name {
+    font-size: 16px;
+  }
+
+  .weekly-price {
+    font-size: 14px;
+    padding-right: 20px;
+  }
+
+  .weekly-add-btn {
+    font-size: 14px;
+    padding: 8px 14px;
+  }
+
+  /* Modal adjustments */
+  .weekly-modal-box {
+    max-width: 90%;
+    padding: 20px;
+  }
+
+  .wm-qty-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 18px;
+  }
+
+  .wm-qty-number,
+  .wm-inline-price {
+    font-size: 18px;
+  }
+}

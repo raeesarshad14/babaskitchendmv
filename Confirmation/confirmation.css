@@ -34,3 +34,27 @@
 .back-home:hover {
   background: #1e7e34;
 }
+/* ============================
+   ⭐ MOBILE FIX FOR CONFIRMATION PAGE
+============================ */
+@media (max-width: 768px) {
+  .confirm-wrapper {
+    padding: 20px;
+    height: auto;
+  }
+
+  .confirm-box {
+    max-width: 90%;
+    padding: 20px;
+  }
+
+  .checkmark {
+    font-size: 40px;
+    margin-bottom: 15px;
+  }
+
+  .back-home {
+    padding: 10px 16px;
+    font-size: 16px;
+  }
+}

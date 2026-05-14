@@ -51,3 +51,29 @@
 .right-arrow {
   right: 20px;
 }
+/* ============================
+   ⭐ MOBILE FIX FOR HERO SLIDER
+============================ */
+@media (max-width: 768px) {
+  .hero-slider {
+    height: 300px; /* reduce height */
+    margin-top: 10px;
+  }
+
+  .slide img {
+    object-fit: cover; /* fill screen on mobile */
+  }
+
+  .slider-arrow {
+    font-size: 28px; /* smaller arrows */
+    padding: 6px;
+  }
+
+  .left-arrow {
+    left: 10px;
+  }
+
+  .right-arrow {
+    right: 10px;
+  }
+}

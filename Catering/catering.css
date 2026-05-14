@@ -81,3 +81,31 @@
   font-size: 16px;
   margin: 3px 0;
 }
+/* ================================
+   MOBILE FIXES
+================================ */
+@media (max-width: 768px) {
+  .catering-layout {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .catering-items {
+    grid-template-columns: 1fr; /* 1 per row */
+  }
+
+  .catering-page-wrapper {
+    width: 100%;
+    margin: 80px auto 20px auto;
+    padding: 0 15px;
+  }
+
+  .unified-card {
+    min-height: auto;
+    padding: 15px;
+  }
+
+  .catering-title {
+    font-size: 26px;
+  }
+}

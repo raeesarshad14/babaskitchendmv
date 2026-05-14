@@ -31,3 +31,24 @@
   border-color: #28a745;
   transform: translateY(-3px);
 }
+/* ===========================
+   ⭐ MOBILE FIX FOR SIDEBAR
+   =========================== */
+@media (max-width: 768px) {
+  .catering-sidebar {
+    width: 100%;
+    padding: 10px;
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 10px;
+    position: relative;
+    top: 0;
+  }
+
+  .catering-sidebar button {
+    flex: 0 0 auto;
+    font-size: 14px;
+    padding: 8px 12px;
+    white-space: nowrap;
+  }
+}

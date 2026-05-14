@@ -194,3 +194,51 @@
   position: relative;
   margin-right: 70px;
 }
+/* ============================
+   ⭐ MOBILE FIXES FOR DESSERT PAGE
+============================ */
+@media (max-width: 768px) {
+  /* Section padding */
+  .desserts-section {
+    padding: 20px 10px;
+  }
+
+  /* Grid stays 1 column (your rule already handles this) */
+  #desserts-container {
+    gap: 18px;
+  }
+
+  /* Card becomes responsive */
+  .dessert-card {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .dessert-card h3 {
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
+
+  .dessert-card p {
+    font-size: 16px;
+    margin: 10px 0;
+  }
+
+  .dessert-add-btn {
+    width: 80px;
+    height: 30px;
+    font-size: 16px;
+  }
+
+  /* Modal adjustments */
+  .modal-box {
+    max-width: 90%;
+    padding: 20px;
+  }
+
+  .qty-btn {
+    width: 28px;
+    height: 28px;
+    font-size: 18px;
+  }
+}

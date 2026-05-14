@@ -62,3 +62,34 @@
 body {
   padding-top: 0px; /* adjust if header height changes */
 }
+/* ============================
+   ⭐ MOBILE FIX FOR HEADER
+============================ */
+@media (max-width: 768px) {
+  .main-header {
+    padding: 10px 15px;
+    gap: 15px;
+  }
+
+  .logo img {
+    height: 50px;
+    margin-left: 0;
+  }
+
+  .nav-links {
+    gap: 20px;
+  }
+
+  .nav-links a {
+    font-size: 14px;
+  }
+
+  .cart-icon {
+    margin-right: 0;
+  }
+
+  .cart-icon img {
+    width: 24px;
+    height: 24px;
+  }
+}

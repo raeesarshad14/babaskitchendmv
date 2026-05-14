@@ -176,3 +176,70 @@
     flex-direction: column;
   }
 }
+/* ============================
+   ⭐ IMPROVED MOBILE FIXES
+============================ */
+@media (max-width: 768px) {
+  .contact-page {
+    margin: 20px auto;
+    padding: 0 15px 30px;
+  }
+
+  .contact-hero h1 {
+    font-size: 26px;
+  }
+
+  .contact-hero p {
+    font-size: 15px;
+  }
+
+  /* Stack columns */
+  .contact-content {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  /* Form + Info cards full width */
+  .contact-form-card,
+  .contact-info-card {
+    padding: 18px;
+  }
+
+  .contact-form-card h2 {
+    font-size: 20px;
+  }
+
+  .contact-subtext {
+    font-size: 15px;
+  }
+
+  .info-block h3 {
+    font-size: 18px;
+  }
+
+  .info-block p {
+    font-size: 14px;
+  }
+
+  /* Form fields */
+  .form-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .form-group label {
+    font-size: 14px;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .contact-submit-btn {
+    font-size: 16px;
+    padding: 12px;
+  }
+}

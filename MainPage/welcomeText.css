@@ -28,6 +28,16 @@
     transform: translateX(100%);
   }
   100% {
-    transform: translateX(-60%); /* REDUCED DISTANCE = LESS BLUR */
+    transform: translateX(-100%); /* fully off-screen */
+  }
+}
+@media (max-width: 768px) {
+  .welcome-text span {
+    font-size: 20px;
+    padding-right: 60px;
+  }
+
+  .welcome-rotator {
+    margin: 10px 0;
   }
 }
