@@ -57,6 +57,10 @@
       <!-- ⭐ WEEKLY MENU CONTENT -->
       <div class="weekly-wrapper">
         <h1 class="weekly-title">Weekly Menu</h1>
+
+        <!-- ⭐ DATE UNDER WEEKLY MENU -->
+        <h2 id="wm-date-range" class="wm-date-range"></h2>
+
         <div id="weekly-menu"></div>
       </div>
     </div>
@@ -66,18 +70,13 @@
       <div class="weekly-modal-box">
         <h2 id="wm-dish-name"></h2>
 
-        <!-- ⭐ Quantity + Price Row -->
         <div class="wm-qty-price-row">
           <button onclick="wmDecrease()" class="wm-qty-btn">−</button>
-
           <span id="wm-qty" class="wm-qty-number">1</span>
-
           <button onclick="wmIncrease()" class="wm-qty-btn">+</button>
-
           <span id="wm-inline-price" class="wm-inline-price">$0</span>
         </div>
 
-        <!-- ⭐ Subtotal -->
         <div class="wm-total-row">
           <span>Subtotal:</span>
           <span id="wm-total-price">$0</span>

@@ -3,7 +3,6 @@ const imageFolder = "Pictures/MainPageSliderPictures/";
 const slideImages = [
   "BabasKitchen Statement.png",
   "mainCourse7.jpeg",
-  "mainCourse6.png",
   "mainCourse5.jpeg",
   "mainCourse4.png",
   "mainCourse.jpg",
@@ -40,7 +39,7 @@ function showSlide(index) {
 setInterval(() => {
   currentSlide = (currentSlide + 1) % slides.length;
   showSlide(currentSlide);
-}, 4000);
+}, 3000);
 
 // ARROWS
 document.querySelector(".left-arrow").addEventListener("click", () => {

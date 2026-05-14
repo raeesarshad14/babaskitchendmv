@@ -1,7 +1,10 @@
 console.log("Weekly Menu JS Loaded");
 
-let wmBasePrice = 0; // base unit price
+let wmBasePrice = 0;
 
+// ===============================
+// LOAD WEEKLY MENU
+// ===============================
 async function loadWeeklyMenu() {
   const url =
     "https://opensheet.elk.sh/1TH3C7z8csSiTcegs18HABEWp2NYWXvrSEZufJl1X04c/Sheet1";
@@ -9,24 +12,58 @@ async function loadWeeklyMenu() {
   try {
     const data = await fetch(url).then((r) => r.json());
 
+    // ⭐ DATE RANGE (from first row)
+    const startDate = data[0].StartDate;
+    const endDate = data[0].EndDate;
+
+    if (startDate && endDate) {
+      const start = new Date(startDate);
+      const end = new Date(endDate);
+
+      const formatted = `${start.toLocaleDateString("en-US", {
+        month: "short",
+        day: "numeric",
+      })} – ${end.toLocaleDateString("en-US", {
+        month: "short",
+        day: "numeric",
+      })}`;
+
+      document.getElementById("wm-date-range").textContent = formatted;
+    }
+
+    // ⭐ GROUP BY DAY (your sheet uses "y")
     const days = {};
 
     data.forEach((row) => {
-      const day = row.y;
+      const day = row.y?.trim();
+      if (!day) return;
+
       if (!days[day]) days[day] = [];
       days[day].push(row);
     });
 
+    // ⭐ SORT DAYS
+    const DAY_ORDER = [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
+
     const container = document.getElementById("weekly-menu");
 
-    container.innerHTML = Object.keys(days)
+    container.innerHTML = DAY_ORDER.filter((d) => days[d])
       .map((day) => {
         const items = days[day]
           .map(
             (item) => `
               <div class="weekly-item-row">
                 <div class="weekly-name">
-                  ${item.Dish} ${item.Description ? `(${item.Description})` : ""}
+                  ${item.Dish} ${
+                    item.Description ? `(${item.Description})` : ""
+                  }
                 </div>
 
                 <div class="weekly-price">$${item.Price}</div>
@@ -53,6 +90,9 @@ async function loadWeeklyMenu() {
   }
 }
 
+// ===============================
+// SCROLL TO DAY
+// ===============================
 function scrollToDay(day) {
   const section = document.getElementById(`day-${day}`);
   if (section) {
@@ -60,6 +100,9 @@ function scrollToDay(day) {
   }
 }
 
+// ===============================
+// MODAL LOGIC
+// ===============================
 function openWeeklyModal(name, price) {
   document.getElementById("wm-dish-name").textContent = name;
 
