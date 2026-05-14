@@ -25,7 +25,7 @@
 .checkout-summary h2 {
   font-size: 24px;
   margin-bottom: 18px;
-  color: #b85ca8;
+  color: black;
   text-align: center;
 }
 
@@ -58,7 +58,7 @@
 /* PRICE */
 .checkout-item span:last-child {
   font-weight: 700;
-  color: #b85ca8;
+  color: black;
 }
 
 /* SUBTOTAL + TOTAL */
@@ -73,7 +73,7 @@
 .summary-total {
   font-size: 20px;
   font-weight: 700;
-  color: #b85ca8;
+  color: black;
   border-top: 2px solid #eee;
   margin-top: 10px;
   padding-top: 14px;
