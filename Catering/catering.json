@@ -118,7 +118,7 @@
   {
     "category": "Main Courses",
     "items": [
-      { "name": "Beef Nehari", "smallPrice": 90, "largePrice": 165 },
+      { "name": "Beef Nehari", "smallPrice": 110, "largePrice": 180 },
       { "name": "Chicken Haleem", "smallPrice": 90, "largePrice": 165 },
       { "name": "Chicken Karahi", "smallPrice": 90, "largePrice": 165 },
       { "name": "Chicken Salan", "smallPrice": 75, "largePrice": 130 },
@@ -158,7 +158,7 @@
         "smallPrice": 75,
         "largePrice": 140
       },
-      { "name": "Beef Paye", "smallPrice": 90, "largePrice": 165 },
+      { "name": "Beef Paye", "smallPrice": 110, "largePrice": 180 },
       { "name": "Beef Haleem", "smallPrice": 90, "largePrice": 165 },
       {
         "name": "Khara Masala Beef Keema",
