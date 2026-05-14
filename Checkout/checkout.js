@@ -31,26 +31,27 @@ function renderCheckout() {
           ${itemsHTML}
         </div>
 
-        <div class="summary-row">
-        
+        <div class="summary-total">
+          <span>Subtotal:</span>
+          <span>$${subtotal.toFixed(2)}</span>
         </div>
-
-<div class="summary-total">
-  <span>Subtotal:</span>
-  <span>$${subtotal.toFixed(2)}</span>
-</div>
-
       </div>
 
       <div class="checkout-form">
         <h2>Customer Information</h2>
+
+        <!-- ⭐ NOTE MOVED HERE UNDER CUSTOMER INFORMATION -->
+        <div class="checkout-note">
+          A deposit applies to orders over $60. Delivery is available upon request for an additional fee. Please contact us using the Contact Us link above.
+        </div>
+
         <input id="name" placeholder="Full Name" />
         <input id="phone" placeholder="Phone Number" />
-        <input id="address" placeholder="Delivery Address" />
+
 
         <h3>Payment Method</h3>
         <select id="payment">
-          <option value="cash">Cash on Delivery</option>
+          <option value="cash">Cash</option>
           <option value="zelle">Zelle</option>
         </select>
 
@@ -106,8 +107,8 @@ async function placeOrder() {
 
   const itemsText = items
     .map((i) => {
-      const name = i.name.padEnd(24, " "); // item name spacing
-      const qty = `$${i.price} x ${i.qty}`.padEnd(12, " "); // price x qty spacing
+      const name = i.name.padEnd(24, " ");
+      const qty = `$${i.price} x ${i.qty}`.padEnd(12, " ");
       const total = `$${(i.price * i.qty).toFixed(2)}`;
       return `${name}${qty}=  ${total}`;
     })
