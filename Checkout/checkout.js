@@ -40,14 +40,13 @@ function renderCheckout() {
       <div class="checkout-form">
         <h2>Customer Information</h2>
 
-        <!-- ⭐ NOTE MOVED HERE UNDER CUSTOMER INFORMATION -->
         <div class="checkout-note">
-          A deposit applies to orders over $60. Delivery is available upon request for an additional fee. Please contact us using the Contact Us link above.
+          A deposit applies to orders over $60. Delivery is available upon request for an additional fee. 
+          Please contact us using the Contact Us link above.
         </div>
 
         <input id="name" placeholder="Full Name" />
         <input id="phone" placeholder="Phone Number" />
-
 
         <h3>Payment Method</h3>
         <select id="payment">
@@ -92,11 +91,10 @@ async function placeOrder() {
 
   const name = document.getElementById("name").value.trim();
   const phone = document.getElementById("phone").value.trim();
-  const address = document.getElementById("address").value.trim();
   const payment = document.getElementById("payment").value;
 
-  if (!name || !phone || !address) {
-    alert("Please fill out all fields.");
+  if (!name || !phone) {
+    alert("Please enter your name and phone number.");
     btn.disabled = false;
     btn.innerText = "Place Order";
     return;
@@ -120,7 +118,6 @@ async function placeOrder() {
   document.getElementById("form_from_name").value = "BabasKitchendmv";
   document.getElementById("form_name").value = name;
   document.getElementById("form_phone").value = phone;
-  document.getElementById("form_address").value = address;
   document.getElementById("form_payment").value = payment;
   document.getElementById("form_items").value = itemsText;
   document.getElementById("form_subtotal").value = subtotal.toFixed(2);
