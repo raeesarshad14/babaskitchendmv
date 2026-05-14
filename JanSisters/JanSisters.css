@@ -32,7 +32,7 @@ body {
 .js-insta-btn {
   display: inline-block;
   padding: 14px 24px;
-  background: #ff7ac8;
+  background: #b85ca8;
   color: white;
   font-size: 18px;
   border-radius: 10px;
@@ -298,4 +298,25 @@ body {
 
 .js-modal-add-btn:hover {
   background: #e85aa8;
+}
+
+.js-arrow-hint {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+  color: #7d3cff; /* matches Jan Sisters Bakery theme */
+  margin-top: 10px;
+  opacity: 0.9;
+  letter-spacing: 0.3px;
+}
+.js-insta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px; /* space between icon + text */
+}
+
+.js-insta-icon {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
 }
