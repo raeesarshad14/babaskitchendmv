@@ -49,17 +49,13 @@
 }
 
 /* Target the section headers specifically */
-.catering-section h2 {
+.catering-page-wrapper .catering-section h2 {
   text-align: center;
   width: 100%;
   margin: 0 auto 10px auto;
   font-size: clamp(20px, 4vw, 28px);
 
-  /* THIS IS THE KEY FIX: Adjust this number to match 
-     the actual height of your fixed header */
   scroll-margin-top: 100px;
-
-  /* Adds a little breathing room above the text when it stops */
   padding-top: 100px;
 }
 
