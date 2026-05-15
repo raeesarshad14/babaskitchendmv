@@ -2,7 +2,7 @@
    HEADER CART ICON + BADGE
 ============================ */
 .cart-icon {
-  position: relative; /* ⭐ anchor for badge */
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -14,6 +14,25 @@
   height: 28px;
   object-fit: contain;
   cursor: pointer;
+}
+
+.cart-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+#cart-count {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  background: #27ae60;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: bold;
 }
 
 /* ============================
@@ -33,63 +52,50 @@
 }
 
 /* ============================
-   CART ITEM ROWS (NEW LAYOUT)
+   CART ROW — PERFECT ALIGNMENT
 ============================ */
 .cart-row {
-  display: grid !important;
-  grid-template-columns: auto 1fr auto !important;
-  align-items: center !important;
-  width: 100% !important;
-  padding: 10px 0;
-  border-bottom: 1px solid #e5e5e5 !important;
-}
-.cart-top .remove-btn {
-  order: -1 !important;
-  margin-right: 12px !important;
-  white-space: nowrap !important;
-}
-.cart-top .item-name {
-  white-space: nowrap !important;
-}
-/* ⭐ THIS FIXES REMOVE BUTTON */
-.cart-top {
-  grid-column: 1 / 2 !important;
-  display: flex !important;
-  align-items: center !important;
-}
-
-.cart-top * {
-  white-space: nowrap !important;
-}
-
-.remove-btn {
-  margin-top: 15px;
-  background: red;
-  color: white;
-  padding: 10px 10px;
-  border: none;
-  border-radius: 6px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  float: right;
-  margin: 20px 0;
+  display: grid;
+  grid-template-columns: 1fr 120px 100px; /* NAME | QTY | TOTAL */
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid #e5e5e5;
+  gap: 20px;
 }
 
 /* ============================
-   BOTTOM ROW
+   LEFT COLUMN: NAME + REMOVE
 ============================ */
-.cart-bottom {
-  grid-column: 3 / 4 !important;
-  display: flex !important;
-  justify-content: flex-end !important;
-  align-items: center !important;
-  gap: 175px;
+.cart-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
+.item-name {
+  font-size: 18px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.remove-btn {
+  background: red;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* ============================
+   MIDDLE COLUMN: QUANTITY
+============================ */
 .qty-section {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
 }
 
@@ -114,46 +120,31 @@
 }
 
 /* ============================
-   ITEM TEXT
-============================ */
-.item-name {
-  font-size: 18px;
-  font-weight: 700;
-  color: #222;
-}
-
-/* ============================
-   MATH LINE
+   RIGHT COLUMN: TOTAL PRICE
 ============================ */
 .math-section {
-  display: flex !important;
-  justify-content: flex-end !important;
-  text-align: right !important;
-  white-space: nowrap !important;
+  text-align: right;
   font-size: 18px;
-  width: 180px !important; /* adjust if needed */
-  font-weight: 600;
-  gap: 10px !important;
+  font-weight: 700;
+  white-space: nowrap;
 }
 
 .math-total {
-  font-weight: 700;
   color: #000;
 }
 
 /* ============================
-   SUMMARY BOX (SUBTOTAL ONLY)
+   SUMMARY BOX
 ============================ */
-.summary-line {
-  font-size: 18px;
-  margin: 6px 0;
-  color: #333;
-  font-weight: 700;
-}
-
 .summary-box {
   text-align: right;
   margin: 25px 0;
+}
+
+.summary-line {
+  font-size: 18px;
+  font-weight: 700;
+  color: #333;
 }
 
 /* ============================
@@ -169,8 +160,6 @@
   font-size: 18px;
   font-weight: 600;
   cursor: pointer;
-  float: right;
-  margin: 35px 0;
 }
 
 .checkout-btn:hover {
@@ -224,26 +213,26 @@
 .cart-icon img.bounce {
   animation: cartBounce 0.6s ease;
 }
-.cart-link {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  cursor: pointer;
-}
-.cart-link img {
-  width: 28px;
-  height: 28px;
-  object-fit: contain;
-}
-#cart-count {
-  position: absolute;
-  top: -8px;
-  right: -10px;
-  background: #27ae60;
-  color: white;
-  padding: 2px 6px;
-  border-radius: 50%;
-  font-size: 12px;
-  font-weight: bold;
-  cursor: pointer;
+
+/* ============================
+   MOBILE FIXES
+============================ */
+@media (max-width: 768px) {
+  .cart-row {
+    grid-template-columns: 1fr 90px 80px;
+    gap: 10px;
+  }
+
+  .qty-btn {
+    padding: 4px 10px;
+    font-size: 16px;
+  }
+
+  .qty-number {
+    font-size: 16px;
+  }
+
+  .math-section {
+    font-size: 16px;
+  }
 }

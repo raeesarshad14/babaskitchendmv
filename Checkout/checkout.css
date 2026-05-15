@@ -31,7 +31,8 @@
 
 .checkout-item {
   display: grid;
-  grid-template-columns: 1fr auto auto;
+  grid-template-columns: 1fr 60px auto;
+  align-items: center;
   gap: 20px;
   padding: 14px 0;
   border-bottom: 1px solid #f0f0f0;
@@ -191,6 +192,12 @@
   #cart-count {
     top: -5px;
     right: -5px;
+  }
+  @media (max-width: 768px) {
+    .checkout-item {
+      grid-template-columns: 1fr 40px auto;
+      gap: 10px;
+    }
   }
 }
 /* ================================

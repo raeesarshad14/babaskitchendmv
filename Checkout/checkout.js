@@ -14,8 +14,8 @@ function renderCheckout() {
       (i) => `
       <div class="checkout-item">
         <span>${i.name}</span>
-        <span>$${i.price} x ${i.qty}</span>
-        <span>$${(i.price * i.qty).toFixed(2)}</span>
+        <span class="checkout-qty">${i.qty}</span>
+        <span class="checkout-total">$${(i.price * i.qty).toFixed(2)}</span>
       </div>
     `,
     )
@@ -106,7 +106,7 @@ async function placeOrder() {
   const itemsText = items
     .map((i) => {
       const name = i.name.padEnd(24, " ");
-      const qty = `$${i.price} x ${i.qty}`.padEnd(12, " ");
+      const qty = `${i.qty}`.padEnd(12, " ");
       const total = `$${(i.price * i.qty).toFixed(2)}`;
       return `${name}${qty}=  ${total}`;
     })
@@ -115,6 +115,7 @@ async function placeOrder() {
   const subtotal = cart.getTotal();
   const total = subtotal;
 
+  // Fill hidden form fields
   document.getElementById("form_from_name").value = "BabasKitchendmv";
   document.getElementById("form_name").value = name;
   document.getElementById("form_phone").value = phone;
@@ -123,12 +124,19 @@ async function placeOrder() {
   document.getElementById("form_subtotal").value = subtotal.toFixed(2);
   document.getElementById("form_total").value = total.toFixed(2);
 
+  // ⭐ CRITICAL FIX — FORCE REDIRECT FIELD
+  document.querySelector("input[name='redirect']").value =
+    "https://babaskitchendmv.com/confirmation.html";
+
+  // Show success animation
   document.getElementById("payment-success").style.display = "block";
 
   await new Promise((res) => setTimeout(res, 900));
 
+  // Submit form
   document.getElementById("checkoutOrderForm").submit();
 
+  // Clear cart
   cart.items = [];
   cart.save();
 }

@@ -49,16 +49,18 @@
 
       <div id="cart-items"></div>
 
-      <!-- ⭐ SUMMARY BOX (Subtotal only) -->
- <div class="summary-box">
-  <p class="summary-line">Subtotal: $<span id="cart-subtotal">0</span></p>
+      <!-- ⭐ SUMMARY BOX -->
+      <div class="summary-box">
+        <p class="summary-line">Subtotal: $<span id="cart-subtotal">0</span></p>
 
-  <button class="checkout-btn" onclick="window.location.href='checkout.html'">
-    Checkout
-  </button>
-</div>
-
-    
+        <button
+          class="checkout-btn"
+          onclick="window.location.href = 'checkout.html'"
+        >
+          Checkout
+        </button>
+      </div>
+    </div>
 
     <script src="Cart/cart.js"></script>
 
@@ -75,34 +77,34 @@
 
         cart.items.forEach((item) => {
           const row = document.createElement("div");
-          row.className = "cart-row"; // ⭐ FIXED — no more cart-item
+          row.className = "cart-row";
 
           const itemTotal = item.qty * item.price;
 
           row.innerHTML = `
-<div class="cart-top">
-  <strong class="item-name">${item.name}</strong><button class="remove-btn" onclick="removeCartItem('${item.name}')">Remove</button>
+            <!-- COLUMN 1: NAME + REMOVE -->
+  <div class="cart-left">
+  <button class="remove-btn" onclick="removeCartItem('${item.name}')">Remove</button>
+  <span class="item-name">${item.name}</span>
 </div>
 
 
-            <div class="cart-bottom">
-              <div class="qty-section">
-                <button class="qty-btn" onclick="changeCartQty('${item.name}', -1)">−</button>
-                <span class="qty-number">${item.qty}</span>
-                <button class="qty-btn" onclick="changeCartQty('${item.name}', 1)">+</button>
-              </div>
+            <!-- COLUMN 2: QTY -->
+            <div class="qty-section">
+              <button class="qty-btn" onclick="changeCartQty('${item.name}', -1)">−</button>
+              <span class="qty-number">${item.qty}</span>
+              <button class="qty-btn" onclick="changeCartQty('${item.name}', 1)">+</button>
+            </div>
 
-              <div class="math-section">
-                ${String(item.qty).padStart(2, "0")} × ${item.price} =
-                <span class="math-total">$${itemTotal.toFixed(2)}</span>
-              </div>
+            <!-- COLUMN 3: TOTAL -->
+            <div class="math-section">
+              $${itemTotal.toFixed(2)}
             </div>
           `;
 
           container.appendChild(row);
         });
 
-        // ⭐ Subtotal only (Total removed)
         const total = cart.getTotal().toFixed(2);
         document.getElementById("cart-subtotal").textContent = total;
       }
