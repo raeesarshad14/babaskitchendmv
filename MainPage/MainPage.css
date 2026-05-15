@@ -80,8 +80,13 @@
 @media (max-width: 768px) {
   .main-header {
     padding: 10px 15px;
-    /* Keeps items spaced out on small screens */
     justify-content: space-between;
+  }
+
+  /* ⭐ ADD THIS — creates spacing between logo and first link */
+  .nav-links {
+    margin-left: 15px;
+    gap: 15px;
   }
 
   .logo img {
@@ -91,10 +96,6 @@
   /* Standard Mobile Font Size */
   .nav-links a {
     font-size: 14px;
-  }
-
-  .nav-links {
-    gap: 15px;
   }
 
   /* Hide order button on very small screens if it crowds the links */
