@@ -24,7 +24,7 @@
   </head>
 
   <body>
-    <!-- ⭐ TOAST (ONLY ONE — CORRECT) -->
+    <!-- ⭐ TOAST -->
     <div id="toast" class="toast"></div>
 
     <!-- HEADER -->
@@ -54,10 +54,13 @@
       </div>
     </header>
 
-    <!-- PAGE LAYOUT -->
-    <div class="catering-layout">
-      <div id="sidebar-container"></div>
-      <div id="catering-container"></div>
+    <!-- ⭐ PAGE WRAPPER (THIS WAS MISSING) -->
+    <!-- ⭐ PAGE WRAPPER (REQUIRED FOR PROPER ALIGNMENT) -->
+    <div class="catering-page-wrapper">
+      <div class="catering-layout">
+        <div id="sidebar-container"></div>
+        <div id="catering-container"></div>
+      </div>
     </div>
 
     <!-- MODAL -->
@@ -105,22 +108,24 @@
     <script src="Catering/cateringModal.js"></script>
     <script src="Catering/catering.js"></script>
 
-    <!-- CART LOGIC (LOAD LAST) -->
+    <!-- CART LOGIC -->
     <script src="Cart/cart.js" defer></script>
 
     <script>
-      // Load sidebar
-      fetch("cateringsidebar.html")
-        .then((res) => res.text())
-        .then((html) => {
-          document.getElementById("sidebar-container").innerHTML = html;
-          initSidebarScroll();
-        });
-
-      // Load catering content
+      // Load catering content FIRST
       const cateringPage = new CateringPage();
       cateringPage.render().then((html) => {
         document.getElementById("catering-container").innerHTML = html;
+
+        // THEN load sidebar
+        fetch("cateringsidebar.html")
+          .then((res) => res.text())
+          .then((html) => {
+            document.getElementById("sidebar-container").innerHTML = html;
+
+            // Initialize scroll AFTER both are loaded
+            initSidebarScroll();
+          });
       });
     </script>
   </body>

@@ -2,39 +2,45 @@
    CATERING PAGE LAYOUT
 ================================ */
 .catering-page-wrapper {
-  width: 95%; /* Standard width for flexibility */
+  width: 95%;
   max-width: 1200px;
   margin: 120px auto 40px auto;
+  display: block; /* ⭐ REQUIRED */
 }
 
 .catering-layout {
   display: flex;
   align-items: flex-start;
   gap: 30px;
-  padding-top: 20px;
-}
-
-#sidebar-container {
-  align-self: flex-start;
-  position: sticky; /* Standard practice for long menu lists */
-  top: 120px;
-}
-
-#catering-container {
-  margin-top: 0 !important;
-  padding-top: 0 !important;
-  flex: 1;
-  max-height: calc(100vh - 120px);
-  overflow-y: auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+  width: 100%;
 }
 
 /* ================================
-   TYPOGRAPHY & TITLES
+   SIDEBAR (DESKTOP)
+================================ */
+#sidebar-container {
+  align-self: flex-start;
+  position: sticky;
+  top: 120px;
+
+  flex: 0 0 240px; /* ⭐ TRUE FIXED COLUMN */
+  max-width: 240px;
+  flex-shrink: 0; /* ⭐ PREVENT OVERLAP */
+}
+
+/* ================================
+   MAIN CONTENT
+================================ */
+#catering-container {
+  flex: 1;
+  margin-left: 25px; /* ⭐ small gap to prevent overlay */
+  position: relative;
+}
+
+/* ================================
+   TITLES
 ================================ */
 .catering-title {
-  /* Fluid typography: auto-scales from 26px to 36px */
   font-size: clamp(26px, 5vw, 36px);
   font-weight: 700;
   margin-bottom: 30px;
@@ -42,12 +48,24 @@
   color: #1a1a1a;
 }
 
+/* Target the section headers specifically */
 .catering-section h2 {
   text-align: center;
   width: 100%;
   margin: 0 auto 10px auto;
-  padding-top: 10px;
   font-size: clamp(20px, 4vw, 28px);
+
+  /* THIS IS THE KEY FIX: Adjust this number to match 
+     the actual height of your fixed header */
+  scroll-margin-top: 100px;
+
+  /* Adds a little breathing room above the text when it stops */
+  padding-top: 100px;
+}
+
+/* Smooth Scrolling for the whole page */
+html {
+  scroll-behavior: smooth;
 }
 
 .catering-section .subtitle,
@@ -65,7 +83,7 @@
 ================================ */
 .catering-items {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 per row on desktop */
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 }
 
@@ -73,7 +91,7 @@
   background: white;
   border: 1px solid #eee;
   padding: 20px;
-  border-radius: 12px; /* Standard professional rounding */
+  border-radius: 12px;
   text-align: center;
   min-height: 180px;
   display: flex;
@@ -101,34 +119,46 @@
 }
 
 /* ================================
-   MOBILE & TABLET AUTO-ADJUST
+   TABLET
 ================================ */
 @media (max-width: 992px) {
   .catering-items {
-    grid-template-columns: repeat(2, 1fr); /* 2 per row for tablets */
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  #sidebar-container {
+    flex: 0 0 180px;
+    max-width: 180px;
   }
 }
 
+/* ================================
+   MOBILE
+================================ */
 @media (max-width: 768px) {
   .catering-layout {
     flex-direction: column;
     gap: 20px;
   }
 
+  /* Sidebar moves to top */
+  #sidebar-container {
+    position: relative;
+    top: 0;
+    width: 100%;
+    flex: none; /* ⭐ IMPORTANT: RESET FLEX */
+    max-width: 100%;
+  }
+
+  /* 1 per row on mobile */
   .catering-items {
-    grid-template-columns: 1fr; /* 1 per row for phones */
+    grid-template-columns: 1fr;
   }
 
   .catering-page-wrapper {
     width: 100%;
     margin: 80px auto 20px auto;
     padding: 0 15px;
-  }
-
-  #sidebar-container {
-    position: relative;
-    top: 0;
-    width: 100%;
   }
 
   .unified-card {
