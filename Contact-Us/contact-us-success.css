@@ -1,60 +1,101 @@
+/* ================================
+   SUCCESS PAGE LAYOUT
+================================ */
 .success-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
   background: #f8f9fa;
+  padding: 20px;
 }
 
 .success-box {
-  background: #fff;
-  padding: 40px;
-  border-radius: 12px;
+  background: #ffffff;
+  padding: clamp(30px, 6vw, 50px);
+  border-radius: 20px; /* Standardized rounding */
   text-align: center;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  max-width: 450px;
+  width: 100%;
+  animation: successFadeIn 0.5s ease-out;
 }
 
+/* ================================
+   VISUAL ELEMENTS
+================================ */
 .checkmark {
-  font-size: 60px;
-  color: #28a745;
-  margin-bottom: 10px;
+  /* Fluid scaling for the checkmark icon */
+  font-size: clamp(50px, 10vw, 75px);
+  color: #27ae60;
+  margin-bottom: 15px;
+  display: block;
 }
 
+.success-box h1,
+.success-box h2 {
+  font-size: clamp(24px, 5vw, 32px);
+  font-weight: 800;
+  color: #1a1a1a;
+  margin-bottom: 15px;
+}
+
+.success-box p {
+  font-size: 16px;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 25px;
+}
+
+/* ================================
+   BACK HOME BUTTON
+================================ */
 .back-home {
   display: inline-block;
-  margin-top: 20px;
-  padding: 12px 20px;
-  background: #28a745;
+  padding: 14px 28px;
+  background: #27ae60;
   color: white;
-  border-radius: 8px;
+  border-radius: 10px;
   text-decoration: none;
+  font-weight: 700;
   font-size: 16px;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(39, 174, 96, 0.2);
 }
 
 .back-home:hover {
-  background: #1e7e34;
+  background: #219150;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(39, 174, 96, 0.3);
 }
-/* ============================
-   ⭐ MOBILE FIX FOR SUCCESS PAGE
-============================ */
+
+@keyframes successFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ================================
+   ⭐ MOBILE AUTO-ADJUST
+================================ */
 @media (max-width: 768px) {
   .success-wrapper {
-    padding: 20px;
-    height: auto;
+    min-height: 80vh; /* Better vertical alignment on tall phones */
   }
 
   .success-box {
-    max-width: 90%;
-    padding: 20px;
-  }
-
-  .checkmark {
-    font-size: 40px;
-    margin-bottom: 12px;
+    padding: 35px 20px;
+    border-radius: 16px;
   }
 
   .back-home {
-    padding: 10px 16px;
-    font-size: 15px;
+    width: 100%; /* Full-width button for mobile touch targets */
+    padding: 16px;
+    box-sizing: border-box;
   }
 }

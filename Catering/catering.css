@@ -1,19 +1,12 @@
-/* PAGE WRAPPER */
+/* ================================
+   CATERING PAGE LAYOUT
+================================ */
 .catering-page-wrapper {
-  width: 90%;
+  width: 95%; /* Standard width for flexibility */
   max-width: 1200px;
   margin: 120px auto 40px auto;
 }
 
-/* PAGE TITLE */
-.catering-title {
-  font-size: 36px;
-  font-weight: 700;
-  margin-bottom: 30px;
-  text-align: center;
-}
-
-/* LAYOUT: SIDEBAR + CONTENT */
 .catering-layout {
   display: flex;
   align-items: flex-start;
@@ -23,17 +16,30 @@
 
 #sidebar-container {
   align-self: flex-start;
+  position: sticky; /* Standard practice for long menu lists */
+  top: 120px;
 }
 
 #catering-container {
   margin-top: 0 !important;
   padding-top: 0 !important;
+  flex: 1;
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
-/* CATEGORY SECTION */
-.catering-section {
-  padding-top: 25px;
-  padding-bottom: 0px;
+/* ================================
+   TYPOGRAPHY & TITLES
+================================ */
+.catering-title {
+  /* Fluid typography: auto-scales from 26px to 36px */
+  font-size: clamp(26px, 5vw, 36px);
+  font-weight: 700;
+  margin-bottom: 30px;
+  text-align: center;
+  color: #1a1a1a;
 }
 
 .catering-section h2 {
@@ -41,49 +47,68 @@
   width: 100%;
   margin: 0 auto 10px auto;
   padding-top: 10px;
+  font-size: clamp(20px, 4vw, 28px);
 }
 
 .catering-section .subtitle,
 .subtitle {
   text-align: center;
   margin-top: 5px;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   display: block;
+  font-size: 16px;
+  color: #666;
 }
 
-/* GRID: 3 PER ROW */
+/* ================================
+   GRID & CARDS
+================================ */
 .catering-items {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr); /* 3 per row on desktop */
   gap: 20px;
 }
 
-/* UNIFIED CARD STYLE */
 .unified-card {
   background: white;
-  border: 1px solid #ddd;
-  padding: 18px;
-  border-radius: 8px;
+  border: 1px solid #eee;
+  padding: 20px;
+  border-radius: 12px; /* Standard professional rounding */
   text-align: center;
   min-height: 180px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+  transition: transform 0.2s ease;
+}
+
+.unified-card:hover {
+  transform: translateY(-3px);
 }
 
 .unified-card h3 {
   font-size: 18px;
   margin-bottom: 10px;
   font-weight: 600;
+  color: #333;
 }
 
 .price-line {
   font-size: 16px;
   margin: 3px 0;
+  font-weight: 500;
 }
+
 /* ================================
-   MOBILE FIXES
+   MOBILE & TABLET AUTO-ADJUST
 ================================ */
+@media (max-width: 992px) {
+  .catering-items {
+    grid-template-columns: repeat(2, 1fr); /* 2 per row for tablets */
+  }
+}
+
 @media (max-width: 768px) {
   .catering-layout {
     flex-direction: column;
@@ -91,7 +116,7 @@
   }
 
   .catering-items {
-    grid-template-columns: 1fr; /* 1 per row */
+    grid-template-columns: 1fr; /* 1 per row for phones */
   }
 
   .catering-page-wrapper {
@@ -100,12 +125,14 @@
     padding: 0 15px;
   }
 
+  #sidebar-container {
+    position: relative;
+    top: 0;
+    width: 100%;
+  }
+
   .unified-card {
     min-height: auto;
     padding: 15px;
-  }
-
-  .catering-title {
-    font-size: 26px;
   }
 }

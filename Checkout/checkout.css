@@ -1,286 +1,271 @@
-/* ============================
+/* ================================
    CHECKOUT LAYOUT
-============================ */
+================================ */
 .checkout-wrapper {
   display: flex;
   gap: 40px;
-  padding: 30px 40px;
+  padding: 30px clamp(15px, 5vw, 40px);
   max-width: 1100px;
   margin: 40px auto;
 }
 
-/* ============================
+/* ================================
    ORDER SUMMARY BOX
-============================ */
-/* ORDER SUMMARY WRAPPER */
+================================ */
 .checkout-summary {
   background: #ffffff;
-  padding: 20px;
-  border-radius: 14px;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
   margin-bottom: 25px;
+  flex: 1; /* Balances against the form */
 }
 
-/* TITLE */
 .checkout-summary h2 {
-  font-size: 24px;
-  margin-bottom: 18px;
-  color: black;
+  font-size: clamp(20px, 4vw, 24px);
+  margin-bottom: 20px;
+  color: #1a1a1a;
   text-align: center;
+  font-weight: 700;
 }
 
-/* EACH ITEM ROW */
 .checkout-item {
   display: grid;
   grid-template-columns: 1fr auto auto;
-  gap: 40px;
-  padding: 12px 0;
-  border-bottom: 1px solid #eee;
+  gap: 20px;
+  padding: 14px 0;
+  border-bottom: 1px solid #f0f0f0;
   font-size: 16px;
 }
 
-/* LAST ITEM NO BORDER */
 .checkout-item:last-child {
   border-bottom: none;
 }
 
-/* ITEM NAME */
 .checkout-item span:first-child {
   font-weight: 600;
-  color: #444;
+  color: #333;
 }
 
-/* QTY */
-.checkout-item span:nth-child(2) {
-  color: #666;
-}
-
-/* PRICE */
 .checkout-item span:last-child {
   font-weight: 700;
-  color: black;
+  color: #1a1a1a;
 }
 
-/* SUBTOTAL + TOTAL */
 .summary-row,
 .summary-total {
   display: flex;
   justify-content: space-between;
-  padding: 10px 0;
-  font-size: 18px;
+  padding: 12px 0;
+  font-size: 17px;
 }
 
 .summary-total {
   font-size: 20px;
   font-weight: 700;
-  color: black;
-  border-top: 2px solid #eee;
+  color: #1a1a1a;
+  border-top: 2px solid #f0f0f0;
   margin-top: 10px;
-  padding-top: 14px;
+  padding-top: 16px;
 }
 
-/* ============================
+/* ================================
    CUSTOMER FORM
-============================ */
+================================ */
 .checkout-form {
-  flex: 1.3; /* was 1 — now wider */
-  padding: 22px;
-  border: 1px solid #ddd;
-  border-radius: 12px;
-  background: #fafafa;
+  flex: 1.3;
+  padding: 30px;
+  border-radius: 16px;
+  background: #ffffff;
+  border: 1px solid #eee;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
 }
 
 .checkout-form h2 {
-  margin-bottom: 15px;
+  font-size: clamp(20px, 4vw, 24px);
+  margin-bottom: 20px;
+  font-weight: 700;
 }
 
 .checkout-form input,
 .checkout-form select {
   width: 100%;
-  padding: 12px 16px;
-  margin: 10px 0;
-  border-radius: 6px;
-  border: 1px solid #ccc;
+  padding: 14px 16px;
+  margin: 10px 0 15px 0;
+  border-radius: 8px;
+  border: 1px solid #ddd;
   font-size: 16px;
   box-sizing: border-box;
+  transition: border-color 0.2s;
 }
 
-/* ============================
-   PLACE ORDER BUTTON
-============================ */
+.checkout-form input:focus {
+  border-color: #27ae60;
+  outline: none;
+}
+
+/* ================================
+   BUTTONS & ALERTS
+================================ */
 .place-order-btn {
   width: 100%;
-  padding: 14px;
-  background: #28a745;
+  padding: 16px;
+  background: #27ae60;
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   font-size: 18px;
+  font-weight: 700;
   cursor: pointer;
-  margin-top: 15px;
+  margin-top: 10px;
+  transition: background 0.2s;
 }
 
 .place-order-btn:hover {
-  background: #1e7e34;
+  background: #219150;
 }
 
-/* ============================
-   ZELLE BOX
-============================ */
+.checkout-note {
+  margin: 10px 0 20px 0;
+  font-size: 16px;
+  color: #d9534f;
+  background: #fff5f5;
+  padding: 12px;
+  border-radius: 8px;
+  border-left: 4px solid #d9534f;
+  line-height: 1.5;
+}
+
+/* ================================
+   ZELLE & SUCCESS
+================================ */
 .zelle-box {
-  background: #f8f9fa;
+  background: #f3f0ff;
   border-left: 4px solid #6f42c1;
-  padding: 18px 20px;
-  border-radius: 6px;
-  margin-top: 14px;
+  padding: 20px;
+  border-radius: 8px;
+  margin-top: 20px;
 }
 
 .zelle-title {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 700;
   color: #6f42c1;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .zelle-number {
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 700;
-  margin-bottom: 4px;
+  margin: 5px 0;
+  color: #1a1a1a;
 }
 
-.zelle-note {
-  margin-top: 10px;
-  font-size: 14px;
+/* ================================
+   ⭐ MOBILE AUTO-ADJUST
+================================ */
+@media (max-width: 768px) {
+  .checkout-wrapper {
+    flex-direction: column;
+    padding: 15px;
+    margin: 20px auto;
+  }
+
+  .checkout-summary,
+  .checkout-form {
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  .checkout-item {
+    font-size: 15px;
+    gap: 10px;
+  }
+
+  .place-order-btn {
+    padding: 18px; /* Larger tap target for mobile */
+  }
+
+  #cart-count {
+    top: -5px;
+    right: -5px;
+  }
+}
+/* ================================
+   CART BADGE RESTORATION
+================================ */
+.cart-icon {
+  position: relative;
+  flex: 0 0 auto;
+  margin-left: 20px;
 }
 
-/* ============================
-   SUCCESS CHECKMARK
-============================ */
+#cart-count {
+  position: absolute;
+  top: -8px; /* Positions badge above the icon */
+  right: -10px; /* Positions badge to the right of the icon */
+  background: #27ae60; /* Matches your orange branding */
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 50%;
+  line-height: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 18px;
+  height: 18px;
+}
+
+/* ================================
+   ORDER SUBMITTED SUCCESS MESSAGE
+================================ */
 .success-check {
   margin-top: 15px;
   padding: 12px;
-  background: #4caf50;
+  background: #27ae60; /* Matches your brand green */
   color: white;
   border-radius: 8px;
   text-align: center;
   font-weight: 600;
   font-size: 16px;
+  /* Ensure it only shows when triggered by JS */
   display: none;
+  animation: fadeIn 0.3s ease-in;
 }
-.checkout-btn {
-  text-decoration: none !important; /* force remove underline */
-  color: white !important;
-  background: #28a745;
-  padding: 12px 20px;
-  border-radius: 6px;
-  right: 50%;
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================================
+   DAY HEADER (ORANGE VERTICAL BAR)
+=============================== */
+.catering-section h2 {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding-left: 10px;
+  font-size: clamp(24px, 5vw, 32px);
+  color: #d35400; /* Deep orange from your image */
+}
+
+/* The vertical orange line in your image */
+.catering-section h2::before {
+  content: "";
   display: inline-block;
-  font-weight: bold;
-  border: none;
-  cursor: pointer;
-  border-bottom: none !important;
-  box-shadow: none !important;
-}
-
-.checkout-btn:hover {
-  background: #218838;
-}
-/* Restore MainPage/Catering header styles on checkout page */
-.main-header a,
-.main-header a:visited,
-.main-header a:hover,
-.main-header a:active {
-  text-decoration: none !important;
-  color: inherit !important;
-  border: none !important;
-}
-
-/* Restore cart badge style on checkout page */
-.cart-icon {
-  position: relative;
-}
-
-#cart-count {
-  position: absolute;
-  top: -8px;
-  right: -10px;
-  background: #27ae60;
-  color: white;
-  font-size: 12px;
-  font-weight: bold;
-  padding: 3px 7px;
-  border-radius: 50%;
-  line-height: 1;
-  text-decoration: none !important;
-}
-.checkout-note {
-  margin: 10px 0 20px 0;
-  font-size: 18px;
-  color: red;
-  background: #f8f8f8;
-  padding: 10px 12px;
-  border-radius: 6px;
-  line-height: 1.4;
-}
-/* ============================
-   ⭐ MOBILE FIXES FOR CHECKOUT
-============================ */
-@media (max-width: 768px) {
-  /* Stack layout */
-  .checkout-wrapper {
-    flex-direction: column;
-    padding: 15px;
-    gap: 20px;
-    margin: 20px auto;
-  }
-
-  /* Summary box full width */
-  .checkout-summary {
-    width: 100%;
-    padding: 15px;
-  }
-
-  .checkout-summary h2 {
-    font-size: 20px;
-  }
-
-  .checkout-item {
-    grid-template-columns: 1fr auto auto;
-    gap: 10px;
-    font-size: 14px;
-  }
-
-  /* Form full width */
-  .checkout-form {
-    width: 100%;
-    padding: 15px;
-  }
-
-  .checkout-form input,
-  .checkout-form select {
-    font-size: 14px;
-    padding: 10px 12px;
-  }
-
-  .place-order-btn {
-    font-size: 16px;
-    padding: 12px;
-  }
-
-  /* Zelle box */
-  .zelle-box {
-    padding: 12px;
-  }
-
-  .zelle-title {
-    font-size: 16px;
-  }
-
-  .zelle-number {
-    font-size: 18px;
-  }
-
-  .checkout-note {
-    font-size: 14px;
-    padding: 8px 10px;
-  }
+  width: 5px;
+  height: 35px;
+  background-color: #d35400;
+  border-radius: 2px;
 }

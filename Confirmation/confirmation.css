@@ -1,60 +1,99 @@
+/* ================================
+   CONFIRMATION PAGE LAYOUT
+================================ */
 .confirm-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 80vh;
+  min-height: 80vh;
+  padding: 20px;
 }
 
 .confirm-box {
   text-align: center;
-  padding: 40px;
+  padding: clamp(30px, 5vw, 50px);
   background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  max-width: 400px;
+  border-radius: 20px; /* Standardized rounded corners */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  max-width: 450px;
+  width: 100%;
+  animation: modalFadeIn 0.5s ease-out;
 }
 
+/* ================================
+   VISUAL ELEMENTS
+================================ */
 .checkmark {
-  font-size: 60px;
-  color: #28a745;
+  /* Scales perfectly between 50px and 70px */
+  font-size: clamp(50px, 8vw, 70px);
+  color: #27ae60;
   margin-bottom: 20px;
+  display: block;
 }
 
+.confirm-box h2 {
+  font-size: clamp(22px, 4vw, 28px);
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #1a1a1a;
+}
+
+.confirm-box p {
+  font-size: 16px;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 25px;
+}
+
+/* ================================
+   BACK HOME BUTTON
+================================ */
 .back-home {
   display: inline-block;
-  margin-top: 20px;
-  padding: 12px 20px;
-  background: #28a745;
+  padding: 14px 28px;
+  background: #27ae60;
   color: white;
-  border-radius: 6px;
+  border-radius: 10px;
   text-decoration: none;
-  font-weight: bold;
+  font-weight: 700;
+  font-size: 16px;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(39, 174, 96, 0.2);
 }
 
 .back-home:hover {
-  background: #1e7e34;
+  background: #219150;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(39, 174, 96, 0.3);
 }
-/* ============================
-   ⭐ MOBILE FIX FOR CONFIRMATION PAGE
-============================ */
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================================
+   ⭐ MOBILE AUTO-ADJUST
+================================ */
 @media (max-width: 768px) {
   .confirm-wrapper {
-    padding: 20px;
-    height: auto;
+    min-height: 70vh; /* Better vertical centering for phone screens */
   }
 
   .confirm-box {
-    max-width: 90%;
-    padding: 20px;
-  }
-
-  .checkmark {
-    font-size: 40px;
-    margin-bottom: 15px;
+    padding: 30px 20px;
+    border-radius: 16px;
   }
 
   .back-home {
-    padding: 10px 16px;
-    font-size: 16px;
+    width: 100%; /* Full width button for easier thumb tapping */
+    padding: 16px;
+    box-sizing: border-box;
   }
 }

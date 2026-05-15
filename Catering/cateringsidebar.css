@@ -1,54 +1,85 @@
+/* ================================
+   CATERING SIDEBAR (Desktop)
+================================ */
 .catering-sidebar {
   width: 260px;
   padding: 20px;
   display: flex;
   flex-direction: column;
   gap: 12px;
+
+  /* Sticky Fix */
   position: sticky;
-  top: 120px;
-  height: fit-content;
+  top: 100px; /* Adjust based on your header height */
+
+  /* Scroll Fix: Allows internal scroll if menu list is long */
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+  scrollbar-width: none; /* Hides scrollbar for Firefox */
+  -ms-overflow-style: none; /* Hides scrollbar for IE/Edge */
+}
+
+/* Hide scrollbar for Chrome/Safari */
+.catering-sidebar::-webkit-scrollbar {
+  display: none;
 }
 
 .catering-sidebar button {
   width: 100%;
-  padding: 10px 18px; /* balanced top + bottom */
+  padding: 12px 18px;
   border-radius: 12px;
-  border: 1px solid #ccc;
+  border: 1px solid #eee;
   background: white;
-  font-size: 18px;
-  font-weight: 700;
+  /* Standard professional font size */
+  font-size: 16px;
+  font-weight: 600;
   cursor: pointer;
   text-align: left;
-  line-height: 1.4; /* ⭐ helps vertical centering */
-  display: flex; /* ⭐ true vertical centering */
-  align-items: center; /* ⭐ centers text vertically */
-  transition: 0.2s;
+  line-height: 1.4;
+  display: flex;
+  align-items: center;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  color: #333;
 }
 
 .catering-sidebar button:hover {
-  background: #28a745;
+  background: #27ae60;
   color: white;
-  border-color: #28a745;
-  transform: translateY(-3px);
+  border-color: #27ae60;
+  transform: translateX(
+    5px
+  ); /* Slight shift right looks cleaner for sidebars */
 }
+
 /* ===========================
-   ⭐ MOBILE FIX FOR SIDEBAR
+   ⭐ MOBILE FIX (Auto-Adjust)
    =========================== */
 @media (max-width: 768px) {
   .catering-sidebar {
     width: 100%;
-    padding: 10px;
+    padding: 10px 15px;
     flex-direction: row;
     overflow-x: auto;
     gap: 10px;
     position: relative;
     top: 0;
+    max-height: none;
+    /* Smooth horizontal scrolling for touch */
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+    border-bottom: 1px solid #eee;
   }
 
   .catering-sidebar button {
     flex: 0 0 auto;
+    /* Slightly smaller font for mobile screens */
     font-size: 14px;
-    padding: 8px 12px;
-    white-space: nowrap;
+    padding: 10px 16px; /* Larger touch area for thumbs */
+    width: auto;
+  }
+
+  .catering-sidebar button:hover {
+    transform: none; /* Disable shift on mobile touch */
   }
 }

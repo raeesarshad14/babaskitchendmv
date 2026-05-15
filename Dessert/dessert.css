@@ -1,170 +1,173 @@
-/* ============================
-   SECTION
-============================ */
+/* ================================
+   DESSERTS SECTION
+================================ */
 .desserts-section {
-  padding: 40px 20px;
+  padding: 40px clamp(15px, 5vw, 20px);
   text-align: center;
 }
 
-/* ============================
-   GRID — 3 per row
-============================ */
+/* ================================
+   GRID (Standardized)
+================================ */
 #desserts-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 25px;
+  gap: 30px;
   max-width: 1200px;
   margin: auto;
 }
 
-/* ============================
-   CARD
-============================ */
+/* ================================
+   DESSERT CARD
+================================ */
 .dessert-card {
-  width: 260px;
   background: #ffffff;
-  border-radius: 12px;
-  padding: 60px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  padding: 25px; /* Standardized with your other cards */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
   text-align: center;
   display: flex;
   flex-direction: column;
-  align-items: center; /* centers button */
+  align-items: center;
+  transition: transform 0.2s;
+  border: 1px solid #f0f0f0;
 }
 
-/* IMAGE (future support) */
+.dessert-card:hover {
+  transform: translateY(-5px);
+}
+
 .dessert-img {
   width: 100%;
-  height: 160px;
+  height: 180px;
   background-size: cover;
   background-position: center;
-  border-radius: 10px;
+  border-radius: 12px;
   margin-bottom: 15px;
-  background-color: #f5f5f5;
+  background-color: #f8f9fa;
 }
 
-/* TEXT */
 .dessert-card h3 {
-  font-size: 25px;
-  margin-top: -5px;
-  margin-bottom: 20px;
-  font-weight: 800;
+  font-size: clamp(18px, 3vw, 22px);
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-weight: 700;
+  color: #1a1a1a;
 }
 
 .dessert-card p {
-  margin: 15px 0;
-  font-size: 20px;
-  color: #444;
+  margin: 0 0 15px 0;
+  font-size: 18px;
+  font-weight: 600;
 }
 
-/* ============================
-   ADD BUTTON (MATCH CATERING)
-============================ */
+/* ================================
+   ADD BUTTON (Manual Control)
+================================ */
 .dessert-add-btn {
-  background: #28a745;
+  background: #27ae60; /* Sleeker professional look */
   color: white;
   padding: 0;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 15px;
   font-weight: 600;
-  width: 90px;
-  height: 32px;
-  display: inline-block; /* FIX: shrink to content */
-  margin-top: 10px;
-  transition:
-    background 0.15s ease,
-    transform 0.15s ease;
+  width: 100px;
+  height: 38px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: auto; /* Pushes button to bottom of card */
+  transition: all 0.2s ease;
 }
 
 .dessert-add-btn:hover {
-  background: #218838;
+  background: #444;
   transform: translateY(-2px);
 }
 
-/* ============================
-   MODAL
-============================ */
+/* ================================
+   MODAL RESTORATION
+================================ */
 .modal-overlay {
   position: fixed;
-  font-size: 18px;
-  font-weight: 500;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   background: rgba(0, 0, 0, 0.6);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 999;
+  z-index: 9999;
+  backdrop-filter: blur(4px);
 }
 
 .modal-box {
   background: #fff;
-  padding: 25px;
-  border-radius: 12px;
+  padding: 30px;
+  border-radius: 20px;
   width: 90%;
-  max-width: 420px;
+  max-width: 380px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  animation: modalFadeIn 0.3s ease;
 }
 
-/* QTY ROWS */
 .qty-row {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 12px 0;
-}
-
-.qty-controls {
-  display: flex;
+  justify-content: center;
   align-items: center;
   gap: 20px;
+  margin: 20px 0;
 }
 
 .qty-btn {
-  width: 32px;
-  height: 32px;
-  border: none;
-  background: #eee;
-  border-radius: 6px;
+  width: 44px; /* Standard touch target */
+  height: 44px;
+  border: 1px solid #ddd;
+  background: #f8f9fa;
+  border-radius: 10px;
   font-size: 20px;
   cursor: pointer;
+  transition: background 0.2s;
 }
 
-/* MODAL BUTTONS */
+.qty-btn:hover {
+  background: #e9ecef;
+}
+
 .add-btn {
-  background: #2ecc71;
+  background: #27ae60;
   color: white;
-  padding: 12px;
+  padding: 14px;
   width: 100%;
   border: none;
-  border-radius: 8px;
+  border-radius: 12px;
   margin-top: 15px;
   cursor: pointer;
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .close-btn {
-  background: #ccc;
-  padding: 10px;
+  background: lightgrey;
+  color: black;
+  padding: 14px;
   width: 100%;
-  font-size: 18px;
-  font-weight: 600;
   border: none;
-  border-radius: 8px;
-  margin-top: 10px;
+  border-radius: 12px;
+  margin-top: 15px;
   cursor: pointer;
+  font-size: 18px;
+  font-weight: 700;
 }
 
-/* ============================
-   RESPONSIVE
-============================ */
+/* ================================
+   ⭐ MOBILE AUTO-ADJUST
+================================ */
 @media (max-width: 900px) {
   #desserts-container {
     grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
   }
 }
 
@@ -172,73 +175,98 @@
   #desserts-container {
     grid-template-columns: repeat(1, 1fr);
   }
-}
-.cart-icon img {
-  width: 28px;
-  height: 28px;
-  object-fit: contain;
-}
-#cart-count {
-  position: absolute;
-  top: -8px;
-  right: -10px;
-  background: #27ae60;
-  color: white;
-  padding: 2px 6px;
-  border-radius: 50%;
-  font-size: 12px;
-  font-weight: bold;
-  cursor: pointer;
-}
-.cart-icon {
-  position: relative;
-  margin-right: 70px;
-}
-/* ============================
-   ⭐ MOBILE FIXES FOR DESSERT PAGE
-============================ */
-@media (max-width: 768px) {
-  /* Section padding */
-  .desserts-section {
-    padding: 20px 10px;
-  }
 
-  /* Grid stays 1 column (your rule already handles this) */
-  #desserts-container {
-    gap: 18px;
-  }
-
-  /* Card becomes responsive */
   .dessert-card {
-    width: 100%;
     padding: 20px;
-  }
-
-  .dessert-card h3 {
-    font-size: 20px;
-    margin-bottom: 12px;
-  }
-
-  .dessert-card p {
-    font-size: 16px;
-    margin: 10px 0;
   }
 
   .dessert-add-btn {
-    width: 80px;
-    height: 30px;
-    font-size: 16px;
-  }
-
-  /* Modal adjustments */
-  .modal-box {
-    max-width: 90%;
-    padding: 20px;
+    width: 100%; /* Full width for easier tapping */
+    height: 44px;
   }
 
   .qty-btn {
-    width: 28px;
-    height: 28px;
-    font-size: 18px;
+    width: 48px;
+    height: 48px;
+  }
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+/* ================================
+   ⭐ CART ICON & BADGE RESTORATION
+================================ */
+/* 1. Ensure the container is positioned relatively for the badge to stick to it */
+.cart-icon {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-left: 20px; /* Adjust spacing from menu items */
+  text-decoration: none !important;
+}
+
+/* 2. Style the actual image inside the cart link */
+.cart-icon img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  display: block;
+}
+
+/* 3. The Green Circle Badge */
+#cart-count {
+  position: absolute;
+  top: -8px; /* Moves it up above the icon */
+  right: -10px; /* Moves it to the right of the icon */
+  background: #27ae60; /* Brand green */
+  color: white;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 2px;
+  border-radius: 50%;
+  line-height: 1;
+  min-width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid white; /* Adds a clean border to separate from icon */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+}
+
+/* 4. Remove any weird underlines/borders from the cart link */
+.cart-icon,
+.cart-icon:hover,
+.cart-icon:active {
+  text-decoration: none !important;
+  border: none !important;
+  outline: none !important;
+}
+
+/* ================================
+   ⭐ MOBILE FIX FOR CART
+================================ */
+@media (max-width: 768px) {
+  .cart-icon {
+    margin-right: 15px; /* Adds space so it doesn't hit the edge of the phone */
+  }
+
+  #cart-count {
+    top: -5px;
+    right: -5px;
+    min-width: 18px;
+    height: 18px;
+    font-size: 11px;
   }
 }

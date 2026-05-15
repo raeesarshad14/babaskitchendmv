@@ -1,95 +1,115 @@
+/* ================================
+   MAIN HEADER (Desktop)
+================================ */
 .main-header {
   display: flex;
   align-items: center;
-  padding: 15px 40px;
-  gap: 30px; /* pulls logo closer to links */
+  /* Standard Desktop Padding */
+  padding: 15px clamp(20px, 5vw, 70px);
+  background: #ffffff;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
-.logo img {
-  height: 70px;
-  cursor: pointer;
-}
-
-.nav-links {
-  display: flex;
-  gap: 50px; /* spacing between links */
-}
-
-.logo img {
-  height: 70px;
-  cursor: pointer;
-  margin-left: 70px;
-}
 .logo {
   flex: 0 0 auto;
 }
-.nav-links a {
-  font-family: "Inter", sans-serif;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  font-size: 16px;
-  color: #1a1a1a;
-  text-decoration: none;
+
+.logo img {
+  height: 70px;
+  cursor: pointer;
+  display: block;
 }
 
 .nav-links {
   display: flex;
   justify-content: center;
   flex: 1;
+  gap: clamp(20px, 4vw, 50px); /* Responsive gap between links */
 }
 
+.nav-links a {
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  /* Standardized Font Size */
+  font-size: 16px;
+  color: #1a1a1a;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: #27ae60;
+}
+
+/* ORDER BUTTON */
 .btn-order {
   background: #27ae60;
-  padding: 10px 20px;
+  padding: 10px 22px;
   color: white;
-  border-radius: 6px;
+  border-radius: 8px;
   font-weight: 600;
+  font-size: 15px;
   text-decoration: none;
+  transition: background 0.2s ease;
 }
 
 .btn-order:hover {
   background: #1e8449;
 }
+
+/* CART ICON */
+.cart-icon {
+  flex: 0 0 auto;
+  margin-left: 20px;
+}
+
 .cart-icon img {
   width: 28px;
   height: 28px;
-  right: 28px;
   object-fit: contain;
+  display: block;
 }
-.cart-icon {
-  margin-right: 70px; /* move it away from the right edge */
-}
-body {
-  padding-top: 0px; /* adjust if header height changes */
-}
-/* ============================
-   ⭐ MOBILE FIX FOR HEADER
-============================ */
+
+/* ================================
+   MOBILE FIX (Auto-Adjust)
+================================ */
 @media (max-width: 768px) {
   .main-header {
     padding: 10px 15px;
-    gap: 15px;
+    /* Keeps items spaced out on small screens */
+    justify-content: space-between;
   }
 
   .logo img {
     height: 50px;
-    margin-left: 0;
   }
 
-  .nav-links {
-    gap: 20px;
-  }
-
+  /* Standard Mobile Font Size */
   .nav-links a {
     font-size: 14px;
   }
 
-  .cart-icon {
-    margin-right: 0;
+  .nav-links {
+    gap: 15px;
+  }
+
+  /* Hide order button on very small screens if it crowds the links */
+  @media (max-width: 480px) {
+    .btn-order {
+      display: none;
+    }
   }
 
   .cart-icon img {
     width: 24px;
     height: 24px;
+  }
+
+  .cart-icon {
+    margin-right: 0;
   }
 }
