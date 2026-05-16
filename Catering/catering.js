@@ -22,8 +22,10 @@ class CateringPage {
   }
 
   renderItem(item) {
-    // ⭐ TRAY ITEMS (small + large)
-    if (item.smallPrice && item.largePrice) {
+    /* ============================================================
+       ⭐ 1. TRAY ITEMS (small + large)
+    ============================================================ */
+    if (Number(item.smallPrice) && Number(item.largePrice)) {
       return `
         <div class="catering-item unified-card">
           <h3>${item.name}</h3>
@@ -43,8 +45,19 @@ class CateringPage {
       `;
     }
 
-    // ⭐ WHOLE ROAST CHICKEN — ALWAYS minOrder 1, qty can change normally
-    if (item.name.toLowerCase().includes("whole roast chicken")) {
+    /* ============================================================
+       ⭐ 2. WHOLE ROAST CHICKEN (always minOrder = 1)
+       More reliable detection:
+       - If item.type === "roast"
+       - OR item.note contains "whole roast"
+       - OR name contains "whole roast"
+    ============================================================ */
+    const isRoast =
+      (item.type && item.type === "roast") ||
+      (item.note && item.note.toLowerCase().includes("whole roast")) ||
+      item.name.toLowerCase().includes("whole roast");
+
+    if (isRoast) {
       return `
         <div class="catering-item unified-card">
           <h3>${item.name}</h3>
@@ -63,7 +76,9 @@ class CateringPage {
       `;
     }
 
-    // ⭐ SINGLE PRICE ITEMS (min order 12)
+    /* ============================================================
+       ⭐ 3. SINGLE PRICE ITEMS (default minOrder = 12)
+    ============================================================ */
     return `
       <div class="catering-item unified-card">
         <h3>${item.name}</h3>

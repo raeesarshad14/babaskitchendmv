@@ -1,11 +1,12 @@
-/* ================================
-   CATERING PAGE LAYOUT
-================================ */
+/* ==================================================
+   GLOBAL LAYOUT & PAGE WRAPPER
+================================================== */
 .catering-page-wrapper {
   width: 95%;
   max-width: 1200px;
   margin: 120px auto 40px auto;
-  display: block; /* ⭐ REQUIRED */
+  display: block;
+  box-sizing: border-box;
 }
 
 .catering-layout {
@@ -15,31 +16,28 @@
   width: 100%;
 }
 
-/* ================================
-   SIDEBAR (DESKTOP)
-================================ */
+/* ==================================================
+   SIDEBAR & CONTENT
+================================================== */
 #sidebar-container {
   align-self: flex-start;
   position: sticky;
   top: 120px;
-
-  flex: 0 0 240px; /* ⭐ TRUE FIXED COLUMN */
+  flex: 0 0 240px;
   max-width: 240px;
-  flex-shrink: 0; /* ⭐ PREVENT OVERLAP */
+  flex-shrink: 0;
 }
 
-/* ================================
-   MAIN CONTENT
-================================ */
 #catering-container {
   flex: 1;
-  margin-left: 25px; /* ⭐ small gap to prevent overlay */
+  margin-left: 25px;
   position: relative;
+  box-sizing: border-box;
 }
 
-/* ================================
-   TITLES
-================================ */
+/* ==================================================
+   TITLES & SCROLL FIX
+================================================== */
 .catering-title {
   font-size: clamp(26px, 5vw, 36px);
   font-weight: 700;
@@ -48,39 +46,22 @@
   color: #1a1a1a;
 }
 
-/* Target the section headers specifically */
-.catering-page-wrapper .catering-section h2 {
+.catering-section h2 {
   text-align: center;
   width: 100%;
   margin: 0 auto 10px auto;
   font-size: clamp(20px, 4vw, 28px);
-
-  scroll-margin-top: 100px;
-  padding-top: 100px;
+  scroll-margin-top: 130px;
 }
 
-/* Smooth Scrolling for the whole page */
-html {
-  scroll-behavior: smooth;
-}
-
-.catering-section .subtitle,
-.subtitle {
-  text-align: center;
-  margin-top: 5px;
-  margin-bottom: 25px;
-  display: block;
-  font-size: 16px;
-  color: #666;
-}
-
-/* ================================
-   GRID & CARDS
-================================ */
+/* ==================================================
+   GRID SYSTEM
+================================================== */
 .catering-items {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
+  width: 100%;
 }
 
 .unified-card {
@@ -95,70 +76,224 @@ html {
   justify-content: center;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
   transition: transform 0.2s ease;
+  box-sizing: border-box;
 }
 
-.unified-card:hover {
-  transform: translateY(-3px);
+/* ==================================================
+   CART ICON & BADGE
+================================================== */
+.cart-icon {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 15px;
 }
 
-.unified-card h3 {
+.cart-icon img {
+  width: 35px;
+  height: auto;
+  display: block;
+}
+
+#cart-count {
+  position: absolute;
+  top: -5px;
+  right: -8px;
+  background-color: #27ae60;
+  color: white;
+  font-size: 12px;
+  font-weight: 800;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
+  border: 2px solid white;
+  line-height: 1;
+}
+
+/* ==================================================
+   MOBILE MENU SYSTEM
+================================================== */
+.mobile-menu-btn {
+  display: none;
+}
+
+.mobile-dropdown {
+  display: none;
+  flex-direction: column;
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+  margin-top: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  animation: dropdownFade 0.25s ease-out;
+}
+
+.mobile-dropdown a {
+  padding: 14px 0;
+  text-align: center;
   font-size: 18px;
-  margin-bottom: 10px;
   font-weight: 600;
-  color: #333;
+  color: #222;
+  border-bottom: 1px solid #eee;
+  transition: 0.25s ease;
 }
 
-.price-line {
-  font-size: 16px;
-  margin: 3px 0;
-  font-weight: 500;
+.mobile-dropdown a:last-child {
+  border-bottom: none;
 }
 
-/* ================================
-   TABLET
-================================ */
-@media (max-width: 992px) {
-  .catering-items {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  #sidebar-container {
-    flex: 0 0 180px;
-    max-width: 180px;
-  }
+/* ⭐ Bubble hover animation (desktop only) */
+.mobile-dropdown a:hover {
+  color: #27ae60;
+  transform: scale(1.08) translateY(-3px);
+  text-shadow: 0 0 6px rgba(39, 174, 96, 0.4);
 }
 
-/* ================================
-   MOBILE
-================================ */
+/* ==================================================
+   ⭐ MOBILE FIXES (FINAL)
+================================================== */
 @media (max-width: 768px) {
+  .catering-page-wrapper {
+    margin-top: 160px;
+    width: 100%;
+    padding: 0 15px;
+  }
+
   .catering-layout {
     flex-direction: column;
     gap: 20px;
   }
 
-  /* Sidebar moves to top */
   #sidebar-container {
     position: relative;
     top: 0;
     width: 100%;
-    flex: none; /* ⭐ IMPORTANT: RESET FLEX */
+    flex: none;
     max-width: 100%;
+    margin-bottom: 20px;
   }
 
-  /* 1 per row on mobile */
+  #catering-container {
+    margin-left: 0 !important;
+    width: 100%;
+  }
+
   .catering-items {
     grid-template-columns: 1fr;
+    gap: 15px;
   }
 
-  .catering-page-wrapper {
+  .catering-section h2 {
+    scroll-margin-top: 180px;
+  }
+
+  /* ============================
+     MOBILE HEADER (CLEAN)
+  ============================ */
+  .main-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 15px;
+  }
+
+  .logo {
+    order: 1;
+    flex: 1 1 auto;
+  }
+
+  .cart-icon {
+    order: 2;
+    flex: 0 0 auto;
+    margin-left: 0;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  /* ⭐ MENU BUTTON WITH BUBBLE HOVER */
+  .mobile-menu-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 22px;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 12px;
+    order: 3;
     width: 100%;
-    margin: 80px auto 20px auto;
-    padding: 0 15px;
+    text-align: center;
+    margin-top: 10px;
+    background: #f8f8f8;
+    border-radius: 10px;
+    transition: 0.25s ease;
+    color: #222;
   }
 
-  .unified-card {
-    min-height: auto;
-    padding: 15px;
+  .mobile-menu-btn:hover {
+    background: #eaeaea;
+    color: #27ae60;
+    transform: scale(1.05);
+    text-shadow: 0 0 6px rgba(39, 174, 96, 0.4);
   }
+
+  .mobile-dropdown.active {
+    display: flex;
+    width: 100%;
+  }
+}
+
+/* ==================================================
+   ANIMATION
+================================================== */
+@keyframes dropdownFade {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ⭐ Bubble tap animation (mobile) */
+.bubble-animate {
+  animation: bubblePop 0.35s ease-out;
+}
+
+@keyframes bubblePop {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.15);
+  }
+  70% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* ⭐ MOBILE TAP ANIMATION */
+.mobile-menu-btn:active,
+.mobile-menu-btn.bubble-animate {
+  background: #eaeaea;
+  color: #27ae60;
+  transform: scale(1.08);
+}
+
+.mobile-dropdown a:active,
+.mobile-dropdown a.bubble-animate {
+  color: #27ae60;
+  transform: scale(1.12);
 }

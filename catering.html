@@ -38,6 +38,7 @@
         </a>
       </div>
 
+      <!-- Desktop Nav -->
       <nav class="nav-links">
         <a href="catering.html">CATERING</a>
         <a href="dessert.html">DESSERTS</a>
@@ -46,16 +47,28 @@
         <a href="jansistersbakery.html">JAN SISTERS BAKERY</a>
       </nav>
 
+      <!-- Cart -->
       <div class="cart-icon">
         <a href="cart.html">
           <img src="Pictures/cartpicture/cart.png" alt="Cart" />
         </a>
         <span id="cart-count">0</span>
       </div>
+
+      <!-- Mobile Menu Button -->
+      <div class="mobile-menu-btn"><span>MENU</span> ☰</div>
+
+      <!-- Mobile Dropdown -->
+      <div class="mobile-dropdown">
+        <a href="catering.html">CATERING</a>
+        <a href="dessert.html">DESSERTS</a>
+        <a href="weekly-menu.html">WEEKLY MENU</a>
+        <a href="contact-us.html">CONTACT US</a>
+        <a href="jansistersbakery.html">JAN SISTERS BAKERY</a>
+      </div>
     </header>
 
-    <!-- ⭐ PAGE WRAPPER (THIS WAS MISSING) -->
-    <!-- ⭐ PAGE WRAPPER (REQUIRED FOR PROPER ALIGNMENT) -->
+    <!-- PAGE WRAPPER -->
     <div class="catering-page-wrapper">
       <div class="catering-layout">
         <div id="sidebar-container"></div>
@@ -111,19 +124,48 @@
     <!-- CART LOGIC -->
     <script src="Cart/cart.js" defer></script>
 
+    <!-- ⭐ MOBILE MENU + BUBBLE ANIMATION JS -->
     <script>
-      // Load catering content FIRST
+      document.addEventListener("DOMContentLoaded", () => {
+        const menuBtn = document.querySelector(".mobile-menu-btn");
+        const dropdown = document.querySelector(".mobile-dropdown");
+        const dropdownLinks = document.querySelectorAll(".mobile-dropdown a");
+
+        // Toggle dropdown
+        menuBtn.addEventListener("click", () => {
+          dropdown.classList.toggle("active");
+        });
+
+        // Bubble animation function
+        function bubbleEffect(el) {
+          el.classList.add("bubble-animate");
+          setTimeout(() => el.classList.remove("bubble-animate"), 300);
+        }
+
+        // MENU button bubble on tap
+        menuBtn.addEventListener("touchstart", function () {
+          bubbleEffect(this);
+        });
+
+        // Dropdown items bubble on tap
+        dropdownLinks.forEach((link) => {
+          link.addEventListener("touchstart", function () {
+            bubbleEffect(this);
+          });
+        });
+      });
+    </script>
+
+    <!-- ⭐ LOAD CATERING CONTENT -->
+    <script>
       const cateringPage = new CateringPage();
       cateringPage.render().then((html) => {
         document.getElementById("catering-container").innerHTML = html;
 
-        // THEN load sidebar
         fetch("cateringsidebar.html")
           .then((res) => res.text())
           .then((html) => {
             document.getElementById("sidebar-container").innerHTML = html;
-
-            // Initialize scroll AFTER both are loaded
             initSidebarScroll();
           });
       });
