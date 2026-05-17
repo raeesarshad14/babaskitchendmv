@@ -48,10 +48,8 @@
       </nav>
 
       <!-- Cart -->
-      <div class="cart-icon">
-        <a href="cart.html">
-          <img src="Pictures/cartpicture/cart.png" alt="Cart" />
-        </a>
+      <div class="cart-icon" onclick="window.location.href = 'cart.html'">
+        <img src="Pictures/cartpicture/cart.png" alt="Cart" />
         <span id="cart-count">0</span>
       </div>
 
@@ -104,6 +102,7 @@
           <button class="qty-btn" onclick="changeQty('single', -1)">−</button>
           <span id="singleQty">12</span>
           <button class="qty-btn" onclick="changeQty('single', 1)">+</button>
+
           <span id="singleTotal">$0</span>
         </div>
 
@@ -124,30 +123,26 @@
     <!-- CART LOGIC -->
     <script src="Cart/cart.js" defer></script>
 
-    <!-- ⭐ MOBILE MENU + BUBBLE ANIMATION JS -->
+    <!-- ⭐ MOBILE MENU -->
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         const menuBtn = document.querySelector(".mobile-menu-btn");
         const dropdown = document.querySelector(".mobile-dropdown");
         const dropdownLinks = document.querySelectorAll(".mobile-dropdown a");
 
-        // Toggle dropdown
         menuBtn.addEventListener("click", () => {
           dropdown.classList.toggle("active");
         });
 
-        // Bubble animation function
         function bubbleEffect(el) {
           el.classList.add("bubble-animate");
           setTimeout(() => el.classList.remove("bubble-animate"), 300);
         }
 
-        // MENU button bubble on tap
         menuBtn.addEventListener("touchstart", function () {
           bubbleEffect(this);
         });
 
-        // Dropdown items bubble on tap
         dropdownLinks.forEach((link) => {
           link.addEventListener("touchstart", function () {
             bubbleEffect(this);

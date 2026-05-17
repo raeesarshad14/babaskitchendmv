@@ -12,15 +12,12 @@ let modalItem = {
 };
 
 function openModal(item) {
-  // clone item into modalItem
   modalItem = { ...item };
 
-  // ⭐ Normalize minOrder defaults
   if (modalItem.type === "single" && !modalItem.minOrder) {
     modalItem.minOrder = 12;
   }
 
-  // ⭐ FORCE roast to have minOrder = 1 and qty = 1
   if (modalItem.type === "roast") {
     modalItem.minOrder = 1;
     modalItem.qty = 1;
@@ -28,30 +25,32 @@ function openModal(item) {
 
   document.getElementById("modalItemName").textContent = modalItem.name;
 
-  // Hide all rows
   document.getElementById("smallTrayRow").style.display = "none";
   document.getElementById("largeTrayRow").style.display = "none";
   document.getElementById("singleRow").style.display = "none";
 
-  // ⭐ TRAY ITEMS
+  // ⭐ TRAY
   if (modalItem.type === "tray") {
-    document.getElementById("smallTrayRow").style.display = "flex";
-    document.getElementById("largeTrayRow").style.display = "flex";
+    modalItem.smallQty = 0;
+    modalItem.largeQty = 0;
+
+    document.getElementById("smallQty").textContent = 0;
+    document.getElementById("largeQty").textContent = 0;
 
     document.getElementById("smallPriceUnit").textContent =
       modalItem.smallPrice;
     document.getElementById("largePriceUnit").textContent =
       modalItem.largePrice;
 
-    modalItem.smallQty = 0;
-    modalItem.largeQty = 0;
+    document.getElementById("smallTrayRow").style.display = "flex";
+    document.getElementById("largeTrayRow").style.display = "flex";
 
     updateTotals();
     document.getElementById("cateringModalOverlay").style.display = "flex";
     return;
   }
 
-  // ⭐ ROAST — SIMPLE MULTIPLIER (min 1)
+  // ⭐ ROAST — START AT 1
   if (modalItem.type === "roast") {
     document.getElementById("singleRow").style.display = "flex";
     document.getElementById("singleQty").textContent = modalItem.qty;
@@ -61,18 +60,18 @@ function openModal(item) {
     return;
   }
 
-  // ⭐ SINGLE PRICE (min 12)
+  // ⭐ SINGLE — START AT 12
   if (modalItem.type === "single") {
-    document.getElementById("singleRow").style.display = "flex";
-    modalItem.qty = modalItem.minOrder || 12;
+    modalItem.qty = modalItem.minOrder;
+
     document.getElementById("singleQty").textContent = modalItem.qty;
+    document.getElementById("singleRow").style.display = "flex";
 
     updateTotals();
     document.getElementById("cateringModalOverlay").style.display = "flex";
     return;
   }
 
-  // fallback
   updateTotals();
   document.getElementById("cateringModalOverlay").style.display = "flex";
 }
@@ -94,10 +93,17 @@ function changeQty(type, amount) {
     return;
   }
 
-  // ⭐ SINGLE / ROAST
-  if (type === "single" || type === "roast") {
-    const min = modalItem.minOrder || 1;
-    modalItem.qty = Math.max(min, modalItem.qty + amount);
+  // ⭐ SINGLE — NEVER BELOW 12
+  if (type === "single") {
+    modalItem.qty = Math.max(modalItem.minOrder, modalItem.qty + amount);
+    document.getElementById("singleQty").textContent = modalItem.qty;
+    updateTotals();
+    return;
+  }
+
+  // ⭐ ROAST — NEVER BELOW 1
+  if (type === "roast") {
+    modalItem.qty = Math.max(1, modalItem.qty + amount);
     document.getElementById("singleQty").textContent = modalItem.qty;
     updateTotals();
     return;
@@ -130,11 +136,7 @@ function closeModal() {
   document.getElementById("cateringModalOverlay").style.display = "none";
 }
 
-/* ---------------------------------------------------------
-   ⭐ FINAL FIX — ADD TO CART LOGIC
---------------------------------------------------------- */
 document.getElementById("modalAddBtn").addEventListener("click", () => {
-  // ⭐ TRAY ITEMS
   if (modalItem.type === "tray") {
     if (modalItem.smallQty > 0) {
       cart.addItem({
@@ -157,19 +159,17 @@ document.getElementById("modalAddBtn").addEventListener("click", () => {
     }
   }
 
-  // ⭐ SINGLE ITEMS (Smash Burger, etc.)
   if (modalItem.type === "single") {
     cart.addItem({
       name: modalItem.name,
       price: modalItem.price,
       qty: modalItem.qty,
       image: modalItem.image || null,
-      type: "menu", // ⭐ REQUIRED FOR MINIMUM 12
+      type: "menu",
       options: {},
     });
   }
 
-  // ⭐ ROAST ITEMS
   if (modalItem.type === "roast") {
     cart.addItem({
       name: modalItem.name,

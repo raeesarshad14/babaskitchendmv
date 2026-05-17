@@ -22,9 +22,6 @@ class CateringPage {
   }
 
   renderItem(item) {
-    /* ============================================================
-       ⭐ 1. TRAY ITEMS (small + large)
-    ============================================================ */
     if (Number(item.smallPrice) && Number(item.largePrice)) {
       return `
         <div class="catering-item unified-card">
@@ -45,13 +42,6 @@ class CateringPage {
       `;
     }
 
-    /* ============================================================
-       ⭐ 2. WHOLE ROAST CHICKEN (always minOrder = 1)
-       More reliable detection:
-       - If item.type === "roast"
-       - OR item.note contains "whole roast"
-       - OR name contains "whole roast"
-    ============================================================ */
     const isRoast =
       (item.type && item.type === "roast") ||
       (item.note && item.note.toLowerCase().includes("whole roast")) ||
@@ -76,9 +66,6 @@ class CateringPage {
       `;
     }
 
-    /* ============================================================
-       ⭐ 3. SINGLE PRICE ITEMS (default minOrder = 12)
-    ============================================================ */
     return `
       <div class="catering-item unified-card">
         <h3>${item.name}</h3>
@@ -96,4 +83,30 @@ class CateringPage {
       </div>
     `;
   }
+}
+
+/* ============================================================
+   ⭐ MOVE THIS OUTSIDE — THIS IS THE REAL FIX
+============================================================ */
+function initSidebarScroll() {
+  const header = document.querySelector(".main-header");
+  const headerHeight = header ? header.offsetHeight : 80;
+
+  document.querySelectorAll(".catering-sidebar button").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const target = btn.getAttribute("data-target");
+      const section = document.getElementById(target);
+
+      if (!section) return;
+
+      const yOffset = -(headerHeight + 40); // adjust early stop
+      const y =
+        section.getBoundingClientRect().top + window.pageYOffset + yOffset;
+
+      window.scrollTo({
+        top: y,
+        behavior: "smooth",
+      });
+    });
+  });
 }
