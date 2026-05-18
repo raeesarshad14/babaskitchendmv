@@ -5,11 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Desserts • Baba's Kitchen</title>
 
+    <!-- GLOBAL HEADER + DESKTOP NAV -->
     <link rel="stylesheet" href="MainPage/MainPage.css" />
+
+    <!-- DESSERT PAGE STYLE -->
     <link rel="stylesheet" href="Dessert/dessert.css" />
   </head>
 
   <body>
+    <!-- ⭐ DESKTOP HEADER (UNCHANGED) -->
     <header class="main-header">
       <div class="logo">
         <a href="index.html">
@@ -33,18 +37,70 @@
       </div>
     </header>
 
+    <!-- ⭐ MOBILE HEADER (EXACTLY LIKE CATERING) -->
+    <div class="mobile-header">
+      <div class="mobile-header-top">
+        <div class="mobile-logo">
+          <a href="index.html">
+            <img src="Pictures/MainPageLogo/logo picture.png" alt="Logo" />
+          </a>
+        </div>
+
+        <div class="mobile-cart">
+          <a href="cart.html">
+            <img src="Pictures/cartpicture/cart.png" alt="Cart" />
+            <span id="cart-count-mobile">0</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- ⭐ FULL-WIDTH MENU BAR -->
+      <div class="mobile-menu-btn">MENU ☰</div>
+
+      <!-- ⭐ DROPDOWN -->
+      <div class="mobile-dropdown">
+        <a href="catering.html">CATERING</a>
+        <a href="dessert.html">DESSERTS</a>
+        <a href="weekly-menu.html">WEEKLY MENU</a>
+        <a href="contact-us.html">CONTACT US</a>
+        <a href="jansistersbakery.html">JAN SISTERS BAKERY</a>
+      </div>
+    </div>
+
+    <!-- PAGE CONTENT -->
     <section class="desserts-section">
       <h1>Our Desserts</h1>
       <div id="desserts-container"></div>
     </section>
 
-    <script src="header/header.js"></script>
-    <script src="cart/cart.js"></script>
-    <script src="Dessert/dessert.js" defer></script>
-
-    <!-- DESSERT MODAL -->
+    <!-- MODAL -->
     <div id="dessert-modal" class="modal-overlay" style="display: none">
       <div class="modal-box" id="dessert-modal-content"></div>
     </div>
+
+    <!-- JS -->
+    <script src="cart/cart.js"></script>
+    <script src="Dessert/dessert.js" defer></script>
+
+    <!-- ⭐ MOBILE MENU JS (EXACT FROM CATERING) -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const menuBtn = document.querySelector(".mobile-menu-btn");
+        const dropdown = document.querySelector(".mobile-dropdown");
+        const links = document.querySelectorAll(".mobile-dropdown a");
+
+        menuBtn.addEventListener("click", () => {
+          dropdown.classList.toggle("active");
+        });
+
+        function bubble(el) {
+          el.classList.add("bubble-animate");
+          setTimeout(() => el.classList.remove("bubble-animate"), 300);
+        }
+
+        menuBtn.addEventListener("touchstart", () => bubble(menuBtn));
+        links.forEach((l) => l.addEventListener("touchstart", () => bubble(l)));
+      });
+    </script>
   </body>
 </html>

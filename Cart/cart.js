@@ -102,10 +102,15 @@ class Cart {
   }
 
   // Update cart badge in header
+  // Update cart badge in header
   updateCartCount() {
     const count = this.getCount();
-    const el = document.getElementById("cart-count");
-    if (el) el.textContent = count;
+
+    const desktop = document.getElementById("cart-count");
+    const mobile = document.getElementById("cart-count-mobile");
+
+    if (desktop) desktop.textContent = count;
+    if (mobile) mobile.textContent = count;
   }
 }
 
