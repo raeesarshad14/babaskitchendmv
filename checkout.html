@@ -9,7 +9,9 @@
     <link rel="stylesheet" href="Checkout/checkout.css" />
   </head>
 
-  <body>
+  <!-- ⭐ ADD THIS CLASS -->
+  <body class="checkout-page-body">
+    <!-- ⭐ DESKTOP HEADER (UNCHANGED) -->
     <header class="main-header">
       <div class="logo">
         <a href="index.html">
@@ -33,9 +35,38 @@
       </div>
     </header>
 
-    <!-- ⭐ ONLY THIS -->
+    <!-- ⭐ MOBILE HEADER (CHECKOUT ONLY — SAFE) -->
+    <div class="mobile-header-checkout">
+      <div class="mobile-header-top-checkout">
+        <div class="mobile-logo-checkout">
+          <a href="index.html">
+            <img src="Pictures/MainPageLogo/logo picture.png" alt="Logo" />
+          </a>
+        </div>
+
+        <div class="mobile-cart-icon-checkout">
+          <a href="cart.html">
+            <img src="Pictures/cartpicture/cart.png" alt="Cart" />
+            <span id="cart-count-mobile-checkout">0</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="mobile-menu-btn-checkout">MENU ☰</div>
+
+      <div class="mobile-dropdown-checkout">
+        <a href="catering.html">CATERING</a>
+        <a href="dessert.html">DESSERTS</a>
+        <a href="weekly-menu.html">WEEKLY MENU</a>
+        <a href="contact-us.html">CONTACT US</a>
+        <a href="jansistersbakery.html">JAN SISTERS BAKERY</a>
+      </div>
+    </div>
+
+    <!-- ⭐ CHECKOUT ROOT -->
     <div id="checkout-root"></div>
 
+    <!-- ⭐ HIDDEN FORM -->
     <form
       id="checkoutOrderForm"
       action="https://api.web3forms.com/submit"
@@ -64,5 +95,27 @@
 
     <script src="Cart/cart.js"></script>
     <script src="Checkout/checkout.js"></script>
+
+    <!-- ⭐ MOBILE MENU JS (CHECKOUT ONLY — SAFE) -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const btn = document.querySelector(".mobile-menu-btn-checkout");
+        const drop = document.querySelector(".mobile-dropdown-checkout");
+
+        if (btn && drop) {
+          btn.addEventListener("click", () => {
+            drop.classList.toggle("active");
+          });
+        }
+
+        // Sync mobile cart badge
+        const mobileBadge = document.getElementById(
+          "cart-count-mobile-checkout",
+        );
+        if (mobileBadge && typeof cart !== "undefined") {
+          mobileBadge.textContent = cart.getCount();
+        }
+      });
+    </script>
   </body>
 </html>
