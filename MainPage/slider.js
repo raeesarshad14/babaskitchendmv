@@ -2,12 +2,26 @@ const imageFolder = "Pictures/MainPageSliderPictures/";
 
 const slideImages = [
   "BabasKitchen Statement.png",
+  "MainCOurse11.jpeg",
+  "MainCourse12.png",
+  "MainCourse13.png",
+  "MainCourse14.png",
   "mainCourse7.jpeg",
   "mainCourse5.jpeg",
-  "mainCourse4.png",
   "mainCourse.jpg",
   "mainCourse2.jpg",
   "mainCourse3.jpg",
+  "MainCourse01.png",
+  "MainCourse02.png",
+  "MainCourse03.png",
+  "MainCourse04.png",
+  "MainCourse05.png",
+  "MainCourse06.png",
+  "MainCourse07.png",
+  "MainCourse08.png",
+  "MainCourse09.png",
+  "MainCourse10.png",
+  "MainCourse15.png",
 ];
 
 const slidesContainer = document.querySelector(".slides");
