@@ -23,11 +23,11 @@
     <link rel="stylesheet" href="Cart/cart.css" />
   </head>
 
-  <body>
+  <body class="catering-page-body">
     <!-- ⭐ TOAST -->
     <div id="toast" class="toast"></div>
 
-    <!-- HEADER -->
+    <!-- DESKTOP HEADER -->
     <header class="main-header">
       <div class="logo">
         <a href="index.html">
@@ -38,7 +38,6 @@
         </a>
       </div>
 
-      <!-- Desktop Nav -->
       <nav class="nav-links">
         <a href="catering.html">CATERING</a>
         <a href="dessert.html">DESSERTS</a>
@@ -47,24 +46,39 @@
         <a href="jansistersbakery.html">JAN SISTERS BAKERY</a>
       </nav>
 
-      <!-- Cart -->
       <div class="cart-icon" onclick="window.location.href = 'cart.html'">
         <img src="Pictures/cartpicture/cart.png" alt="Cart" />
         <span id="cart-count">0</span>
       </div>
+    </header>
 
-      <!-- Mobile Menu Button -->
-      <div class="mobile-menu-btn"><span>MENU</span> ☰</div>
+    <!-- ⭐ MOBILE HEADER (MATCHES MAIN PAGE) -->
+    <div class="mobile-header-catering">
+      <div class="mobile-header-top-catering">
+        <div class="mobile-logo-catering">
+          <a href="index.html">
+            <img src="Pictures/MainPageLogo/logo picture.png" alt="Logo" />
+          </a>
+        </div>
 
-      <!-- Mobile Dropdown -->
-      <div class="mobile-dropdown">
+        <div class="mobile-cart-icon-catering">
+          <a href="cart.html">
+            <img src="Pictures/cartpicture/cart.png" alt="Cart" />
+            <span id="cart-count-mobile-catering">0</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="mobile-menu-btn-catering">MENU ☰</div>
+
+      <div class="mobile-dropdown-catering">
         <a href="catering.html">CATERING</a>
         <a href="dessert.html">DESSERTS</a>
         <a href="weekly-menu.html">WEEKLY MENU</a>
         <a href="contact-us.html">CONTACT US</a>
         <a href="jansistersbakery.html">JAN SISTERS BAKERY</a>
       </div>
-    </header>
+    </div>
 
     <!-- PAGE WRAPPER -->
     <div class="catering-page-wrapper">
@@ -123,31 +137,24 @@
     <!-- CART LOGIC -->
     <script src="Cart/cart.js" defer></script>
 
-    <!-- ⭐ MOBILE MENU -->
+    <!-- ⭐ MOBILE MENU JS (SAFE) -->
     <script>
       document.addEventListener("DOMContentLoaded", () => {
-        const menuBtn = document.querySelector(".mobile-menu-btn");
-        const dropdown = document.querySelector(".mobile-dropdown");
-        const dropdownLinks = document.querySelectorAll(".mobile-dropdown a");
+        const btn = document.querySelector(".mobile-menu-btn-catering");
+        const drop = document.querySelector(".mobile-dropdown-catering");
 
-        menuBtn.addEventListener("click", () => {
-          dropdown.classList.toggle("active");
-        });
-
-        function bubbleEffect(el) {
-          el.classList.add("bubble-animate");
-          setTimeout(() => el.classList.remove("bubble-animate"), 300);
+        if (btn && drop) {
+          btn.addEventListener("click", () => {
+            drop.classList.toggle("active");
+          });
         }
 
-        menuBtn.addEventListener("touchstart", function () {
-          bubbleEffect(this);
-        });
-
-        dropdownLinks.forEach((link) => {
-          link.addEventListener("touchstart", function () {
-            bubbleEffect(this);
-          });
-        });
+        const mobileBadge = document.getElementById(
+          "cart-count-mobile-catering",
+        );
+        if (mobileBadge && typeof cart !== "undefined") {
+          mobileBadge.textContent = cart.getCount();
+        }
       });
     </script>
 

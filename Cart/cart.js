@@ -106,11 +106,19 @@ class Cart {
   updateCartCount() {
     const count = this.getCount();
 
+    // Desktop badge
     const desktop = document.getElementById("cart-count");
-    const mobile = document.getElementById("cart-count-mobile");
-
     if (desktop) desktop.textContent = count;
+
+    // Old mobile badge (if exists)
+    const mobile = document.getElementById("cart-count-mobile");
     if (mobile) mobile.textContent = count;
+
+    // ⭐ Catering mobile badge (the one you are missing)
+    const cateringMobile = document.getElementById(
+      "cart-count-mobile-catering",
+    );
+    if (cateringMobile) cateringMobile.textContent = count;
   }
 }
 
