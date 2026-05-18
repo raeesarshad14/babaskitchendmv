@@ -215,24 +215,43 @@
 }
 
 /* ============================
-   MOBILE FIXES
+   ⭐ MOBILE FIX — NO CUTTING OFF
 ============================ */
 @media (max-width: 768px) {
-  .cart-row {
-    grid-template-columns: 1fr 90px 80px;
-    gap: 10px;
+  /* Allow item names to wrap instead of forcing overflow */
+  .item-name {
+    white-space: normal;
+    font-size: 16px;
+    line-height: 1.3;
   }
 
+  /* Make the grid flexible so it never overflows */
+  .cart-row {
+    grid-template-columns: 1fr auto auto;
+    gap: 12px;
+    align-items: center;
+  }
+
+  /* Shrink qty buttons */
   .qty-btn {
-    padding: 4px 10px;
+    padding: 4px 8px;
     font-size: 16px;
   }
 
   .qty-number {
+    width: 24px;
     font-size: 16px;
   }
 
+  /* Shrink total price */
   .math-section {
     font-size: 16px;
+    text-align: right;
+  }
+
+  /* Prevent horizontal scrolling */
+  .cart-page {
+    padding: 15px;
+    overflow-x: hidden;
   }
 }
