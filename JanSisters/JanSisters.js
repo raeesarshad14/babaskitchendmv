@@ -25,8 +25,8 @@ async function loadMenu() {
   const clean = data.map((row) => ({
     day: row["y"]?.trim(),
     dish: row["Dish"]?.trim(),
-    price: row["Price"]?.trim(),
-    image: row["Image"]?.trim(),
+    price: Number(row["Price"]),
+    image: row["Image"]?.trim() || null,
   }));
 
   const days = {};
@@ -54,7 +54,11 @@ async function loadMenu() {
           .map(
             (item) => `
           <div class="js-item">
-            ${item.image ? `<img class="js-item-img" src="${item.image}" />` : ""}
+            ${
+              item.image
+                ? `<img class="js-item-img" src="${item.image}" />`
+                : ""
+            }
 
             <div class="js-item-row">
               <span>${item.dish} - $${item.price}</span>
