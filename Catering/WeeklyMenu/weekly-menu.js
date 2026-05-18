@@ -12,7 +12,7 @@ async function loadWeeklyMenu() {
   try {
     const data = await fetch(url).then((r) => r.json());
 
-    // ⭐ DATE RANGE (from first row)
+    // ⭐ DATE RANGE
     const startDate = data[0].StartDate;
     const endDate = data[0].EndDate;
 
@@ -31,7 +31,7 @@ async function loadWeeklyMenu() {
       document.getElementById("wm-date-range").textContent = formatted;
     }
 
-    // ⭐ GROUP BY DAY (your sheet uses "y")
+    // ⭐ GROUP BY DAY
     const days = {};
 
     data.forEach((row) => {
@@ -110,18 +110,25 @@ function openWeeklyModal(name, price) {
 
   document.getElementById("wm-qty").textContent = 1;
 
+  // ⭐ FIXED: inline price shows unit price
   document.getElementById("wm-inline-price").textContent = "$" + wmBasePrice;
   document.getElementById("wm-total-price").textContent = "$" + wmBasePrice;
 
   document.getElementById("weeklyModal").style.display = "flex";
 
-  document.querySelector(".wm-add-cart").onclick = function () {
+  // ⭐ Prevent background scroll
+  document.body.style.overflow = "hidden";
+
+  document.querySelector(".wm-add-cart").onclick = () => {
     addWeeklyToCart(name, wmBasePrice);
   };
 }
 
 function closeWeeklyModal() {
   document.getElementById("weeklyModal").style.display = "none";
+
+  // ⭐ Restore scroll
+  document.body.style.overflow = "";
 }
 
 function wmIncrease() {
@@ -142,7 +149,9 @@ function updateWeeklySubtotal() {
   const qty = parseInt(document.getElementById("wm-qty").textContent);
   const total = qty * wmBasePrice;
 
-  document.getElementById("wm-inline-price").textContent = "$" + total;
+  // ⭐ FIXED: inline price = unit price
+  document.getElementById("wm-inline-price").textContent = "$" + wmBasePrice;
+
   document.getElementById("wm-total-price").textContent = "$" + total;
 }
 
