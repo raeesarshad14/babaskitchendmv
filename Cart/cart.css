@@ -214,25 +214,118 @@
   animation: cartBounce 0.6s ease;
 }
 
+/* ================================
+   ⭐ MOBILE HEADER (CART PAGE ONLY)
+================================ */
+.mobile-header-cart {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  /* ⭐ Only hide header on CART page */
+  .cart-page-body .main-header {
+    display: none !important;
+  }
+
+  .cart-page-body .mobile-header-cart {
+    display: block;
+    width: 100%;
+    background: #ffffff;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  }
+
+  .mobile-header-top-cart {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px;
+  }
+
+  .mobile-logo-cart img {
+    width: 55px;
+  }
+
+  .mobile-cart-icon-cart {
+    position: relative;
+  }
+
+  .mobile-cart-icon-cart img {
+    width: 32px;
+    height: 32px;
+  }
+
+  #cart-count-mobile-cart {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background: #27ae60;
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid white;
+  }
+
+  .mobile-menu-btn-cart {
+    width: 100%;
+    text-align: center;
+    padding: 14px 0;
+    background: #f8f8f8;
+    font-size: 20px;
+    font-weight: 700;
+    cursor: pointer;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+  }
+
+  .mobile-dropdown-cart {
+    display: none;
+    flex-direction: column;
+    background: #ffffff;
+    border-bottom: 1px solid #eee;
+  }
+
+  .mobile-dropdown-cart.active {
+    display: flex;
+  }
+
+  .mobile-dropdown-cart a {
+    padding: 14px 20px;
+    font-size: 17px;
+    color: #333;
+    text-decoration: none;
+    border-bottom: 1px solid #eee;
+  }
+
+  .mobile-dropdown-cart a:last-child {
+    border-bottom: none;
+  }
+}
+
 /* ============================
    ⭐ MOBILE FIX — NO CUTTING OFF
 ============================ */
 @media (max-width: 768px) {
-  /* Allow item names to wrap instead of forcing overflow */
   .item-name {
     white-space: normal;
     font-size: 16px;
     line-height: 1.3;
   }
 
-  /* Make the grid flexible so it never overflows */
   .cart-row {
     grid-template-columns: 1fr auto auto;
     gap: 12px;
     align-items: center;
   }
 
-  /* Shrink qty buttons */
   .qty-btn {
     padding: 4px 8px;
     font-size: 16px;
@@ -243,13 +336,11 @@
     font-size: 16px;
   }
 
-  /* Shrink total price */
   .math-section {
     font-size: 16px;
     text-align: right;
   }
 
-  /* Prevent horizontal scrolling */
   .cart-page {
     padding: 15px;
     overflow-x: hidden;

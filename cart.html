@@ -5,25 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Your Cart • Baba's Kitchen</title>
 
-    <!-- GLOBAL HEADER + NAV STYLES -->
     <link rel="stylesheet" href="MainPage/MainPage.css" />
-
-    <!-- CART PAGE STYLES -->
     <link rel="stylesheet" href="Cart/cart.css?v=1.0" />
   </head>
 
-  <body>
-    <!-- ⭐ TOAST -->
+  <!-- ⭐ ADD THIS CLASS -->
+  <body class="cart-page-body">
     <div id="toast" class="toast"></div>
 
-    <!-- ⭐ HEADER -->
+    <!-- DESKTOP HEADER -->
     <header class="main-header">
       <div class="logo">
         <a href="index.html">
-          <img
-            src="Pictures/MainPageLogo/logo picture.png"
-            alt="BabaKitchen Logo"
-          />
+          <img src="Pictures/MainPageLogo/logo picture.png" alt="Logo" />
         </a>
       </div>
 
@@ -43,16 +37,41 @@
       </div>
     </header>
 
-    <!-- ⭐ CART PAGE -->
+    <!-- ⭐ MOBILE HEADER (CART ONLY) -->
+    <div class="mobile-header-cart">
+      <div class="mobile-header-top-cart">
+        <div class="mobile-logo-cart">
+          <a href="index.html">
+            <img src="Pictures/MainPageLogo/logo picture.png" alt="Logo" />
+          </a>
+        </div>
+
+        <div class="mobile-cart-icon-cart">
+          <a href="cart.html">
+            <img src="Pictures/cartpicture/cart.png" alt="Cart" />
+            <span id="cart-count-mobile-cart">0</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="mobile-menu-btn-cart">MENU ☰</div>
+
+      <div class="mobile-dropdown-cart">
+        <a href="catering.html">CATERING</a>
+        <a href="dessert.html">DESSERTS</a>
+        <a href="weekly-menu.html">WEEKLY MENU</a>
+        <a href="contact-us.html">CONTACT US</a>
+        <a href="jansistersbakery.html">JAN SISTERS BAKERY</a>
+      </div>
+    </div>
+
+    <!-- CART PAGE -->
     <div class="cart-page">
       <h1>Your Order</h1>
-
       <div id="cart-items"></div>
 
-      <!-- ⭐ SUMMARY BOX -->
       <div class="summary-box">
         <p class="summary-line">Subtotal: $<span id="cart-subtotal">0</span></p>
-
         <button
           class="checkout-btn"
           onclick="window.location.href = 'checkout.html'"
@@ -82,21 +101,17 @@
           const itemTotal = item.qty * item.price;
 
           row.innerHTML = `
-            <!-- COLUMN 1: NAME + REMOVE -->
-  <div class="cart-left">
-  <button class="remove-btn" onclick="removeCartItem('${item.name}')">Remove</button>
-  <span class="item-name">${item.name}</span>
-</div>
+            <div class="cart-left">
+              <button class="remove-btn" onclick="removeCartItem('${item.name}')">Remove</button>
+              <span class="item-name">${item.name}</span>
+            </div>
 
-
-            <!-- COLUMN 2: QTY -->
             <div class="qty-section">
               <button class="qty-btn" onclick="changeCartQty('${item.name}', -1)">−</button>
               <span class="qty-number">${item.qty}</span>
               <button class="qty-btn" onclick="changeCartQty('${item.name}', 1)">+</button>
             </div>
 
-            <!-- COLUMN 3: TOTAL -->
             <div class="math-section">
               $${itemTotal.toFixed(2)}
             </div>
@@ -105,8 +120,12 @@
           container.appendChild(row);
         });
 
-        const total = cart.getTotal().toFixed(2);
-        document.getElementById("cart-subtotal").textContent = total;
+        document.getElementById("cart-subtotal").textContent = cart
+          .getTotal()
+          .toFixed(2);
+
+        const mobileBadge = document.getElementById("cart-count-mobile-cart");
+        if (mobileBadge) mobileBadge.textContent = cart.getCount();
       }
 
       function changeCartQty(name, amount) {
@@ -123,6 +142,20 @@
       }
 
       renderCart();
+    </script>
+
+    <!-- MOBILE MENU JS -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const btn = document.querySelector(".mobile-menu-btn-cart");
+        const drop = document.querySelector(".mobile-dropdown-cart");
+
+        if (btn && drop) {
+          btn.addEventListener("click", () => {
+            drop.classList.toggle("active");
+          });
+        }
+      });
     </script>
   </body>
 </html>
