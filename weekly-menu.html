@@ -17,7 +17,7 @@
     <!-- Toast -->
     <div id="toast" class="toast"></div>
 
-    <!-- Header -->
+    <!-- DESKTOP HEADER (UNCHANGED) -->
     <header class="main-header">
       <div class="logo">
         <a href="index.html">
@@ -41,9 +41,36 @@
       </div>
     </header>
 
-    <!-- ⭐ PAGE LAYOUT (SIDEBAR + MENU) -->
+    <!-- MOBILE HEADER (SAME AS CATERING / DESSERT) -->
+    <div class="mobile-header">
+      <div class="mobile-header-top">
+        <div class="mobile-logo">
+          <a href="index.html">
+            <img src="Pictures/MainPageLogo/logo picture.png" alt="Logo" />
+          </a>
+        </div>
+
+        <div class="mobile-cart">
+          <a href="cart.html">
+            <img src="Pictures/cartpicture/cart.png" alt="Cart" />
+            <span id="cart-count-mobile">0</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="mobile-menu-btn">MENU ☰</div>
+
+      <div class="mobile-dropdown">
+        <a href="catering.html">CATERING</a>
+        <a href="dessert.html">DESSERTS</a>
+        <a href="weekly-menu.html">WEEKLY MENU</a>
+        <a href="contact-us.html">CONTACT US</a>
+        <a href="jansistersbakery.html">JAN SISTERS BAKERY</a>
+      </div>
+    </div>
+
+    <!-- PAGE LAYOUT (SIDEBAR + MENU) -->
     <div class="weekly-layout">
-      <!-- ⭐ LEFT SIDEBAR (VERTICAL) -->
       <div class="weekly-sidebar">
         <button onclick="scrollToDay('Monday')">Monday</button>
         <button onclick="scrollToDay('Tuesday')">Tuesday</button>
@@ -54,18 +81,14 @@
         <button onclick="scrollToDay('Sunday')">Sunday</button>
       </div>
 
-      <!-- ⭐ WEEKLY MENU CONTENT -->
       <div class="weekly-wrapper">
         <h1 class="weekly-title">Weekly Menu</h1>
-
-        <!-- ⭐ DATE UNDER WEEKLY MENU -->
         <h2 id="wm-date-range" class="wm-date-range"></h2>
-
         <div id="weekly-menu"></div>
       </div>
     </div>
 
-    <!-- ⭐ WEEKLY MENU MODAL -->
+    <!-- WEEKLY MENU MODAL -->
     <div id="weeklyModal" class="weekly-modal-overlay">
       <div class="weekly-modal-box">
         <h2 id="wm-dish-name"></h2>
@@ -90,5 +113,30 @@
     <!-- Scripts -->
     <script src="Cart/cart.js"></script>
     <script src="Catering/WeeklyMenu/weekly-menu.js"></script>
+
+    <!-- MOBILE MENU SCRIPT (SAME BEHAVIOR AS CATERING / DESSERT) -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const menuBtn = document.querySelector(".mobile-menu-btn");
+        const dropdown = document.querySelector(".mobile-dropdown");
+        const links = document.querySelectorAll(".mobile-dropdown a");
+
+        if (menuBtn && dropdown) {
+          menuBtn.addEventListener("click", () => {
+            dropdown.classList.toggle("active");
+          });
+
+          function bubble(el) {
+            el.classList.add("bubble-animate");
+            setTimeout(() => el.classList.remove("bubble-animate"), 300);
+          }
+
+          menuBtn.addEventListener("touchstart", () => bubble(menuBtn));
+          links.forEach((l) =>
+            l.addEventListener("touchstart", () => bubble(l)),
+          );
+        }
+      });
+    </script>
   </body>
 </html>
