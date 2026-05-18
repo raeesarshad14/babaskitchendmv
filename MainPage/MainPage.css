@@ -114,3 +114,99 @@
     margin-right: 0;
   }
 }
+/* ================================
+   ⭐ MOBILE HEADER (MAIN PAGE ONLY)
+================================ */
+.mobile-header-main {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  /* Hide desktop header ONLY on main page */
+  .main-page-body .main-header {
+    display: none !important;
+  }
+
+  /* Show mobile header */
+  .main-page-body .mobile-header-main {
+    display: block;
+    width: 100%;
+    background: #ffffff;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  }
+
+  .mobile-header-top-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px;
+  }
+
+  .mobile-logo-main img {
+    width: 55px;
+  }
+
+  .mobile-cart-icon-main {
+    position: relative;
+  }
+
+  .mobile-cart-icon-main img {
+    width: 32px;
+    height: 32px;
+  }
+
+  #cart-count-mobile-main {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background: #27ae60;
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid white;
+  }
+
+  .mobile-menu-btn-main {
+    width: 100%;
+    text-align: center;
+    padding: 14px 0;
+    background: #f8f8f8;
+    font-size: 20px;
+    font-weight: 700;
+    cursor: pointer;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+  }
+
+  .mobile-dropdown-main {
+    display: none;
+    flex-direction: column;
+    background: #ffffff;
+    border-bottom: 1px solid #eee;
+  }
+
+  .mobile-dropdown-main.active {
+    display: flex;
+  }
+
+  .mobile-dropdown-main a {
+    padding: 14px 20px;
+    font-size: 17px;
+    color: #333;
+    text-decoration: none;
+    border-bottom: 1px solid #eee;
+  }
+
+  .mobile-dropdown-main a:last-child {
+    border-bottom: none;
+  }
+}
