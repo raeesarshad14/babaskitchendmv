@@ -1,6 +1,12 @@
 /* ================================
    CATERING SIDEBAR (Desktop)
 ================================ */
+/* HIDE SIDEBAR ON ALL SCREENS */
+.catering-sidebar,
+#sidebar-container {
+  display: none !important;
+}
+
 .catering-sidebar {
   width: 260px;
   padding: 20px;

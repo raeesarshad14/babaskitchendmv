@@ -3,6 +3,12 @@ class CateringPage {
     const res = await fetch("Catering/catering.json");
     const data = await res.json();
 
+    // ⭐ Store categories globally for Jump Menu
+    window.cateringCategories = data.map((cat) => ({
+      name: cat.category,
+      id: cat.category.toLowerCase().replace(/[^a-z0-9]/g, ""),
+    }));
+
     return data
       .map((cat) => {
         const sectionId = cat.category.toLowerCase().replace(/[^a-z0-9]/g, "");
@@ -22,6 +28,7 @@ class CateringPage {
   }
 
   renderItem(item) {
+    // ⭐ TRAY ITEMS
     if (Number(item.smallPrice) && Number(item.largePrice)) {
       return `
         <div class="catering-item unified-card">
@@ -42,6 +49,7 @@ class CateringPage {
       `;
     }
 
+    // ⭐ ROAST ITEMS
     const isRoast =
       (item.type && item.type === "roast") ||
       (item.note && item.note.toLowerCase().includes("whole roast")) ||
@@ -66,6 +74,7 @@ class CateringPage {
       `;
     }
 
+    // ⭐ SINGLE ITEMS
     return `
       <div class="catering-item unified-card">
         <h3>${item.name}</h3>

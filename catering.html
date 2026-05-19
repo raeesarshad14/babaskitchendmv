@@ -27,6 +27,12 @@
     <!-- ⭐ BACK TO TOP BUTTON -->
     <div id="backToTop" class="back-to-top">↑</div>
 
+    <!-- ⭐ FLOATING JUMP MENU BUTTON -->
+    <div id="jumpMenuBtn" class="jump-menu-btn">☰ Categories</div>
+
+    <!-- ⭐ FLOATING JUMP MENU PANEL -->
+    <div id="jumpMenuPanel" class="jump-menu-panel"></div>
+
     <!-- ⭐ TOAST -->
     <div id="toast" class="toast"></div>
 
@@ -172,6 +178,9 @@
             document.getElementById("sidebar-container").innerHTML = html;
             initSidebarScroll();
           });
+
+        // ⭐ Initialize Jump Menu after content loads
+        setTimeout(initJumpMenu, 300);
       });
     </script>
 
@@ -192,6 +201,56 @@
           top: 0,
           behavior: "smooth",
         });
+      });
+    </script>
+
+    <!-- ⭐ JUMP MENU JS -->
+    <script>
+      function initJumpMenu() {
+        const panel = document.getElementById("jumpMenuPanel");
+        const btn = document.getElementById("jumpMenuBtn");
+
+        const sections = document.querySelectorAll(".catering-section");
+
+        panel.innerHTML = "";
+        sections.forEach((sec) => {
+          const title = sec.querySelector("h2")?.textContent || "Section";
+          const id = sec.id;
+
+          const b = document.createElement("button");
+          b.textContent = title;
+          b.onclick = () => {
+            panel.classList.remove("active");
+
+            const y =
+              sec.getBoundingClientRect().top + window.pageYOffset - 120;
+
+            window.scrollTo({
+              top: y,
+              behavior: "smooth",
+            });
+          };
+
+          panel.appendChild(b);
+        });
+
+        btn.addEventListener("click", () => {
+          panel.classList.toggle("active");
+        });
+      }
+    </script>
+
+    <!-- ⭐ CLOSE PANEL WHEN CLICKING OUTSIDE -->
+    <script>
+      document.addEventListener("click", function (e) {
+        const panel = document.getElementById("jumpMenuPanel");
+        const btn = document.getElementById("jumpMenuBtn");
+
+        if (!panel.classList.contains("active")) return;
+
+        if (btn.contains(e.target) || panel.contains(e.target)) return;
+
+        panel.classList.remove("active");
       });
     </script>
   </body>
