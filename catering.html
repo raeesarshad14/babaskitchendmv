@@ -24,6 +24,9 @@
   </head>
 
   <body class="catering-page-body">
+    <!-- ⭐ BACK TO TOP BUTTON -->
+    <div id="backToTop" class="back-to-top">↑</div>
+
     <!-- ⭐ TOAST -->
     <div id="toast" class="toast"></div>
 
@@ -52,7 +55,7 @@
       </div>
     </header>
 
-    <!-- ⭐ MOBILE HEADER (MATCHES MAIN PAGE) -->
+    <!-- ⭐ MOBILE HEADER -->
     <div class="mobile-header-catering">
       <div class="mobile-header-top-catering">
         <div class="mobile-logo-catering">
@@ -116,7 +119,6 @@
           <button class="qty-btn" onclick="changeQty('single', -1)">−</button>
           <span id="singleQty">12</span>
           <button class="qty-btn" onclick="changeQty('single', 1)">+</button>
-
           <span id="singleTotal">$0</span>
         </div>
 
@@ -137,7 +139,7 @@
     <!-- CART LOGIC -->
     <script src="Cart/cart.js" defer></script>
 
-    <!-- ⭐ MOBILE MENU JS (SAFE) -->
+    <!-- ⭐ MOBILE MENU JS -->
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         const btn = document.querySelector(".mobile-menu-btn-catering");
@@ -170,6 +172,26 @@
             document.getElementById("sidebar-container").innerHTML = html;
             initSidebarScroll();
           });
+      });
+    </script>
+
+    <!-- ⭐ BACK TO TOP JS -->
+    <script>
+      const backToTop = document.getElementById("backToTop");
+
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 400) {
+          backToTop.classList.add("show");
+        } else {
+          backToTop.classList.remove("show");
+        }
+      });
+
+      backToTop.addEventListener("click", () => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
       });
     </script>
   </body>

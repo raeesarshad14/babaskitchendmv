@@ -86,7 +86,7 @@ class CateringPage {
 }
 
 /* ============================================================
-   ⭐ MOVE THIS OUTSIDE — THIS IS THE REAL FIX
+   ⭐ FIXED SIDEBAR SCROLL FUNCTION
 ============================================================ */
 function initSidebarScroll() {
   const header = document.querySelector(".main-header");
@@ -99,7 +99,7 @@ function initSidebarScroll() {
 
       if (!section) return;
 
-      const yOffset = -(headerHeight + 40); // adjust early stop
+      const yOffset = -(headerHeight + 40);
       const y =
         section.getBoundingClientRect().top + window.pageYOffset + yOffset;
 
