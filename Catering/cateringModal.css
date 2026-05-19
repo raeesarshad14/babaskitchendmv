@@ -200,3 +200,8 @@
     height: 44px;
   }
 }
+/* ⭐ HIDE CATEGORY BUTTON + PANEL WHEN MODAL IS OPEN */
+.hide-floating-ui #jumpMenuBtn,
+.hide-floating-ui #jumpMenuPanel {
+  display: none !important;
+}

@@ -14,6 +14,9 @@ let modalItem = {
 function openModal(item) {
   modalItem = { ...item };
 
+  // ⭐ HIDE CATEGORY BUTTON + PANEL
+  document.body.classList.add("hide-floating-ui");
+
   if (modalItem.type === "single" && !modalItem.minOrder) {
     modalItem.minOrder = 12;
   }
@@ -77,7 +80,6 @@ function openModal(item) {
 }
 
 function changeQty(type, amount) {
-  // ⭐ TRAY SMALL
   if (type === "small") {
     modalItem.smallQty = Math.max(0, modalItem.smallQty + amount);
     document.getElementById("smallQty").textContent = modalItem.smallQty;
@@ -85,7 +87,6 @@ function changeQty(type, amount) {
     return;
   }
 
-  // ⭐ TRAY LARGE
   if (type === "large") {
     modalItem.largeQty = Math.max(0, modalItem.largeQty + amount);
     document.getElementById("largeQty").textContent = modalItem.largeQty;
@@ -93,7 +94,6 @@ function changeQty(type, amount) {
     return;
   }
 
-  // ⭐ SINGLE — NEVER BELOW 12
   if (type === "single") {
     modalItem.qty = Math.max(modalItem.minOrder, modalItem.qty + amount);
     document.getElementById("singleQty").textContent = modalItem.qty;
@@ -101,7 +101,6 @@ function changeQty(type, amount) {
     return;
   }
 
-  // ⭐ ROAST — NEVER BELOW 1
   if (type === "roast") {
     modalItem.qty = Math.max(1, modalItem.qty + amount);
     document.getElementById("singleQty").textContent = modalItem.qty;
@@ -134,6 +133,9 @@ function updateTotals() {
 
 function closeModal() {
   document.getElementById("cateringModalOverlay").style.display = "none";
+
+  // ⭐ SHOW CATEGORY BUTTON + PANEL AGAIN
+  document.body.classList.remove("hide-floating-ui");
 }
 
 document.getElementById("modalAddBtn").addEventListener("click", () => {
