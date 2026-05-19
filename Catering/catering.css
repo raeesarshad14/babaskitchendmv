@@ -341,11 +341,11 @@
 }
 @media (min-width: 769px) {
   .jump-menu-btn {
-    left: 90px; /* move right — adjust as needed */
+    left: 25px; /* move right — adjust as needed */
   }
 
   .jump-menu-panel {
-    left: 90px; /* keep dropdown aligned with button */
+    left: 25px; /* keep dropdown aligned with button */
   }
 }
 

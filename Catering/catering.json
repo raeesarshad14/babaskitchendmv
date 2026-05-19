@@ -1,7 +1,7 @@
 [
   {
     "category": "Smash Burgers & Bun Palaster",
-    "subtitle": "(Each order includes chips and a soda. Minimum order of 12 required)",
+    "subtitle": "(Each order includes small bag chips and can of soda. Minimum order of 12 required)",
     "items": [
       { "name": "Beef Smash Burger", "price": 11 },
       { "name": "Beef Bun Palaster", "price": 11 },
