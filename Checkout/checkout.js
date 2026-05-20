@@ -41,7 +41,7 @@ function renderCheckout() {
         <h2>Customer Information</h2>
 
         <div class="checkout-note">
-          A deposit applies to orders over $60. Delivery is available upon request for an additional fee. 
+          A deposit applies to orders over $60. Local delivery is available upon request for an additional fee. 
           Please contact us using the Contact Us link above.
         </div>
 
@@ -57,6 +57,7 @@ function renderCheckout() {
         <div id="zelle-info" class="zelle-box" style="display:none;">
           <h4 class="zelle-title">Zelle Payment Instructions</h4>
           <div class="zelle-number">571-353-9225</div>
+          <div class="zelle-number">Fozia Jan</div>
           <p class="zelle-note">Send payment before placing your order.</p>
         </div>
 

@@ -102,7 +102,6 @@
       <div class="catering-modal">
         <h2 id="modalItemName"></h2>
 
-        <!-- SMALL TRAY -->
         <div id="smallTrayRow" class="qty-row" style="display: none">
           <span>Small Tray ($<span id="smallPriceUnit"></span>)</span>
           <button class="qty-btn" onclick="changeQty('small', -1)">−</button>
@@ -111,7 +110,6 @@
           <span id="smallTotal">$0</span>
         </div>
 
-        <!-- LARGE TRAY -->
         <div id="largeTrayRow" class="qty-row" style="display: none">
           <span>Large Tray ($<span id="largePriceUnit"></span>)</span>
           <button class="qty-btn" onclick="changeQty('large', -1)">−</button>
@@ -120,7 +118,6 @@
           <span id="largeTotal">$0</span>
         </div>
 
-        <!-- SINGLE PRICE -->
         <div id="singleRow" class="qty-row" style="display: none">
           <button class="qty-btn" onclick="changeQty('single', -1)">−</button>
           <span id="singleQty">12</span>
@@ -145,7 +142,7 @@
     <!-- CART LOGIC -->
     <script src="Cart/cart.js" defer></script>
 
-    <!-- ⭐ MOBILE MENU JS -->
+    <!-- ⭐ MOBILE MENU JS (FIXED) -->
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         const btn = document.querySelector(".mobile-menu-btn-catering");
@@ -154,6 +151,12 @@
         if (btn && drop) {
           btn.addEventListener("click", () => {
             drop.classList.toggle("active");
+
+            if (drop.classList.contains("active")) {
+              document.body.classList.add("hide-floating-ui");
+            } else {
+              document.body.classList.remove("hide-floating-ui");
+            }
           });
         }
 
@@ -179,7 +182,6 @@
             initSidebarScroll();
           });
 
-        // ⭐ Initialize Jump Menu after content loads
         setTimeout(initJumpMenu, 300);
       });
     </script>
@@ -197,10 +199,7 @@
       });
 
       backToTop.addEventListener("click", () => {
-        window.scrollTo({
-          top: 0,
-          behavior: "smooth",
-        });
+        window.scrollTo({ top: 0, behavior: "smooth" });
       });
     </script>
 
@@ -215,7 +214,6 @@
         panel.innerHTML = "";
         sections.forEach((sec) => {
           const title = sec.querySelector("h2")?.textContent || "Section";
-          const id = sec.id;
 
           const b = document.createElement("button");
           b.textContent = title;
@@ -225,10 +223,7 @@
             const y =
               sec.getBoundingClientRect().top + window.pageYOffset - 120;
 
-            window.scrollTo({
-              top: y,
-              behavior: "smooth",
-            });
+            window.scrollTo({ top: y, behavior: "smooth" });
           };
 
           panel.appendChild(b);
