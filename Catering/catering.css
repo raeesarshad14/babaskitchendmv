@@ -113,6 +113,34 @@
   border: 2px solid white;
   line-height: 1;
 }
+/* ================================
+   ⭐ MATCH DESSERT PRICE STYLE
+================================ */
+.catering-price-line {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px; /* same spacing as dessert */
+  margin: 10px 0;
+}
+
+.catering-price-label {
+  font-size: 18px;
+  font-weight: 400;
+  color: #444; /* same soft gray as dessert */
+}
+
+.catering-price-value {
+  font-size: 18px;
+  font-weight: 500; /* slight emphasis */
+  color: #333;
+}
+.catering-section {
+  margin-top: 30px; /* adjust 40–70px as you like */
+}
+.catering-section:first-of-type {
+  margin-top: 0;
+}
 
 /* ==================================================
    ⭐ UNIFIED MOBILE HEADER (CATERING)

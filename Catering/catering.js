@@ -28,13 +28,21 @@ class CateringPage {
   }
 
   renderItem(item) {
-    // ⭐ TRAY ITEMS
+    // ⭐ TRAY ITEMS (Small + Large)
     if (Number(item.smallPrice) && Number(item.largePrice)) {
       return `
         <div class="catering-item unified-card">
           <h3>${item.name}</h3>
-          <p class="price-line">Small Tray: $${item.smallPrice}</p>
-          <p class="price-line">Large Tray: $${item.largePrice}</p>
+
+          <p class="catering-price-line">
+            <span class="catering-price-label">Small Tray :</span>
+            <span class="catering-price-value">$${item.smallPrice}</span>
+          </p>
+
+          <p class="catering-price-line">
+            <span class="catering-price-label">Large Tray :</span>
+            <span class="catering-price-value">$${item.largePrice}</span>
+          </p>
 
           <button class="add-btn"
             onclick='openModal({
@@ -59,7 +67,11 @@ class CateringPage {
       return `
         <div class="catering-item unified-card">
           <h3>${item.name}</h3>
-          <p class="price-line">Price: $${item.price}</p>
+
+          <p class="catering-price-line">
+            <span class="catering-price-label">Price :</span>
+            <span class="catering-price-value">$${item.price}</span>
+          </p>
 
           <button class="add-btn"
             onclick='openModal({
@@ -78,7 +90,11 @@ class CateringPage {
     return `
       <div class="catering-item unified-card">
         <h3>${item.name}</h3>
-        <p class="price-line">Price: $${item.price}</p>
+
+        <p class="catering-price-line">
+          <span class="catering-price-label">Price :</span>
+          <span class="catering-price-value">$${item.price}</span>
+        </p>
 
         <button class="add-btn"
           onclick='openModal({

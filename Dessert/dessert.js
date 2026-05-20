@@ -16,10 +16,27 @@ function renderDesserts(items) {
     const card = document.createElement("div");
     card.className = "dessert-card";
 
+    // Build tray lines dynamically
+    let trayHTML = `
+      <p class="tray-line">
+        <span class="tray-label">Small Tray :</span>
+        <span class="tray-price">$${item.smallPrice}</span>
+      </p>
+    `;
+
+    // Only add Large Tray if it exists
+    if (item.largePrice) {
+      trayHTML += `
+        <p class="tray-line">
+          <span class="tray-label">Large Tray :</span>
+          <span class="tray-price">$${item.largePrice}</span>
+        </p>
+      `;
+    }
+
     card.innerHTML = `
       <h3>${item.name}</h3>
-      <p><strong>Small Tray:</strong> $${item.smallPrice}</p>
-      ${item.largePrice ? `<p><strong>Large Tray:</strong> $${item.largePrice}</p>` : ""}
+      ${trayHTML}
 
       <button class="dessert-add-btn"
         onclick="openDessertModal(JSON.parse(decodeURIComponent('${safeItem}')))">
@@ -43,6 +60,7 @@ function openDessertModal(item) {
   window.qtyLarge = 0;
   window.qtySingle = 1;
 
+  // MULTI-TRAY ITEM
   if (item.largePrice) {
     box.innerHTML = `
       <h2>${item.name}</h2>
@@ -65,12 +83,18 @@ function openDessertModal(item) {
         </div>
       </div>
 
-      <p><strong>Subtotal:</strong> $<span id="dessert-subtotal">0</span></p>
+      <p class="total-label">
+        <span>Subtotal :</span>
+        <span id="dessert-subtotal">$0</span>
+      </p>
 
       <button class="add-btn" onclick="addDessertToCart()">Add to Cart</button>
       <button class="close-btn" onclick="closeDessertModal()">Close</button>
     `;
-  } else {
+  }
+
+  // SINGLE-PRICE ITEM (Baklava, etc.)
+  else {
     box.innerHTML = `
       <h2>${item.name}</h2>
 
@@ -83,7 +107,10 @@ function openDessertModal(item) {
         </div>
       </div>
 
-      <p><strong>Subtotal:</strong> $<span id="dessert-subtotal">${item.smallPrice}</span></p>
+      <p class="total-label">
+        <span>Subtotal :</span>
+        <span id="dessert-subtotal">${item.smallPrice}</span>
+      </p>
 
       <button class="add-btn" onclick="addDessertToCart()">Add to Cart</button>
       <button class="close-btn" onclick="closeDessertModal()">Close</button>
@@ -134,7 +161,6 @@ function updateSubtotal() {
 function addDessertToCart() {
   const item = window.currentDessert;
 
-  // MULTI-TRAY ITEMS
   if (item.largePrice) {
     if (window.qtySmall > 0) {
       cart.addItem({
@@ -153,10 +179,7 @@ function addDessertToCart() {
         type: "dessert",
       });
     }
-  }
-
-  // SINGLE-PRICE ITEMS
-  else {
+  } else {
     cart.addItem({
       name: item.name,
       price: item.smallPrice,
