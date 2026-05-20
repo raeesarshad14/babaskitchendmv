@@ -78,6 +78,33 @@
   font-weight: 500;
   color: #333;
 }
+/* ================================
+   ⭐ TOAST NOTIFICATION (GLOBAL)
+================================ */
+.toast {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background: #27ae60;
+  color: white;
+  padding: 14px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(20px);
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+  z-index: 99999;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
 
 /* ================================
    ADD BUTTON (Manual Control)
@@ -111,12 +138,22 @@
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.45); /* lighter, faster */
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 9999;
-  backdrop-filter: blur(4px);
+
+  /* remove blur for speed */
+  backdrop-filter: none;
+
+  opacity: 1;
+  transition: opacity 0.12s ease; /* faster fade */
+}
+
+.modal-overlay.hide {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .modal-box {

@@ -190,12 +190,26 @@ function addDessertToCart() {
 
   cart.save();
   cart.updateCartCount();
-  closeDessertModal();
+
+  // ⭐ Toast first
+  showToast(item.name + " added to cart");
+
+  // ⭐ Delay modal close so click event finishes
+  setTimeout(() => {
+    closeDessertModal();
+  }, 150);
 }
 
 /* ---------------------------------------------------------
    CLOSE MODAL
 --------------------------------------------------------- */
 function closeDessertModal() {
-  document.getElementById("dessert-modal").style.display = "none";
+  const modal = document.getElementById("dessert-modal");
+
+  modal.classList.add("hide");
+
+  setTimeout(() => {
+    modal.style.display = "none";
+    modal.classList.remove("hide");
+  }, 150); // matches CSS transition
 }
