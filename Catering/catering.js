@@ -31,30 +31,32 @@ class CateringPage {
     // ⭐ TRAY ITEMS (Small + Large)
     if (Number(item.smallPrice) && Number(item.largePrice)) {
       return `
-        <div class="catering-item unified-card">
-          <h3>${item.name}</h3>
+      <div class="catering-item unified-card">
+        <h3>${item.name}</h3>
 
-          <p class="catering-price-line">
-            <span class="catering-price-label">Small Tray :</span>
-            <span class="catering-price-value">$${item.smallPrice}</span>
-          </p>
+        <p class="catering-price-line">
+          <span class="catering-price-label">Small Tray :</span>
+          <span class="catering-price-value">$${item.smallPrice}</span>
+        </p>
 
-          <p class="catering-price-line">
-            <span class="catering-price-label">Large Tray :</span>
-            <span class="catering-price-value">$${item.largePrice}</span>
-          </p>
+        <p class="catering-price-line">
+          <span class="catering-price-label">Large Tray :</span>
+          <span class="catering-price-value">$${item.largePrice}</span>
+        </p>
 
-          <button class="add-btn"
-            onclick='openModal({
-              name: "${item.name}",
-              type: "tray",
-              smallPrice: ${item.smallPrice},
-              largePrice: ${item.largePrice}
-            })'>
-            Add
-          </button>
-        </div>
-      `;
+        ${item.note ? `<p class="item-note">${item.note}</p>` : ""}
+
+        <button class="add-btn"
+          onclick='openModal({
+            name: "${item.name}",
+            type: "tray",
+            smallPrice: ${item.smallPrice},
+            largePrice: ${item.largePrice}
+          })'>
+          Add
+        </button>
+      </div>
+    `;
     }
 
     // ⭐ ROAST ITEMS
@@ -65,29 +67,6 @@ class CateringPage {
 
     if (isRoast) {
       return `
-        <div class="catering-item unified-card">
-          <h3>${item.name}</h3>
-
-          <p class="catering-price-line">
-            <span class="catering-price-label">Price :</span>
-            <span class="catering-price-value">$${item.price}</span>
-          </p>
-
-          <button class="add-btn"
-            onclick='openModal({
-              name: "${item.name}",
-              type: "roast",
-              price: ${item.price},
-              minOrder: 1
-            })'>
-            Add
-          </button>
-        </div>
-      `;
-    }
-
-    // ⭐ SINGLE ITEMS
-    return `
       <div class="catering-item unified-card">
         <h3>${item.name}</h3>
 
@@ -96,17 +75,46 @@ class CateringPage {
           <span class="catering-price-value">$${item.price}</span>
         </p>
 
+        ${item.note ? `<p class="item-note">${item.note}</p>` : ""}
+
         <button class="add-btn"
           onclick='openModal({
             name: "${item.name}",
-            type: "single",
+            type: "roast",
             price: ${item.price},
-            minOrder: ${item.minOrder || 12}
+            minOrder: 1
           })'>
           Add
         </button>
       </div>
     `;
+    }
+
+    // ⭐ SINGLE ITEMS
+    return `
+  <div class="catering-item unified-card">
+    <h3>${item.name}</h3>
+
+    ${item.noteHeader ? `<p class="item-note-header">${item.noteHeader}</p>` : ""}
+
+    <p class="catering-price-line">
+      <span class="catering-price-label">Price :</span>
+      <span class="catering-price-value">
+        $${item.price} ${item.note ? `(${item.note})` : ""}
+      </span>
+    </p>
+
+    <button class="add-btn"
+      onclick='openModal({
+        name: "${item.name}",
+        type: "single",
+        price: ${item.price},
+        minOrder: ${item.minOrder || 12}
+      })'>
+      Add
+    </button>
+  </div>
+`;
   }
 }
 

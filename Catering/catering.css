@@ -141,6 +141,19 @@
 .catering-section:first-of-type {
   margin-top: 0;
 }
+.item-note {
+  font-size: 14px;
+  color: #777;
+  margin-top: -5px;
+  margin-bottom: 10px;
+}
+.item-note-header {
+  font-size: 14px;
+  color: red;
+  margin-top: -8px;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
 
 /* ==================================================
    ⭐ UNIFIED MOBILE HEADER (CATERING)

@@ -163,6 +163,36 @@
   color: #1a1a1a;
 }
 
+/* ⭐ MATCH VENMO STYLE TO ZELLE */
+.venmo-box {
+  background: #f3f0ff;
+  border-left: 4px solid #6f42c1;
+  padding: 20px;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+.venmo-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #6f42c1;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.venmo-number {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 5px 0;
+  color: #1a1a1a;
+}
+
+.venmo-note {
+  font-size: 16px;
+  color: #1a1a1a;
+  margin-top: 12px;
+}
+
 /* ================================
    ⭐ MOBILE AUTO-ADJUST
 ================================ */

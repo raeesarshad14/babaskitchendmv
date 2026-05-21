@@ -69,7 +69,12 @@
     "items": [
       { "name": "Aloo Samosa", "price": 1.75, "minOrder": 12 },
       { "name": "Chicken & Veggie Spring Roll", "price": 2.25 },
-      { "name": "Imitation Crab Rangoons", "price": 36, "note": "24 pieces" },
+      {
+        "name": "Imitation Crab Rangoons",
+        "price": 36,
+        "note": "24 pieces",
+        "noteHeader": "Minimum Order Of 12 Not Required"
+      },
       { "name": "Chicken Qeema Puff Pastries", "price": 3.0 },
       { "name": "Beef Qeema Puff Pastries", "price": 3.5 },
       { "name": "Beef Keema Samosa", "price": 2.25 },

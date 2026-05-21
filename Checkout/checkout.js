@@ -52,6 +52,7 @@ function renderCheckout() {
         <select id="payment">
           <option value="cash">Cash</option>
           <option value="zelle">Zelle</option>
+          <option value="venmo">Venmo</option>
         </select>
 
         <div id="zelle-info" class="zelle-box" style="display:none;">
@@ -59,6 +60,13 @@ function renderCheckout() {
           <div class="zelle-number">571-353-9225</div>
           <div class="zelle-number">Fozia Jan</div>
           <p class="zelle-note">Send payment before placing your order.</p>
+        </div>
+
+        <div id="venmo-info" class="venmo-box" style="display:none;">
+          <h4 class="venmo-title">Venmo Payment Instructions</h4>
+          <div class="venmo-number">@Babaskitchendmv</div>
+          <div class="venmo-number">Fozia Jan</div>
+          <p class="venmo-note">Send payment before placing your order.</p>
         </div>
 
         <button class="place-order-btn" id="placeOrderBtn">
@@ -81,8 +89,12 @@ function renderCheckout() {
 
 function toggleZelleInfo() {
   const method = document.getElementById("payment").value;
+
   document.getElementById("zelle-info").style.display =
     method === "zelle" ? "block" : "none";
+
+  document.getElementById("venmo-info").style.display =
+    method === "venmo" ? "block" : "none";
 }
 
 async function placeOrder() {

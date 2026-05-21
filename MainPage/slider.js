@@ -15,7 +15,7 @@ const slideImages = [
   "11.png",
   "12.png",
   "13.jpeg",
-  "14.png",
+  "14.jpeg",
   "15.jpeg",
   "16.png",
   "17.jpeg",
