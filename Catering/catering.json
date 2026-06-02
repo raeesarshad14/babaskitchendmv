@@ -73,7 +73,9 @@
         "name": "Imitation Crab Rangoons",
         "price": 36,
         "note": "24 pieces",
-        "noteHeader": "Minimum Order Of 12 Not Required"
+        "noteHeader": "Minimum Order Of 12 Not Required",
+        "type": "single",
+        "minOrder": 1
       },
       { "name": "Chicken Qeema Puff Pastries", "price": 3.0 },
       { "name": "Beef Qeema Puff Pastries", "price": 3.5 },

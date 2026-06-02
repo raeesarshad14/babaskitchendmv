@@ -46,10 +46,20 @@ class Cart {
   /* ---------------------------------------------------------
      UPDATE QUANTITY RULES — FINAL VERSION
      Supports ALL item types including Jan Sisters
+     ⭐ Special override ONLY for Imitation Crab Rangoons
   --------------------------------------------------------- */
   updateQty(name, qty) {
     const item = this.items.find((i) => i.name === name);
     if (!item) return;
+
+    // ⭐ SPECIAL FIX — ONLY for Imitation Crab Rangoons
+    if (item.name === "Imitation Crab Rangoons") {
+      if (qty < 1) qty = 1;
+      item.qty = qty;
+      this.save();
+      this.updateCartCount();
+      return;
+    }
 
     const type = item.type;
 
@@ -102,7 +112,6 @@ class Cart {
   }
 
   // Update cart badge in header
-  // Update cart badge in header
   updateCartCount() {
     const count = this.getCount();
 
@@ -114,7 +123,7 @@ class Cart {
     const mobile = document.getElementById("cart-count-mobile");
     if (mobile) mobile.textContent = count;
 
-    // ⭐ Catering mobile badge (the one you are missing)
+    // ⭐ Catering mobile badge
     const cateringMobile = document.getElementById(
       "cart-count-mobile-catering",
     );
