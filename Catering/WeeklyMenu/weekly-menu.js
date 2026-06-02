@@ -95,9 +95,25 @@ async function loadWeeklyMenu() {
 // ===============================
 function scrollToDay(day) {
   const section = document.getElementById(`day-${day}`);
-  if (section) {
-    section.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
+  if (!section) return;
+
+  // ⭐ Detect header height (desktop or mobile)
+  const header =
+    document.querySelector(".main-header") ||
+    document.querySelector(".mobile-header-catering");
+
+  const headerHeight = header ? header.offsetHeight : 80;
+
+  // ⭐ Calculate exact scroll position
+  const y =
+    section.getBoundingClientRect().top +
+    window.pageYOffset -
+    (headerHeight + 170);
+
+  window.scrollTo({
+    top: y,
+    behavior: "smooth",
+  });
 }
 
 // ===============================
