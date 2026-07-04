@@ -49,7 +49,7 @@ class CateringPage {
           ${item.note ? `<p class="item-note">${item.note}</p>` : ""}
 
           <button class="add-btn"
-            onclick='openModal({
+            onclick='openDateModal({
               name: "${item.name}",
               type: "tray",
               smallPrice: ${item.smallPrice},
@@ -82,7 +82,7 @@ class CateringPage {
           ${item.note ? `<p class="item-note">${item.note}</p>` : ""}
 
           <button class="add-btn"
-            onclick='openModal({
+            onclick='openDateModal({
               name: "${item.name}",
               type: "roast",
               price: ${item.price},
@@ -96,8 +96,6 @@ class CateringPage {
 
     /* ============================================================
        ⭐ SINGLE ITEMS — FIXED MIN ORDER LOGIC
-       Only override minOrder when noteHeader says "Not Required"
-       Everything else stays EXACTLY the same.
     ============================================================ */
 
     const minOrder =
@@ -119,7 +117,7 @@ class CateringPage {
         </p>
 
         <button class="add-btn"
-          onclick='openModal({
+          onclick='openDateModal({
             name: "${item.name}",
             type: "single",
             price: ${item.price},
