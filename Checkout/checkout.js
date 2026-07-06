@@ -69,6 +69,14 @@ function renderCheckout() {
           <p class="venmo-note">Send payment before placing your order.</p>
         </div>
 
+        <!-- ⭐ NEW: SELECT DATE -->
+        <h3>Order Date</h3>
+          <div class="checkout-note">
+            Catering orders must be placed at least 4 days in advance.  
+            For urgent requests, please contact Baba’s Kitchen at <strong>571‑353‑9225</strong>.
+          </div>
+        <input type="date" id="checkoutDate" class="checkout-date" />
+
         <button class="place-order-btn" id="placeOrderBtn">
           Place Order
         </button>
@@ -78,6 +86,20 @@ function renderCheckout() {
 
     </div>
   `;
+
+  // ⭐ Setup date restrictions (block today + next 3 days)
+  const dateInput = document.getElementById("checkoutDate");
+  if (dateInput) {
+    const today = new Date();
+    today.setDate(today.getDate() + 4); // block today + next 3 days
+    dateInput.min = today.toISOString().split("T")[0];
+
+    // ⭐ Make calendar open whenever user clicks/taps/focuses
+    dateInput.addEventListener("focus", () => dateInput.showPicker?.());
+    dateInput.addEventListener("click", () => dateInput.showPicker?.());
+    dateInput.addEventListener("mousedown", () => dateInput.showPicker?.());
+    dateInput.addEventListener("touchstart", () => dateInput.showPicker?.());
+  }
 
   document
     .getElementById("payment")
@@ -97,6 +119,13 @@ function toggleZelleInfo() {
     method === "venmo" ? "block" : "none";
 }
 
+// ⭐ Helper to format date in American style (MM-DD-YYYY)
+function formatDateForEmail(dateStr) {
+  if (!dateStr) return "";
+  const parts = dateStr.split("-");
+  return `${parts[1]}-${parts[2]}-${parts[0]}`;
+}
+
 async function placeOrder() {
   const btn = document.getElementById("placeOrderBtn");
   btn.disabled = true;
@@ -105,9 +134,17 @@ async function placeOrder() {
   const name = document.getElementById("name").value.trim();
   const phone = document.getElementById("phone").value.trim();
   const payment = document.getElementById("payment").value;
+  const checkoutDate = document.getElementById("checkoutDate").value;
 
   if (!name || !phone) {
     alert("Please enter your name and phone number.");
+    btn.disabled = false;
+    btn.innerText = "Place Order";
+    return;
+  }
+
+  if (!checkoutDate) {
+    alert("Please select a day for your order.");
     btn.disabled = false;
     btn.innerText = "Place Order";
     return;
@@ -136,6 +173,9 @@ async function placeOrder() {
   document.getElementById("form_items").value = itemsText;
   document.getElementById("form_subtotal").value = subtotal.toFixed(2);
   document.getElementById("form_total").value = total.toFixed(2);
+
+  // ⭐ NEW: Add formatted Order Date to form
+  document.getElementById("form_date").value = formatDateForEmail(checkoutDate);
 
   // ⭐ CRITICAL FIX — FORCE REDIRECT FIELD
   document.querySelector("input[name='redirect']").value =
