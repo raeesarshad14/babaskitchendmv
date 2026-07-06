@@ -9,8 +9,9 @@
     <link rel="stylesheet" href="Checkout/checkout.css" />
   </head>
 
+  <!-- ⭐ ADD THIS CLASS -->
   <body class="checkout-page-body">
-    <!-- ⭐ DESKTOP HEADER -->
+    <!-- ⭐ DESKTOP HEADER (UNCHANGED) -->
     <header class="main-header">
       <div class="logo">
         <a href="index.html">
@@ -34,7 +35,7 @@
       </div>
     </header>
 
-    <!-- ⭐ MOBILE HEADER -->
+    <!-- ⭐ MOBILE HEADER (CHECKOUT ONLY — SAFE) -->
     <div class="mobile-header-checkout">
       <div class="mobile-header-top-checkout">
         <div class="mobile-logo-checkout">
@@ -85,8 +86,6 @@
       <input type="hidden" id="form_items" name="items" />
       <input type="hidden" id="form_subtotal" name="subtotal" />
       <input type="hidden" id="form_total" name="total" />
-      <!-- ⭐ NEW: Catering Date -->
-      <input type="hidden" id="form_catering_date" name="cateringDate" />
       <input
         type="hidden"
         name="redirect"
@@ -97,7 +96,7 @@
     <script src="Cart/cart.js"></script>
     <script src="Checkout/checkout.js"></script>
 
-    <!-- ⭐ MOBILE MENU JS -->
+    <!-- ⭐ MOBILE MENU JS (CHECKOUT ONLY — SAFE) -->
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         const btn = document.querySelector(".mobile-menu-btn-checkout");
@@ -109,6 +108,7 @@
           });
         }
 
+        // Sync mobile cart badge
         const mobileBadge = document.getElementById(
           "cart-count-mobile-checkout",
         );

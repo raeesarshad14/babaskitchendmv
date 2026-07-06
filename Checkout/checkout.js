@@ -4,52 +4,21 @@ window.addEventListener("DOMContentLoaded", () => {
   renderCheckout();
 });
 
-function formatDateUS(dateStr) {
-  if (!dateStr) return "";
-
-  // If already formatted as MM-DD-YYYY, return directly
-  if (dateStr.includes("-") && dateStr.split("-")[0].length !== 4)
-    return dateStr;
-
-  // Safely parse YYYY-MM-DD without timezone shifting
-  const parts = dateStr.split("-");
-  if (parts.length === 3) {
-    const yyyy = parts[0];
-    const mm = parts[1].padStart(2, "0");
-    const dd = parts[2].padStart(2, "0");
-    return `${mm}-${dd}-${yyyy}`;
-  }
-
-  // Fallback if format is different
-  const d = new Date(dateStr);
-  if (isNaN(d.getTime())) return dateStr;
-  const mm = String(d.getMonth() + 1).padStart(2, "0");
-  const dd = String(d.getDate()).padStart(2, "0");
-  const yyyy = d.getFullYear();
-  return `${mm}-${dd}-${yyyy}`;
-}
-
 function renderCheckout() {
   const cart = new Cart();
   const subtotal = cart.getTotal();
   const total = subtotal;
 
   const itemsHTML = cart.items
-    .map((i) => {
-      const itemDate = (i.options && i.options.date) || i.date || "";
-      return `
-        <div class="checkout-item">
-          <span>${i.name}</span>
-          <span class="checkout-qty">${i.qty}</span>
-          <span class="checkout-total">$${(i.price * i.qty).toFixed(2)}</span>
-          ${
-            itemDate
-              ? `<div class="checkout-date">Catering Date: ${formatDateUS(itemDate)}</div>`
-              : ""
-          }
-        </div>
-      `;
-    })
+    .map(
+      (i) => `
+      <div class="checkout-item">
+        <span>${i.name}</span>
+        <span class="checkout-qty">${i.qty}</span>
+        <span class="checkout-total">$${(i.price * i.qty).toFixed(2)}</span>
+      </div>
+    `,
+    )
     .join("");
 
   document.getElementById("checkout-root").innerHTML = `
@@ -120,8 +89,10 @@ function renderCheckout() {
 
 function toggleZelleInfo() {
   const method = document.getElementById("payment").value;
+
   document.getElementById("zelle-info").style.display =
     method === "zelle" ? "block" : "none";
+
   document.getElementById("venmo-info").style.display =
     method === "venmo" ? "block" : "none";
 }
@@ -150,9 +121,7 @@ async function placeOrder() {
       const name = i.name.padEnd(24, " ");
       const qty = `${i.qty}`.padEnd(12, " ");
       const total = `$${(i.price * i.qty).toFixed(2)}`;
-      const itemDate = (i.options && i.options.date) || i.date || "";
-      const dateLine = itemDate ? ` | Date: ${formatDateUS(itemDate)}` : "";
-      return `${name}${qty}=  ${total}${dateLine}`;
+      return `${name}${qty}=  ${total}`;
     })
     .join("\n");
 
@@ -168,18 +137,7 @@ async function placeOrder() {
   document.getElementById("form_subtotal").value = subtotal.toFixed(2);
   document.getElementById("form_total").value = total.toFixed(2);
 
-  // ⭐ Catering Date formatted US style
-  const cateringDate = items.find(
-    (i) => (i.options && i.options.date) || i.date,
-  );
-  const coreDateStr = cateringDate
-    ? cateringDate.options?.date || cateringDate.date
-    : "";
-  document.getElementById("form_catering_date").value = coreDateStr
-    ? formatDateUS(coreDateStr)
-    : "";
-
-  // Redirect
+  // ⭐ CRITICAL FIX — FORCE REDIRECT FIELD
   document.querySelector("input[name='redirect']").value =
     "https://babaskitchendmv.com/confirmation.html";
 

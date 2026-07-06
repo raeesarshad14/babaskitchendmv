@@ -9,40 +9,12 @@ let modalItem = {
   largeQty: 0,
   minOrder: 12,
   image: null,
-  date: null, // ⭐ NEW: Catering date
 };
 
-/* ============================================================
-   ⭐ DATE MODAL LOGIC
-============================================================ */
-function openDateModal(item) {
-  modalItem = { ...item };
-  document.getElementById("cateringDateOverlay").style.display = "flex";
-}
-
-function closeDateModal() {
-  document.getElementById("cateringDateOverlay").style.display = "none";
-}
-
-document.getElementById("dateContinueBtn").addEventListener("click", () => {
-  const dateInput = document.getElementById("cateringDateInput").value;
-
-  if (!dateInput) {
-    alert("Please select a date.");
-    return;
-  }
-
-  modalItem.date = dateInput;
-  closeDateModal();
-  openModal(modalItem); // ⭐ Continue to quantity modal
-});
-
-/* ============================================================
-   ⭐ EXISTING MODAL LOGIC
-============================================================ */
 function openModal(item) {
   modalItem = { ...item };
 
+  // ⭐ HIDE CATEGORY BUTTON + PANEL
   document.body.classList.add("hide-floating-ui");
 
   if (modalItem.type === "single" && !modalItem.minOrder) {
@@ -60,6 +32,7 @@ function openModal(item) {
   document.getElementById("largeTrayRow").style.display = "none";
   document.getElementById("singleRow").style.display = "none";
 
+  // ⭐ TRAY
   if (modalItem.type === "tray") {
     modalItem.smallQty = 0;
     modalItem.largeQty = 0;
@@ -74,17 +47,32 @@ function openModal(item) {
 
     document.getElementById("smallTrayRow").style.display = "flex";
     document.getElementById("largeTrayRow").style.display = "flex";
+
+    updateTotals();
+    document.getElementById("cateringModalOverlay").style.display = "flex";
+    return;
   }
 
+  // ⭐ ROAST — START AT 1
   if (modalItem.type === "roast") {
     document.getElementById("singleRow").style.display = "flex";
     document.getElementById("singleQty").textContent = modalItem.qty;
+
+    updateTotals();
+    document.getElementById("cateringModalOverlay").style.display = "flex";
+    return;
   }
 
+  // ⭐ SINGLE — START AT 12
   if (modalItem.type === "single") {
     modalItem.qty = modalItem.minOrder;
+
     document.getElementById("singleQty").textContent = modalItem.qty;
     document.getElementById("singleRow").style.display = "flex";
+
+    updateTotals();
+    document.getElementById("cateringModalOverlay").style.display = "flex";
+    return;
   }
 
   updateTotals();
@@ -95,24 +83,30 @@ function changeQty(type, amount) {
   if (type === "small") {
     modalItem.smallQty = Math.max(0, modalItem.smallQty + amount);
     document.getElementById("smallQty").textContent = modalItem.smallQty;
+    updateTotals();
+    return;
   }
 
   if (type === "large") {
     modalItem.largeQty = Math.max(0, modalItem.largeQty + amount);
     document.getElementById("largeQty").textContent = modalItem.largeQty;
+    updateTotals();
+    return;
   }
 
   if (type === "single") {
     modalItem.qty = Math.max(modalItem.minOrder, modalItem.qty + amount);
     document.getElementById("singleQty").textContent = modalItem.qty;
+    updateTotals();
+    return;
   }
 
   if (type === "roast") {
     modalItem.qty = Math.max(1, modalItem.qty + amount);
     document.getElementById("singleQty").textContent = modalItem.qty;
+    updateTotals();
+    return;
   }
-
-  updateTotals();
 }
 
 function updateTotals() {
@@ -139,6 +133,8 @@ function updateTotals() {
 
 function closeModal() {
   document.getElementById("cateringModalOverlay").style.display = "none";
+
+  // ⭐ SHOW CATEGORY BUTTON + PANEL AGAIN
   document.body.classList.remove("hide-floating-ui");
 }
 
@@ -150,7 +146,7 @@ document.getElementById("modalAddBtn").addEventListener("click", () => {
         price: modalItem.smallPrice,
         qty: modalItem.smallQty,
         image: modalItem.image || null,
-        options: { size: "small", date: modalItem.date },
+        options: { size: "small" },
       });
     }
 
@@ -160,7 +156,7 @@ document.getElementById("modalAddBtn").addEventListener("click", () => {
         price: modalItem.largePrice,
         qty: modalItem.largeQty,
         image: modalItem.image || null,
-        options: { size: "large", date: modalItem.date },
+        options: { size: "large" },
       });
     }
   }
@@ -172,7 +168,7 @@ document.getElementById("modalAddBtn").addEventListener("click", () => {
       qty: modalItem.qty,
       image: modalItem.image || null,
       type: "menu",
-      options: { date: modalItem.date },
+      options: {},
     });
   }
 
@@ -183,13 +179,12 @@ document.getElementById("modalAddBtn").addEventListener("click", () => {
       qty: modalItem.qty,
       image: modalItem.image || null,
       type: "roast",
-      options: { roast: true, date: modalItem.date },
+      options: { roast: true },
     });
   }
 
-  showToast(`${modalItem.name} added to cart for ${modalItem.date}!`);
+  showToast(`${modalItem.name} added to cart!`);
   closeModal();
 });
 
 window.openModal = openModal;
-window.openDateModal = openDateModal;

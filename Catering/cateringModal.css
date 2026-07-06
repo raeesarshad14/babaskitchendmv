@@ -102,14 +102,14 @@
 }
 
 .catering-modal .close-btn {
+  background: transparent;
+  color: dark black;
   background: #bdc3c7;
-  color: #1a1a1a;
   padding: 10px;
   border: none;
   cursor: pointer;
   font-size: 15px;
   font-weight: 600;
-  border-radius: 8px;
 }
 
 /* ===========================
@@ -200,35 +200,8 @@
     height: 44px;
   }
 }
-
 /* ⭐ HIDE CATEGORY BUTTON + PANEL WHEN MODAL IS OPEN */
 .hide-floating-ui #jumpMenuBtn,
 .hide-floating-ui #jumpMenuPanel {
   display: none !important;
-}
-
-/* ===========================
-   ⭐ DATE PICKER MODAL FIX
-   =========================== */
-.date-input {
-  width: 100%;
-  padding: 12px;
-  font-size: 18px;
-  margin: 20px 0;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-}
-
-#cateringDateOverlay .catering-modal h2 {
-  margin-bottom: 15px;
-  font-size: 22px;
-  text-align: center;
-}
-
-#cateringDateOverlay .modal-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  margin-top: 20px;
 }
