@@ -66,7 +66,6 @@ function renderCheckout() {
           <p class="venmo-note">Send payment before placing your order.</p>
         </div>
 
-        <!-- ⭐ PROFESSIONALLY DEFAULTED TO EMPTY PLACEHOLDER -->
         <h3>Select Order Type</h3>
         <select id="orderType">
           <option value="" disabled selected>--- Select Order Type ---</option>
@@ -74,15 +73,13 @@ function renderCheckout() {
           <option value="catering">Catering</option>
         </select>
 
-        <!-- Dynamic Catering Warning -->
         <div id="cateringWarning" class="checkout-note" style="display:none;">
           Catering orders must be placed at least 4 days in advance.  
           For urgent requests, please contact Baba’s Kitchen at <strong>571‑353‑9225</strong>.
         </div>
 
-        <!-- DATE PICKER -->
         <h3>Order Date</h3>
-        <input type="date" id="checkoutDate" class="checkout-date" />
+        <input type="date" id="checkoutDate" class="checkout-date" required />
 
         <button class="place-order-btn" id="placeOrderBtn">Place Order</button>
 
@@ -92,7 +89,7 @@ function renderCheckout() {
     </div>
   `;
 
-  // Initialize date rules setup
+  // Establish standard local initialization bounds
   setupDateRules();
   const dateInput = document.getElementById("checkoutDate");
   if (dateInput) {
@@ -101,7 +98,7 @@ function renderCheckout() {
     );
   }
 
-  // Event Listeners
+  // Functional Bindings
   document
     .getElementById("orderType")
     .addEventListener("change", setupDateRules);
@@ -121,10 +118,9 @@ function setupDateRules() {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
-  // Clear value to prevent lingering dates from bypassing validation when swapping options
+  // Clear any existing value so boundary changes apply cleanly on Safari
   dateInput.value = "";
 
-  // If no type is selected yet, hide warning and let the min configuration reset
   if (!type) {
     warning.style.display = "none";
     dateInput.min = today.toISOString().split("T")[0];
@@ -133,11 +129,11 @@ function setupDateRules() {
 
   if (type === "weekly") {
     warning.style.display = "none";
-    // Weekly menu: block past dates only
+    // Blocks past dates entirely
     dateInput.min = today.toISOString().split("T")[0];
   } else if (type === "catering") {
     warning.style.display = "block";
-    // Catering: block today + next 3 days
+    // Blocks past dates + next 3 days safely
     const minCateringDate = new Date(today);
     minCateringDate.setDate(today.getDate() + 4);
     dateInput.min = minCateringDate.toISOString().split("T")[0];
@@ -173,7 +169,6 @@ async function placeOrder() {
     return resetButton(btn);
   }
 
-  // ⭐ NEW MANDATORY VALIDATION FOR ORDER TYPE
   if (!type) {
     alert(
       "Please select your Order Type (Weekly Menu or Catering) before placing your order.",
@@ -186,7 +181,7 @@ async function placeOrder() {
     return resetButton(btn);
   }
 
-  // TIMEZONE-SAFE DATE PARSING
+  // TIMEZONE-SAFE EVALUATION PARSING
   const [year, month, day] = checkoutDate.split("-");
   const selectedDate = new Date(Number(year), Number(month) - 1, Number(day));
   selectedDate.setHours(0, 0, 0, 0);
@@ -194,7 +189,6 @@ async function placeOrder() {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
-  // Validate depending on chosen order type
   if (type === "weekly") {
     if (selectedDate < today) {
       alert("Past dates cannot be selected.");
