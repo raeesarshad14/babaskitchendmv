@@ -136,19 +136,16 @@ function setupDateRules() {
 
   // Clear value to reset formatting contexts cleanly on mobile toggles
   dateInput.value = "";
-  if (dateInput.type === "date") {
-    dateInput.type = "text";
-  }
 
   if (!type) {
     warning.style.display = "none";
     dateInput.removeAttribute("min");
+    dateInput.type = "text";
     return;
   }
 
   if (type === "weekly") {
     warning.style.display = "none";
-    // Set standard boundary string format
     dateInput.min = today.toISOString().split("T")[0];
   } else if (type === "catering") {
     warning.style.display = "block";
@@ -156,6 +153,17 @@ function setupDateRules() {
     minCateringDate.setDate(today.getDate() + 4);
     dateInput.min = minCateringDate.toISOString().split("T")[0];
   }
+
+  /* ⭐ iOS SAFARI FORCE-LOCK TRICK:
+     Momentarily switch the input type to 'date' and back to 'text' 
+     to force iOS to immediately register and disable the dates on the wheel.
+  */
+  dateInput.type = "date";
+  setTimeout(() => {
+    if (!dateInput.value) {
+      dateInput.type = "text";
+    }
+  }, 10);
 }
 
 function togglePaymentInfo() {
@@ -217,7 +225,15 @@ async function placeOrder() {
     minDate.setDate(today.getDate() + 4);
 
     if (selectedDate < minDate) {
-      alert("Catering orders must be placed at least 4 days in advance.");
+      // Format the minimum date to MM-DD-YYYY for the custom warning alert
+      const displayMonth = String(minDate.getMonth() + 1).padStart(2, "0");
+      const displayDay = String(minDate.getDate()).padStart(2, "0");
+      const displayYear = minDate.getFullYear();
+      const formattedMinDate = `${displayMonth}-${displayDay}-${displayYear}`;
+
+      alert(
+        `Catering orders must be placed at least 4 days in advance.\nThe earliest available date you can choose is ${formattedMinDate}.`,
+      );
       return resetButton(btn);
     }
   }
