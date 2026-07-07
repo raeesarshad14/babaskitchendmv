@@ -79,7 +79,16 @@ function renderCheckout() {
         </div>
 
         <h3>Order Date</h3>
-        <input type="date" id="checkoutDate" class="checkout-date" required />
+        <input 
+          type="text" 
+          id="checkoutDate" 
+          class="checkout-date" 
+          placeholder="Select Order Date" 
+          onfocus="(this.type='date')" 
+          onchange="if(this.value) { this.type='date' } else { this.type='text' }"
+          onblur="if(!this.value) this.type='text'" 
+          required 
+        />
 
         <button class="place-order-btn" id="placeOrderBtn">Place Order</button>
 
@@ -89,12 +98,19 @@ function renderCheckout() {
     </div>
   `;
 
-  // Establish standard local initialization bounds
+  // Initialize date rules setup
   setupDateRules();
+
   const dateInput = document.getElementById("checkoutDate");
   if (dateInput) {
-    ["focus", "click", "mousedown", "touchstart"].forEach((evt) =>
-      dateInput.addEventListener(evt, () => dateInput.showPicker?.()),
+    // Ensures clean modal popup behavior across mobile viewports
+    ["focus", "click", "touchstart"].forEach((evt) =>
+      dateInput.addEventListener(evt, () => {
+        dateInput.type = "date";
+        setTimeout(() => {
+          dateInput.showPicker?.();
+        }, 50);
+      }),
     );
   }
 
@@ -118,22 +134,24 @@ function setupDateRules() {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
-  // Clear any existing value so boundary changes apply cleanly on Safari
+  // Clear value to reset formatting contexts cleanly on mobile toggles
   dateInput.value = "";
+  if (dateInput.type === "date") {
+    dateInput.type = "text";
+  }
 
   if (!type) {
     warning.style.display = "none";
-    dateInput.min = today.toISOString().split("T")[0];
+    dateInput.removeAttribute("min");
     return;
   }
 
   if (type === "weekly") {
     warning.style.display = "none";
-    // Blocks past dates entirely
+    // Set standard boundary string format
     dateInput.min = today.toISOString().split("T")[0];
   } else if (type === "catering") {
     warning.style.display = "block";
-    // Blocks past dates + next 3 days safely
     const minCateringDate = new Date(today);
     minCateringDate.setDate(today.getDate() + 4);
     dateInput.min = minCateringDate.toISOString().split("T")[0];
@@ -181,7 +199,7 @@ async function placeOrder() {
     return resetButton(btn);
   }
 
-  // TIMEZONE-SAFE EVALUATION PARSING
+  // TIMEZONE-SAFE BACKEND VALIDATION EVALUATION
   const [year, month, day] = checkoutDate.split("-");
   const selectedDate = new Date(Number(year), Number(month) - 1, Number(day));
   selectedDate.setHours(0, 0, 0, 0);
