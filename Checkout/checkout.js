@@ -144,7 +144,7 @@ async function placeOrder() {
   }
 
   if (!checkoutDate) {
-    alert("Please select a day for your order.");
+    alert("Please select a date for your order.");
     btn.disabled = false;
     btn.innerText = "Place Order";
     return;
