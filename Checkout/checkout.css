@@ -236,13 +236,14 @@
     top: -5px;
     right: -5px;
   }
-  @media (max-width: 768px) {
-    .checkout-item {
-      grid-template-columns: 1fr 40px auto;
-      gap: 10px;
-    }
-  }
 }
+.checkout-date::-webkit-calendar-picker-indicator {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+  opacity: 1;
+}
+
 /* ================================
    CART BADGE RESTORATION
 ================================ */

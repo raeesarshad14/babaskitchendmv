@@ -70,7 +70,7 @@ function renderCheckout() {
         </div>
 
         <!-- ⭐ NEW: SELECT DATE -->
-        <h3>Order Date</h3>
+        <h3>Select Order Date</h3>
           <div class="checkout-note">
             Catering orders must be placed at least 4 days in advance.  
             For urgent requests, please contact Baba’s Kitchen at <strong>571‑353‑9225</strong>.
