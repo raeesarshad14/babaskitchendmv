@@ -7,7 +7,6 @@ window.addEventListener("DOMContentLoaded", () => {
 function renderCheckout() {
   const cart = new Cart();
   const subtotal = cart.getTotal();
-  const total = subtotal;
 
   const itemsHTML = cart.items
     .map(
@@ -27,9 +26,7 @@ function renderCheckout() {
       <div class="checkout-summary">
         <h2>Order Summary</h2>
 
-        <div class="checkout-items">
-          ${itemsHTML}
-        </div>
+        <div class="checkout-items">${itemsHTML}</div>
 
         <div class="summary-total">
           <span>Subtotal:</span>
@@ -69,17 +66,25 @@ function renderCheckout() {
           <p class="venmo-note">Send payment before placing your order.</p>
         </div>
 
-        <!-- ⭐ NEW: SELECT DATE -->
-        <h3>Select Order Date</h3>
-          <div class="checkout-note">
-            Catering orders must be placed at least 4 days in advance.  
-            For urgent requests, please contact Baba’s Kitchen at <strong>571‑353‑9225</strong>.
-          </div>
+        <!-- ⭐ PROFESSIONALLY DEFAULTED TO EMPTY PLACEHOLDER -->
+        <h3>Select Order Type</h3>
+        <select id="orderType">
+          <option value="" disabled selected>--- Select Order Type ---</option>
+          <option value="weekly">Weekly Menu</option>
+          <option value="catering">Catering</option>
+        </select>
+
+        <!-- Dynamic Catering Warning -->
+        <div id="cateringWarning" class="checkout-note" style="display:none;">
+          Catering orders must be placed at least 4 days in advance.  
+          For urgent requests, please contact Baba’s Kitchen at <strong>571‑353‑9225</strong>.
+        </div>
+
+        <!-- DATE PICKER -->
+        <h3>Order Date</h3>
         <input type="date" id="checkoutDate" class="checkout-date" />
 
-        <button class="place-order-btn" id="placeOrderBtn">
-          Place Order
-        </button>
+        <button class="place-order-btn" id="placeOrderBtn">Place Order</button>
 
         <div id="payment-success" class="success-check">Order Submitted</div>
       </div>
@@ -87,43 +92,70 @@ function renderCheckout() {
     </div>
   `;
 
-  // ⭐ Setup date restrictions (block today + next 3 days)
+  // Initialize date rules setup
+  setupDateRules();
   const dateInput = document.getElementById("checkoutDate");
   if (dateInput) {
-    const today = new Date();
-    today.setDate(today.getDate() + 4); // block today + next 3 days
-    dateInput.min = today.toISOString().split("T")[0];
-
-    // ⭐ Make calendar open whenever user clicks/taps/focuses
-    dateInput.addEventListener("focus", () => dateInput.showPicker?.());
-    dateInput.addEventListener("click", () => dateInput.showPicker?.());
-    dateInput.addEventListener("mousedown", () => dateInput.showPicker?.());
-    dateInput.addEventListener("touchstart", () => dateInput.showPicker?.());
+    ["focus", "click", "mousedown", "touchstart"].forEach((evt) =>
+      dateInput.addEventListener(evt, () => dateInput.showPicker?.()),
+    );
   }
 
+  // Event Listeners
+  document
+    .getElementById("orderType")
+    .addEventListener("change", setupDateRules);
   document
     .getElementById("payment")
-    .addEventListener("change", toggleZelleInfo);
+    .addEventListener("change", togglePaymentInfo);
   document
     .getElementById("placeOrderBtn")
     .addEventListener("click", placeOrder);
 }
 
-function toggleZelleInfo() {
-  const method = document.getElementById("payment").value;
+function setupDateRules() {
+  const type = document.getElementById("orderType").value;
+  const dateInput = document.getElementById("checkoutDate");
+  const warning = document.getElementById("cateringWarning");
 
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  // Clear value to prevent lingering dates from bypassing validation when swapping options
+  dateInput.value = "";
+
+  // If no type is selected yet, hide warning and let the min configuration reset
+  if (!type) {
+    warning.style.display = "none";
+    dateInput.min = today.toISOString().split("T")[0];
+    return;
+  }
+
+  if (type === "weekly") {
+    warning.style.display = "none";
+    // Weekly menu: block past dates only
+    dateInput.min = today.toISOString().split("T")[0];
+  } else if (type === "catering") {
+    warning.style.display = "block";
+    // Catering: block today + next 3 days
+    const minCateringDate = new Date(today);
+    minCateringDate.setDate(today.getDate() + 4);
+    dateInput.min = minCateringDate.toISOString().split("T")[0];
+  }
+}
+
+function togglePaymentInfo() {
+  const method = document.getElementById("payment").value;
   document.getElementById("zelle-info").style.display =
     method === "zelle" ? "block" : "none";
-
   document.getElementById("venmo-info").style.display =
     method === "venmo" ? "block" : "none";
 }
 
-// ⭐ Helper to format date in American style (MM-DD-YYYY)
 function formatDateForEmail(dateStr) {
   if (!dateStr) return "";
-  const parts = dateStr.split("-");
-  return `${parts[1]}-${parts[2]}-${parts[0]}`;
+  const [year, month, day] = dateStr.split("-");
+  return `${month}-${day}-${year}`;
 }
 
 async function placeOrder() {
@@ -133,63 +165,87 @@ async function placeOrder() {
 
   const name = document.getElementById("name").value.trim();
   const phone = document.getElementById("phone").value.trim();
-  const payment = document.getElementById("payment").value;
+  const type = document.getElementById("orderType").value;
   const checkoutDate = document.getElementById("checkoutDate").value;
 
   if (!name || !phone) {
     alert("Please enter your name and phone number.");
-    btn.disabled = false;
-    btn.innerText = "Place Order";
-    return;
+    return resetButton(btn);
+  }
+
+  // ⭐ NEW MANDATORY VALIDATION FOR ORDER TYPE
+  if (!type) {
+    alert(
+      "Please select your Order Type (Weekly Menu or Catering) before placing your order.",
+    );
+    return resetButton(btn);
   }
 
   if (!checkoutDate) {
     alert("Please select a date for your order.");
-    btn.disabled = false;
-    btn.innerText = "Place Order";
-    return;
+    return resetButton(btn);
+  }
+
+  // TIMEZONE-SAFE DATE PARSING
+  const [year, month, day] = checkoutDate.split("-");
+  const selectedDate = new Date(Number(year), Number(month) - 1, Number(day));
+  selectedDate.setHours(0, 0, 0, 0);
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  // Validate depending on chosen order type
+  if (type === "weekly") {
+    if (selectedDate < today) {
+      alert("Past dates cannot be selected.");
+      return resetButton(btn);
+    }
+  } else if (type === "catering") {
+    const minDate = new Date(today);
+    minDate.setDate(today.getDate() + 4);
+
+    if (selectedDate < minDate) {
+      alert("Catering orders must be placed at least 4 days in advance.");
+      return resetButton(btn);
+    }
   }
 
   const cart = new Cart();
-  const items = cart.items;
-
-  const itemsText = items
+  const itemsText = cart.items
     .map((i) => {
-      const name = i.name.padEnd(24, " ");
-      const qty = `${i.qty}`.padEnd(12, " ");
-      const total = `$${(i.price * i.qty).toFixed(2)}`;
-      return `${name}${qty}=  ${total}`;
+      const nameField = i.name.padEnd(24, " ");
+      const qtyField = `${i.qty}`.padEnd(12, " ");
+      const totalField = `$${(i.price * i.qty).toFixed(2)}`;
+      return `${nameField}${qtyField}=  ${totalField}`;
     })
     .join("\n");
 
   const subtotal = cart.getTotal();
-  const total = subtotal;
 
-  // Fill hidden form fields
   document.getElementById("form_from_name").value = "BabasKitchendmv";
   document.getElementById("form_name").value = name;
   document.getElementById("form_phone").value = phone;
-  document.getElementById("form_payment").value = payment;
+  document.getElementById("form_payment").value =
+    document.getElementById("payment").value;
   document.getElementById("form_items").value = itemsText;
   document.getElementById("form_subtotal").value = subtotal.toFixed(2);
-  document.getElementById("form_total").value = total.toFixed(2);
-
-  // ⭐ NEW: Add formatted Order Date to form
+  document.getElementById("form_total").value = subtotal.toFixed(2);
   document.getElementById("form_date").value = formatDateForEmail(checkoutDate);
 
-  // ⭐ CRITICAL FIX — FORCE REDIRECT FIELD
   document.querySelector("input[name='redirect']").value =
     "https://babaskitchendmv.com/confirmation.html";
 
-  // Show success animation
   document.getElementById("payment-success").style.display = "block";
 
   await new Promise((res) => setTimeout(res, 900));
 
-  // Submit form
   document.getElementById("checkoutOrderForm").submit();
 
-  // Clear cart
   cart.items = [];
   cart.save();
+}
+
+function resetButton(btn) {
+  btn.disabled = false;
+  btn.innerText = "Place Order";
 }
