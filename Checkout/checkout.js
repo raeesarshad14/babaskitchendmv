@@ -78,17 +78,19 @@ function renderCheckout() {
           For urgent requests, please contact Baba’s Kitchen at <strong>571‑353‑9225</strong>.
         </div>
 
-        <h3>Order Date</h3>
-        <input 
-          type="text" 
-          id="checkoutDate" 
-          class="checkout-date" 
-          placeholder="Select Order Date" 
-          onfocus="(this.type='date')" 
-          onchange="if(this.value) { this.type='date' } else { this.type='text' }"
-          onblur="if(!this.value) this.type='text'" 
-          required 
-        />
+        <div id="dateInputWrapper" style="display:none;">
+          <h3>Order Date</h3>
+          <input 
+            type="text" 
+            id="checkoutDate" 
+            class="checkout-date" 
+            placeholder="Select Order Date" 
+            onfocus="(this.type='date')" 
+            onchange="if(this.value) { this.type='date' } else { this.type='text' }"
+            onblur="if(!this.value) this.type='text'" 
+            required 
+          />
+        </div>
 
         <button class="place-order-btn" id="placeOrderBtn">Place Order</button>
 
@@ -130,6 +132,7 @@ function setupDateRules() {
   const type = document.getElementById("orderType").value;
   const dateInput = document.getElementById("checkoutDate");
   const warning = document.getElementById("cateringWarning");
+  const dateWrapper = document.getElementById("dateInputWrapper");
 
   const today = new Date();
   today.setHours(0, 0, 0, 0);
@@ -139,16 +142,22 @@ function setupDateRules() {
 
   if (!type) {
     warning.style.display = "none";
+    dateWrapper.style.display = "none";
     dateInput.removeAttribute("min");
     dateInput.type = "text";
     return;
   }
 
   if (type === "weekly") {
+    // Hide date field for Weekly Menu orders
     warning.style.display = "none";
+    dateWrapper.style.display = "none";
     dateInput.min = today.toISOString().split("T")[0];
   } else if (type === "catering") {
+    // Show date field only when Catering is chosen
     warning.style.display = "block";
+    dateWrapper.style.display = "block";
+
     const minCateringDate = new Date(today);
     minCateringDate.setDate(today.getDate() + 4);
     dateInput.min = minCateringDate.toISOString().split("T")[0];
@@ -202,21 +211,25 @@ async function placeOrder() {
     return resetButton(btn);
   }
 
-  if (!checkoutDate) {
+  // Only check date values if the wrapper field is currently displayed (Catering)
+  if (type === "catering" && !checkoutDate) {
     alert("Please select a date for your order.");
     return resetButton(btn);
   }
 
   // TIMEZONE-SAFE BACKEND VALIDATION EVALUATION
-  const [year, month, day] = checkoutDate.split("-");
-  const selectedDate = new Date(Number(year), Number(month) - 1, Number(day));
-  selectedDate.setHours(0, 0, 0, 0);
+  let selectedDate = null;
+  if (checkoutDate) {
+    const [year, month, day] = checkoutDate.split("-");
+    selectedDate = new Date(Number(year), Number(month) - 1, Number(day));
+    selectedDate.setHours(0, 0, 0, 0);
+  }
 
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
   if (type === "weekly") {
-    if (selectedDate < today) {
+    if (selectedDate && selectedDate < today) {
       alert("Past dates cannot be selected.");
       return resetButton(btn);
     }
@@ -224,7 +237,7 @@ async function placeOrder() {
     const minDate = new Date(today);
     minDate.setDate(today.getDate() + 4);
 
-    if (selectedDate < minDate) {
+    if (selectedDate && selectedDate < minDate) {
       // Format the minimum date to MM-DD-YYYY for the custom warning alert
       const displayMonth = String(minDate.getMonth() + 1).padStart(2, "0");
       const displayDay = String(minDate.getDate()).padStart(2, "0");
@@ -258,7 +271,9 @@ async function placeOrder() {
   document.getElementById("form_items").value = itemsText;
   document.getElementById("form_subtotal").value = subtotal.toFixed(2);
   document.getElementById("form_total").value = subtotal.toFixed(2);
-  document.getElementById("form_date").value = formatDateForEmail(checkoutDate);
+  document.getElementById("form_date").value = checkoutDate
+    ? formatDateForEmail(checkoutDate)
+    : "Weekly Menu Order";
 
   document.querySelector("input[name='redirect']").value =
     "https://babaskitchendmv.com/confirmation.html";
