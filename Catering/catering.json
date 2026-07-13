@@ -55,6 +55,7 @@
       { "name": "Chicken Shami Sliders", "price": 3.0, "minOrder": 12 },
       { "name": "Beef Shami Sliders", "price": 3.0, "minOrder": 12 },
       { "name": "Beef Chapli Kabob Sliders", "price": 3.0, "minOrder": 12 },
+      { "name": "Chicken Tikka Sliders", "price": 3.0, "minOrder": 12 },
       {
         "name": "Nashville Fried Chicken Sliders",
         "price": 3.75,
